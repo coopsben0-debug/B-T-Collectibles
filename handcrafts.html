@@ -3,88 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handcrafts & Kits — B&T Collectibles</title>
+    <title>Studio Handcrafts Collective — B&T Collectibles</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg-color: #fbf9f6;
-            --text-main: #2c2520;
-            --accent-soft: #e1bfa2;
-            --accent-deep: #743014;
-            --green-moss: #6b6d43;
-        }
-        body { 
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            padding: 2rem;
-        }
-        header {
-            text-align: center;
-            padding: 6rem 0 4rem 0;
-            border-bottom: 1px solid rgba(116, 48, 20, 0.08);
-            max-width: 1200px;
-            margin: 0 auto 4rem auto;
-        }
-        header h1 { font-size: 3.8rem; font-weight: 400; letter-spacing: -0.5px; color: var(--text-main); line-height: 1.1; margin-bottom: 0.8rem; }
-        header p { font-style: italic; color: var(--green-moss); font-size: 1.1rem; margin-bottom: 2.5rem; }
-        nav { display: flex; justify-content: center; gap: 2rem; }
-        nav a { text-decoration: none; font-family: sans-serif; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; }
-        nav a.active { color: var(--accent-deep); font-weight: bold; }
-        nav a.inactive { color: var(--text-main); }
-        nav a:hover { color: var(--accent-deep); }
-        .section-title { max-width: 1200px; margin: 3rem auto 1.5rem auto; font-size: 1.3rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-deep); border-bottom: 1px solid rgba(116, 48, 20, 0.05); padding-bottom: 0.5rem; }
-        .collection-grid { max-width: 1200px; margin: 0 auto 5rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
-        .image-container { width: 100%; aspect-ratio: 4 / 5; background-color: #f0ede8; overflow: hidden; margin-bottom: 1.2rem; }
+        :root { --bg-color: #F7F4D5; --text-main: #0A3323; --accent-moss: #839958; --accent-rose: #D3968C; --accent-midnight: #105666; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Georgia', serif; line-height: 1.6; padding: 2rem; }
+        header { text-align: center; padding: 5rem 0 3rem 0; border-bottom: 1px solid rgba(10, 51, 35, 0.08); max-width: 1200px; margin: 0 auto 3rem auto; }
+        .studio-logo-container { display: inline-block; border: 1px solid var(--text-main); padding: 1.2rem 3rem; margin-bottom: 1.5rem; position: relative; }
+        .studio-logo-container::after { content: ''; position: absolute; top: 3px; left: 3px; right: 3px; bottom: 3px; border: 1px solid var(--accent-moss); pointer-events: none; }
+        .studio-logo-container h1 { font-size: 3rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; line-height: 1; }
+        .studio-logo-container span { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 6px; color: var(--accent-midnight); display: block; }
+        nav { display: flex; justify-content: center; gap: 2.5rem; }
+        nav a { text-decoration: none; font-family: sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        nav a.active { color: var(--accent-midnight); font-weight: bold; border-bottom: 1px solid var(--accent-midnight); padding-bottom: 2px; }
+        nav a.inactive { color: var(--text-main); opacity: 0.8; }
+        .subsection-header { max-width: 1200px; margin: 4rem auto 1.5rem auto; font-size: 1.1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-midnight); border-bottom: 1px solid rgba(131, 153, 88, 0.25); padding-bottom: 0.4rem; }
+        .collection-grid { max-width: 1200px; margin: 0 auto 4rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+        .image-container { width: 100%; aspect-ratio: 4 / 5; background-color: rgba(131, 153, 88, 0.12); overflow: hidden; margin-bottom: 1rem; border: 1px solid rgba(10, 51, 35, 0.05); }
         .image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .artist-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-moss); margin-bottom: 0.4rem; }
-        .product-title { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.3rem; }
-        .product-price { font-size: 1.05rem; margin-bottom: 1.2rem; }
-        .buy-btn { display: inline-block; width: 100%; text-align: center; background-color: transparent; color: var(--text-main); border: 1px solid var(--text-main); text-decoration: none; padding: 0.9rem; font-family: sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; }
-        .buy-btn:hover { background-color: var(--text-main); color: var(--bg-color); }
+        .badge-tag { display: inline-block; font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; background-color: var(--accent-rose); color: #fff; padding: 0.2rem 0.6rem; margin-bottom: 0.5rem; border-radius: 2px; }
+        .artist-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-moss); margin-bottom: 0.2rem; font-weight: bold; }
+        .product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.3rem; }
+        .product-price { font-size: 1rem; margin-bottom: 1rem; font-family: sans-serif; }
+        .buy-btn { display: inline-block; width: 100%; text-align: center; background-color: transparent; color: var(--text-main); border: 1px solid var(--text-main); text-decoration: none; padding: 0.85rem; font-family: sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; }
+        .buy-btn:hover { background-color: var(--accent-midnight); color: var(--bg-color); border-color: var(--accent-midnight); }
+        .commission-box { grid-column: 1 / -1; background-color: rgba(131, 153, 88, 0.08); padding: 3.5rem 2rem; text-align: center; margin-top: 1.5rem; border: 1px dashed var(--accent-moss); }
+        .commission-box h4 { font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text-main); }
+        .commission-box p { font-style: italic; font-size: 1rem; color: var(--accent-midnight); margin-bottom: 1.8rem; }
+        .commission-btn { display: inline-block; padding: 0.9rem 2.5rem; background-color: transparent; border: 1px solid var(--text-main); color: var(--text-main); text-decoration: none; font-family: sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.2s ease; }
+        .commission-btn:hover { background-color: var(--text-main); color: var(--bg-color); }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>B&T Collectibles</h1>
-        <p>Fine art, handcrafts, and premium companions for quiet spaces</p>
+        <div class="studio-logo-container">
+            <h1>B&T</h1>
+            <span>Collectibles</span>
+        </div>
         <nav>
-            <a href="index.html" class="inactive">Home</a>
-            <a href="art.html" class="inactive">Art & Originals</a>
-            <a href="handcrafts.html" class="active">Handcrafts & Kits</a>
-            <a href="hobbies.html" class="inactive">Hobbies & Collectibles</a>
+            <a href="index.html" class="inactive">Home Hub</a>
+            <a href="art.html" class="inactive">Art & Prints</a>
+            <a href="handcrafts.html" class="active">Studio Handcrafts</a>
+            <a href="hobbies.html" class="inactive">Mind Games & TCG</a>
         </nav>
     </header>
 
-    <h2 class="section-title">Wooden Handcrafts</h2>
+    <h3 class="subsection-header">Earthen Clay Work & Jewelry Pots</h3>
     <div class="collection-grid">
         <div class="product-card">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1473214156641-f6dfcc920b72?w=500" alt="Handcrafted Pyrography Frame">
-            </div>
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500" alt="Clay Stamp Dish"></div>
             <div class="product-meta">
-                <p class="artist-label">Handcrafted Woodwork</p>
-                <h3 class="product-title">Pyrography Wildflower Frame</h3>
-                <p class="product-price">£24.00</p>
+                <span class="badge-tag">Letter Stamped</span>
+                <p class="artist-label">Handcrafted Clay</p>
+                <h3 class="product-title">Initial Letter Stamped Jewelry Bowl</h3>
+                <p class="product-price">£18.00</p>
+                <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?w=500" alt="Clay magnets coasters"></div>
+            <div class="product-meta">
+                <p class="artist-label">Clay Accents</p>
+                <h3 class="product-title">Hand-Molded Cute Fridge Magnets (Set)</h3>
+                <p class="product-price">£11.50</p>
                 <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
             </div>
         </div>
     </div>
 
-    <h2 class="section-title">Art & Hobby Kits</h2>
+    <h3 class="subsection-header">Textiles, Trendy Scrunchies & Embroidery</h3>
     <div class="collection-grid">
         <div class="product-card">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500" alt="B&T Studio Kit">
-            </div>
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500" alt="Trendy Scrunchies Patterns"></div>
             <div class="product-meta">
-                <p class="artist-label">B&T Studio Kits</p>
-                <h3 class="product-title">Clay Bookmark & Trinket Making Kit</h3>
-                <p class="product-price">£18.50</p>
+                <span class="badge-tag">Studio Machine Sewn</span>
+                <p class="artist-label">Fabric Accents</p>
+                <h3 class="product-title">Trendy Pattern Scrunchie & Keyring Set</h3>
+                <p class="product-price">£9.00</p>
                 <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
             </div>
+        </div>
+        <div class="product-card">
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=500" alt="Hand Embroidery Denim Work"></div>
+            <div class="product-meta">
+                <span class="badge-tag">Upcycled Thrift Vintage</span>
+                <p class="artist-label">Hand-Stitched Threadwear</p>
+                <h3 class="product-title">Embroidered Plant & Wildflower Cuff Jeans</h3>
+                <p class="product-price">£48.00</p>
+                <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="subsection-header">Bookmarks, Pyrography Wood-Burning & Button Frames</h3>
+    <div class="collection-grid">
+        <div class="product-card">
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=500" alt="Hand painted fabric bookmarks"></div>
+            <div class="product-meta">
+                <p class="artist-label">Reading Companions</p>
+                <h3 class="product-title">Painted Fabric Studio Bookmark</h3>
+                <p class="product-price">£6.50</p>
+                <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1473214156641-f6dfcc920b72?w=500" alt="Burnt Pyrography Wooden Plaque"></div>
+            <div class="product-meta">
+                <span class="badge-tag">Pyrography Studio</span>
+                <p class="artist-label">Woodwork Burning</p>
+                <h3 class="product-title">Hand-Burnt Bible Verse Signet Panel</h3>
+                <p class="product-price">£26.00</p>
+                <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500" alt="Upcycled playful button mosaic frame"></div>
+            <div class="product-meta">
+                <p class="artist-label">Upcycled Novelty Frames</p>
+                <h3 class="product-title">Whimsical Collage Button Art Photo Frame</h3>
+                <p class="product-price">£14.00</p>
+                <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
+            </div>
+        </div>
+
+        <div class="commission-box">
+            <h4>Request a Custom Handmade Craft Creation</h4>
+            <p>Want a specific phrase burnt onto wood, custom clothing sizes embroidered, or a custom initial letter stamped onto your clay dish? Drop your studio design idea below.</p>
+            <a href="mailto:your-studio-email@example.com?subject=B%26T%20Handcraft%20Custom%20Studio%20Request" class="commission-btn">Submit Custom Request</a>
         </div>
     </div>
 
