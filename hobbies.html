@@ -3,181 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hobbies & Archives — B&T Collectibles</title>
+    <title>Hobbies & Vault — B&T Collectibles</title>
     
     <style>
+        :root {
+            --clr-dark-green: #0A3323;
+            --clr-moss-green: #839958;
+            --clr-beige: #F7F4D5;
+            --clr-rosy-brown: #D3968C;
+            --clr-midnight: #105666;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        :root { 
-            --clr-dark-green: #0A3323; 
-            --clr-moss-green: #839958; 
-            --clr-beige: #F7F4D5; 
-            --clr-rosy-brown: #D3968C; 
-            --clr-midnight: #105666; 
+        body {
+            background-color: var(--clr-beige);
+            color: var(--clr-dark-green);
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
         }
 
-        body { 
-            background-color: var(--clr-midnight); 
-            color: var(--clr-beige); 
-            font-family: 'Georgia', serif; 
-            line-height: 1.6; 
-            padding: 2rem; 
-        }
-
-        header { 
-            text-align: center; 
-            padding: 3rem 0; 
-            border-bottom: 1px solid rgba(247, 244, 213, 0.15); 
-            max-width: 1400px; 
-            margin: 0 auto 3rem auto; 
-        }
-
-        .studio-logo-container { 
-            display: inline-block; 
-            border: 1px solid var(--clr-beige); 
-            padding: 1.2rem 3rem; 
-            margin-bottom: 1.5rem; 
-            position: relative; 
-            text-decoration: none;
-            color: inherit;
-        }
-        .studio-logo-container::after { 
-            content: ''; 
-            position: absolute; 
-            top: 2px; left: 2px; right: 2px; bottom: 2px; 
-            border: 1px solid var(--clr-moss-green); 
-            pointer-events: none; 
-        }
-        .studio-logo-container h1 { font-size: 2.8rem; font-weight: 400; letter-spacing: 2px; line-height: 1; text-transform: uppercase; }
-        .studio-logo-container span { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 6px; color: var(--clr-rosy-brown); display: block; }
-
-        nav { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-        nav a { text-decoration: none; font-family: sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; }
-        nav a.active { color: var(--clr-rosy-brown); font-weight: bold; border-bottom: 1px solid var(--clr-rosy-brown); padding-bottom: 2px; }
-        nav a.inactive { color: var(--clr-beige); opacity: 0.8; }
-        nav a.inactive:hover { opacity: 1; color: var(--clr-rosy-brown); }
-
-        .workspace-layout {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* 🌸 MASTER SYSTEM-WIDE TOP HEADER */
+        .brand-header-banner {
+            background-color: var(--clr-beige);
+            padding: 2rem 4rem 1.5rem 4rem;
             display: flex;
-            gap: 3rem;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
         }
 
-        .sidebar-panel {
-            width: 280px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(131, 153, 88, 0.25);
-            padding: 1.5rem;
-            border-radius: 4px;
-            align-self: flex-start;
+        .studio-logo-frame {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            color: var(--clr-dark-green);
         }
-        .sidebar-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 0.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--clr-beige); }
-        .sidebar-list { list-style: none; }
-        .sidebar-list li { padding: 0.4rem 0; font-family: sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; opacity: 0.8; transition: transform 0.2s; }
-        .sidebar-list li:hover { opacity: 1; color: var(--clr-rosy-brown); transform: translateX(3px); }
+        
+        .studio-logo-frame .logo-graphic-img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+        }
 
-        .main-content-flow { flex-grow: 1; }
-
-        .subsection-header { 
-            font-size: 1.1rem; 
+        .logo-meta-title h1 { 
+            font-size: 1.8rem; 
+            letter-spacing: 3px; 
             font-weight: 400; 
             text-transform: uppercase; 
-            letter-spacing: 3px; 
-            color: var(--clr-rosy-brown); 
-            border-bottom: 1px solid rgba(131, 153, 88, 0.25); 
-            padding-bottom: 0.4rem; 
+            line-height: 1.1;
+        }
+        .logo-meta-title p { 
+            font-family: sans-serif; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            opacity: 0.8; 
+            margin-top: 4px; 
+        }
+
+        .right-utilities-gate {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .util-link { text-decoration: none; color: var(--clr-dark-green); font-weight: bold; }
+        .basket-pill { background-color: var(--clr-dark-green); color: var(--clr-beige); padding: 0.3rem 0.7rem; border-radius: 50px; font-size: 0.75rem; margin-left: 0.3rem; }
+
+        /* 🗺️ MASTER NAVIGATION CONTROLS BAR */
+        .navigation-routing-bar {
+            background-color: var(--clr-beige);
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
+            text-align: center;
+        }
+        
+        .tab-link-group { 
+            display: flex; 
+            justify-content: center; 
+            gap: 3rem; 
+        }
+        
+        .tab-trigger {
+            text-decoration: none; 
+            font-family: sans-serif; 
+            font-size: 0.85rem;
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: bold;
+            color: var(--clr-dark-green); 
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .tab-trigger:hover, .tab-trigger.active { 
+            color: var(--clr-dark-green);
+            border-bottom-color: var(--clr-dark-green);
+        }
+
+        /* 🌌 MIDNIGHT IMMERSION LOWER CHAMBER */
+        .vault-immersion-chamber {
+            background-color: var(--clr-midnight);
+            color: var(--clr-beige);
+            padding: 4rem;
+            min-height: calc(100vh - 165px);
+        }
+
+        .vault-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .vault-container h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--clr-rosy-brown);
             margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .collection-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 2.5rem; 
-            margin-bottom: 4rem;
+        .hobby-grid-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
-        .product-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(131, 153, 88, 0.15);
-            padding: 1rem;
+        .hobby-display-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(247, 244, 213, 0.15);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
             border-radius: 4px;
-            transition: transform 0.2s;
         }
-        .product-card:hover { transform: translateY(-4px); }
 
-        .image-container { width: 100%; aspect-ratio: 1 / 1; background-color: rgba(255, 255, 255, 0.05); overflow: hidden; margin-bottom: 1.2rem; border: 1px solid rgba(247, 244, 213, 0.1); }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; }
+        .hobby-photo-frame {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+        .hobby-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        .badge-tag { display: inline-block; font-family: sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; background-color: var(--clr-rosy-brown); color: #fff; padding: 0.2rem 0.5rem; margin-bottom: 0.6rem; border-radius: 2px; }
-        .artist-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--clr-moss-green); margin-bottom: 0.3rem; font-weight: bold; }
-        .product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.3rem; color: var(--clr-beige); min-height: 2.8rem; }
-        .product-price { font-size: 1.1rem; margin-bottom: 1.2rem; font-family: sans-serif; color: var(--clr-beige); }
-
-        .buy-btn { display: inline-block; width: 100%; text-align: center; background-color: transparent; color: var(--clr-beige); border: 1px solid var(--clr-beige); text-decoration: none; padding: 0.9rem; font-family: sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; }
-        .buy-btn:hover { background-color: var(--clr-beige); color: var(--clr-midnight); }
-
-        @media (max-width: 768px) {
-            .workspace-layout { flex-direction: column; }
-            .sidebar-panel { width: 100%; }
+        .hobby-card-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--clr-beige); min-height: 3.2rem; }
+        .hobby-card-price { font-family: sans-serif; font-size: 1.1rem; color: var(--clr-rosy-brown); font-weight: bold; margin-bottom: 1.2rem; }
+        
+        .hobby-buy-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--clr-beige);
+            color: var(--clr-beige);
+            padding: 0.8rem;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: auto;
+            transition: all 0.2s ease;
+        }
+        .hobby-buy-btn:hover {
+            background: var(--clr-beige);
+            color: var(--clr-midnight);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="studio-logo-container">
-            <h1>B&T</h1>
-            <span>Collectibles</span>
+    <header class="brand-header-banner">
+        <a href="index.html" class="studio-logo-frame">
+            <img src="2.jpg" alt="B&T Collectibles Logo" class="logo-graphic-img">
+            <div class="logo-meta-title">
+                <h1>B&T Collectibles</h1>
+                <p>Studio & Archive Hub</p>
+            </div>
         </a>
-        <nav>
-            <a href="index.html" class="inactive">Hub Hub</a>
-            <a href="art.html" class="inactive">Art & Prints</a>
-            <a href="handcrafts.html" class="inactive">Studio Handcrafts</a>
-            <a href="hobbies.html" class="active">Mind Games & TCG</a>
-        </nav>
+        <div class="right-utilities-gate">
+            <a href="#" class="util-link">Sign In / Register</a>
+            <a href="#" class="util-link payhip-open-cart">Studio Basket <span class="basket-pill payhip-cart-count">0</span></a>
+        </div>
     </header>
 
-    <div class="workspace-layout">
-        <aside class="sidebar-panel">
-            <h4 class="sidebar-title">Vault Items</h4>
-            <ul class="sidebar-list">
-                <li>TCG Boosters</li>
-                <li>Speed Cubes</li>
-                <li>Pen Spinning</li>
-                <li>Balisong Mods</li>
-            </ul>
-        </aside>
+    <nav class="navigation-routing-bar">
+        <div class="tab-link-group">
+            <a href="index.html" class="tab-trigger">View All Hub</a>
+            <a href="art.html" class="tab-trigger">Art Drops</a>
+            <a href="handcrafts.html" class="tab-trigger">Project Kits</a>
+            <a href="hobbies.html" class="tab-trigger active">Hobbies & Vault</a>
+        </div>
+    </nav>
 
-        <main class="main-content-flow">
-            <h3 class="subsection-header">Dexterity Toys & Mind Games</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <div class="image-container"><img src="2.jpg" alt="Matte Coated Speedcube"></div>
-                    <div class="product-meta">
-                        <span class="badge-tag">Matte Finish</span>
-                        <p class="artist-label">Speedcubing Precise</p>
-                        <h3 class="product-title">Premium Matte 3x3 Speedcube</h3>
-                        <p class="product-price">£12.00</p>
-                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
-                    </div>
+    <div class="vault-immersion-chamber">
+        <div class="vault-container">
+            <h2>Curated Hobbies & Trading Archives</h2>
+            
+            <div class="hobby-grid-showcase">
+                <div class="hobby-display-card">
+                    <div class="hobby-photo-frame"><img src="2.jpg" alt="Speedcube" onerror="this.src='2.jpg';"></div>
+                    <h4 class="hobby-card-title">Premium Matte 3x3 Speedcube</h4>
+                    <p class="hobby-card-price">£12.00</p>
+                    <button class="hobby-buy-btn payhip-buy-button">Add to Basket</button>
+                </div>
+
+                <div class="hobby-display-card">
+                    <div class="hobby-photo-frame"><img src="2.jpg" alt="TCG Booster Pack" onerror="this.src='2.jpg';"></div>
+                    <h4 class="hobby-card-title">Pokémon TCG: Sword & Shield Booster Pack</h4>
+                    <p class="hobby-card-price">£4.50</p>
+                    <button class="hobby-buy-btn payhip-buy-button">Add to Basket</button>
                 </div>
             </div>
-
-            <h3 class="subsection-header">Trading Card Collection — Factory Booster Packs</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <div class="image-container"><img src="2.jpg" alt="Sealed TCG Packs"></div>
-                    <div class="product-meta">
-                        <span class="badge-tag">TCG Vault Pack</span>
-                        <p class="artist-label">Pokémon Booster Archive</p>
-                        <h3 class="product-title">Pokémon TCG: Sword & Shield Booster</h3>
-                        <p class="product-price">£4.50</p>
-                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
 
     <script type="text/javascript" src="https://payhip.com/payhip.js?v=24842"></script>
