@@ -3,191 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Handcrafts — B&T Collectibles</title>
+    <title>Project Kits — B&T Collectibles</title>
     
     <style>
+        :root {
+            --clr-dark-green: #0A3323;
+            --clr-moss-green: #839958;
+            --clr-beige: #F7F4D5;
+            --clr-rosy-brown: #D3968C;
+            --clr-midnight: #105666;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        :root { 
-            --clr-dark-green: #0A3323; 
-            --clr-moss-green: #839958; 
-            --clr-beige: #F7F4D5; 
-            --clr-rosy-brown: #D3968C; 
-            --clr-midnight: #105666; 
+        body {
+            background-color: var(--clr-beige);
+            color: var(--clr-dark-green);
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
         }
 
-        body { 
-            background-color: var(--clr-moss-green); 
-            color: #ffffff; 
-            font-family: 'Georgia', serif; 
-            line-height: 1.6; 
-            padding: 2rem; 
-        }
-
-        header { 
-            text-align: center; 
-            padding: 3rem 0; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
-            max-width: 1400px; 
-            margin: 0 auto 3rem auto; 
-        }
-
-        .studio-logo-container { 
-            display: inline-block; 
-            border: 1px solid #ffffff; 
-            padding: 1.2rem 3rem; 
-            margin-bottom: 1.5rem; 
-            position: relative; 
-            text-decoration: none;
-            color: inherit;
-        }
-        .studio-logo-container::after { 
-            content: ''; 
-            position: absolute; 
-            top: 2px; left: 2px; right: 2px; bottom: 2px; 
-            border: 1px solid var(--clr-beige); 
-            pointer-events: none; 
-        }
-        .studio-logo-container h1 { font-size: 2.8rem; font-weight: 400; letter-spacing: 2px; line-height: 1; text-transform: uppercase; }
-        .studio-logo-container span { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 6px; color: var(--clr-beige); display: block; }
-
-        nav { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-        nav a { text-decoration: none; font-family: sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; }
-        nav a.active { color: var(--clr-beige); font-weight: bold; border-bottom: 1px solid var(--clr-beige); padding-bottom: 2px; }
-        nav a.inactive { color: #ffffff; opacity: 0.8; }
-        nav a.inactive:hover { opacity: 1; color: var(--clr-beige); }
-
-        .workspace-layout {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* 🌸 MASTER SYSTEM-WIDE TOP HEADER */
+        .brand-header-banner {
+            background-color: var(--clr-beige);
+            padding: 2rem 4rem 1.5rem 4rem;
             display: flex;
-            gap: 3rem;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
         }
 
-        .sidebar-panel {
-            width: 280px;
-            background: rgba(10, 51, 35, 0.15);
-            border: 1px solid rgba(247, 244, 213, 0.25);
-            padding: 1.5rem;
-            border-radius: 4px;
-            align-self: flex-start;
+        .studio-logo-frame {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            color: var(--clr-dark-green);
         }
-        .sidebar-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 0.5rem; margin-bottom: 1rem; border-bottom: 2px solid #ffffff; }
-        .sidebar-list { list-style: none; }
-        .sidebar-list li { padding: 0.4rem 0; font-family: sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; opacity: 0.8; transition: transform 0.2s; }
-        .sidebar-list li:hover { opacity: 1; color: var(--clr-beige); transform: translateX(3px); }
+        
+        .studio-logo-frame .logo-graphic-img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+        }
 
-        .main-content-flow { flex-grow: 1; }
-
-        .subsection-header { 
-            font-size: 1.1rem; 
+        .logo-meta-title h1 { 
+            font-size: 1.8rem; 
+            letter-spacing: 3px; 
             font-weight: 400; 
             text-transform: uppercase; 
-            letter-spacing: 3px; 
-            color: var(--clr-beige); 
-            border-bottom: 1px solid rgba(247, 244, 213, 0.25); 
-            padding-bottom: 0.4rem; 
-            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .logo-meta-title p { 
+            font-family: sans-serif; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            opacity: 0.8; 
+            margin-top: 4px; 
         }
 
-        .collection-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 2.5rem; 
-            margin-bottom: 4rem;
+        .right-utilities-gate {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .util-link { text-decoration: none; color: var(--clr-dark-green); font-weight: bold; }
+        .basket-pill { background-color: var(--clr-dark-green); color: var(--clr-beige); padding: 0.3rem 0.7rem; border-radius: 50px; font-size: 0.75rem; margin-left: 0.3rem; }
+
+        /* 🗺️ MASTER NAVIGATION CONTROLS BAR */
+        .navigation-routing-bar {
+            background-color: var(--clr-beige);
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
+            text-align: center;
+        }
+        
+        .tab-link-group { 
+            display: flex; 
+            justify-content: center; 
+            gap: 3rem; 
+        }
+        
+        .tab-trigger {
+            text-decoration: none; 
+            font-family: sans-serif; 
+            font-size: 0.85rem;
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: bold;
+            color: var(--clr-dark-green); 
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .tab-trigger:hover, .tab-trigger.active { 
+            color: var(--clr-dark-green);
+            border-bottom-color: var(--clr-dark-green);
         }
 
-        .product-card {
-            background: rgba(10, 51, 35, 0.12);
-            border: 1px solid rgba(247, 244, 213, 0.15);
-            padding: 1rem;
-            border-radius: 4px;
-            transition: transform 0.2s;
+        /* BRIGHT HANDCRAFTS CONTENT CONTAINER */
+        .page-content-wrapper {
+            padding: 3rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .product-card:hover { transform: translateY(-4px); }
 
-        .image-container { width: 100%; aspect-ratio: 1 / 1; background-color: rgba(10, 51, 35, 0.2); overflow: hidden; margin-bottom: 1.2rem; border: 1px solid rgba(247, 244, 213, 0.1); }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        .badge-tag { display: inline-block; font-family: sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; background-color: var(--clr-rosy-brown); color: #fff; padding: 0.2rem 0.5rem; margin-bottom: 0.6rem; border-radius: 2px; }
-        .artist-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--clr-beige); margin-bottom: 0.3rem; font-weight: bold; }
-        .product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.3rem; color: #ffffff; min-height: 2.8rem; }
-        .product-price { font-size: 1.1rem; margin-bottom: 1.2rem; font-family: sans-serif; color: #ffffff; }
-
-        .buy-btn { display: inline-block; width: 100%; text-align: center; background-color: transparent; color: #ffffff; border: 1px solid #ffffff; text-decoration: none; padding: 0.9rem; font-family: sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; }
-        .buy-btn:hover { background-color: #ffffff; color: var(--clr-moss-green); }
-
-        .commission-box { grid-column: 1 / -1; background-color: rgba(10, 51, 35, 0.2); padding: 3rem; text-align: center; margin-top: 1.5rem; border: 1px dashed var(--clr-beige); }
-        .commission-box h4 { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; letter-spacing: 1px; color: #ffffff; }
-        .commission-box p { font-style: italic; font-size: 0.95rem; color: var(--clr-beige); margin-bottom: 1.5rem; }
-        .commission-btn { display: inline-block; padding: 0.8rem 2rem; border: 1px solid #ffffff; color: #ffffff; text-decoration: none; font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; }
-        .commission-btn:hover { background-color: #ffffff; color: var(--clr-moss-green); }
-
-        @media (max-width: 768px) {
-            .workspace-layout { flex-direction: column; }
-            .sidebar-panel { width: 100%; }
+        .section-editorial-intro {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--clr-midnight);
+            margin-bottom: 2.5rem;
         }
+
+        .catalog-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .craft-card {
+            background: #ffffff;
+            border: 1px solid rgba(131, 153, 88, 0.15);
+            border-radius: 4px; padding: 1.2rem;
+            display: flex; flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+        .craft-card:hover { transform: translateY(-4px); }
+
+        .card-photo-frame {
+            width: 100%; 
+            aspect-ratio: 1 / 1; 
+            overflow: hidden;
+            border-radius: 2px; 
+            margin-bottom: 1.2rem;
+            background-color: rgba(131, 153, 88, 0.05);
+        }
+        .card-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-tag-badge {
+            display: inline-block; font-family: sans-serif; font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 1px; background: var(--clr-rosy-brown);
+            color: white; padding: 0.25rem 0.6rem; border-radius: 2px; margin-bottom: 0.6rem;
+            align-self: flex-start; font-weight: bold;
+        }
+        .card-meta-line { font-family: sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 0.3rem; }
+        .card-product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.4; color: var(--clr-dark-green); min-height: 3.2rem; }
+        .card-product-price { font-family: sans-serif; font-size: 1.05rem; font-weight: bold; margin-bottom: 1.2rem; }
+        
+        .card-action-trigger {
+            display: block; width: 100%; text-align: center; background: transparent;
+            color: var(--clr-dark-green); border: 1.5px solid var(--clr-dark-green);
+            padding: 0.8rem; text-decoration: none; font-family: sans-serif;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
+            font-weight: bold; margin-top: auto; cursor: pointer; transition: all 0.2s ease;
+        }
+        .card-action-trigger:hover { background: var(--clr-dark-green); color: var(--clr-beige); }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="studio-logo-container">
-            <h1>B&T</h1>
-            <span>Collectibles</span>
+    <header class="brand-header-banner">
+        <a href="index.html" class="studio-logo-frame">
+            <img src="2.jpg" alt="B&T Collectibles Logo" class="logo-graphic-img">
+            <div class="logo-meta-title">
+                <h1>B&T Collectibles</h1>
+                <p>Studio & Archive Hub</p>
+            </div>
         </a>
-        <nav>
-            <a href="index.html" class="inactive">Hub Hub</a>
-            <a href="art.html" class="inactive">Art & Prints</a>
-            <a href="handcrafts.html" class="active">Studio Handcrafts</a>
-            <a href="hobbies.html" class="inactive">Mind Games & TCG</a>
-        </nav>
+        <div class="right-utilities-gate">
+            <a href="#" class="util-link">Sign In / Register</a>
+            <a href="#" class="util-link payhip-open-cart">Studio Basket <span class="basket-pill payhip-cart-count">0</span></a>
+        </div>
     </header>
 
-    <div class="workspace-layout">
-        <aside class="sidebar-panel">
-            <h4 class="sidebar-title">Craft Labs</h4>
-            <ul class="sidebar-list">
-                <li>Clayware Studio</li>
-                <li>Textiles & Sewing</li>
-                <li>Pyrography Art</li>
-                <li>Wood Carvings</li>
-            </ul>
-        </aside>
+    <nav class="navigation-routing-bar">
+        <div class="tab-link-group">
+            <a href="index.html" class="tab-trigger">View All Hub</a>
+            <a href="art.html" class="tab-trigger">Art Drops</a>
+            <a href="handcrafts.html" class="tab-trigger active">Project Kits</a>
+            <a href="hobbies.html" class="tab-trigger">Hobbies & Vault</a>
+        </div>
+    </nav>
 
-        <main class="main-content-flow">
-            <h3 class="subsection-header">Earthen Clay Studio</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <div class="image-container"><img src="2.jpg" alt="Stamped Clay Bowl"></div>
-                    <div class="product-meta">
-                        <span class="badge-tag">Letter Stamped</span>
-                        <p class="artist-label">Clay Jewelry Pots</p>
-                        <h3 class="product-title">Earthy Initial Jewelry Dish</h3>
-                        <p class="product-price">£18.00</p>
-                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
-                    </div>
-                </div>
+    <div class="page-content-wrapper">
+        <p class="section-editorial-intro">Handmade studio creations, stamping materials, and embroidery assemblies</p>
+
+        <main class="catalog-showcase-grid">
+            <div class="craft-card">
+                <div class="card-photo-frame"><img src="2.jpg" alt="Clay Dish" onerror="this.src='2.jpg';"></div>
+                <span class="card-tag-badge">Letter Stamped</span>
+                <p class="card-meta-line">Clay Jewelry Pots</p>
+                <h4 class="card-product-title">Earthy Initial Clay Jewelry Dish</h4>
+                <p class="card-product-price">£18.00</p>
+                <button class="card-action-trigger payhip-buy-button">Add to Basket</button>
             </div>
 
-            <h3 class="subsection-header">Studio Sewing & Textiles</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <div class="image-container"><img src="2.jpg" alt="Botanical Embroidery Work"></div>
-                    <div class="product-meta">
-                        <span class="badge-tag">Hand Stitched</span>
-                        <p class="artist-label">Upcycled Embroidery</p>
-                        <h3 class="product-title">Wildflower Stitch Cuff Denim Jacket</h3>
-                        <p class="product-price">£55.00</p>
-                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
-                    </div>
-                </div>
-
-                <div class="commission-box">
-                    <h4>Request a Stamped Initial or Pattern Customization?</h4>
-                    <p>From personalized letters stamped onto clay coasters to custom wildflower embroidery on your favorite thrifted denim pocket.</p>
-                    <a href="mailto:your-studio-email@example.com?subject=B%26T%20Studio%20Custom%20Request" class="commission-btn">Submit Custom Request</a>
-                </div>
+            <div class="craft-card">
+                <div class="card-photo-frame"><img src="2.jpg" alt="Denim Jacket" onerror="this.src='2.jpg';"></div>
+                <span class="card-tag-badge">Hand Stitched</span>
+                <p class="card-meta-line">Upcycled Embroidery</p>
+                <h4 class="card-product-title">Wildflower Stitch Cuff Denim Jacket</h4>
+                <p class="card-product-price">£55.00</p>
+                <button class="card-action-trigger payhip-buy-button">Add to Basket</button>
             </div>
         </main>
     </div>
