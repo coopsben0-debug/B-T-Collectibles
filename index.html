@@ -11,7 +11,7 @@
             --clr-beige: #F7F4D5;
             --clr-rosy-brown: #D3968C;
             --clr-midnight: #105666;
-            --clr-charcoal: #1F2421;
+            --clr-alert: #d9534f;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,7 +26,7 @@
             flex-direction: column;
         }
 
-        /* 🌸 MASTER SYSTEM-WIDE TOP HEADER (LOCKED BEIGE) */
+        /* MASTER TOP NAVIGATION HEADER */
         .brand-header-banner {
             background-color: var(--clr-beige);
             padding: 1.5rem 4rem;
@@ -36,7 +36,6 @@
             border-bottom: 1px solid rgba(131, 153, 88, 0.2);
         }
 
-        /* Vibey Logo Configuration Frame */
         .studio-logo-frame {
             display: flex;
             align-items: center;
@@ -58,7 +57,6 @@
             justify-content: center;
             border-radius: 50%;
             border: 2px solid var(--clr-rosy-brown);
-            box-shadow: 0 4px 10px rgba(10, 51, 35, 0.15);
             position: relative;
             letter-spacing: -1px;
         }
@@ -107,16 +105,18 @@
             font-family: sans-serif;
             text-transform: uppercase;
         }
-        
-        .basket-pill { 
-            background-color: var(--clr-dark-green); 
-            color: var(--clr-beige); 
-            padding: 0.3rem 0.7rem; 
-            border-radius: 50px; 
-            font-size: 0.75rem; 
+
+        .admin-session-badge {
+            background-color: var(--clr-rosy-brown);
+            color: #fff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: none;
         }
 
-        /* 🗺️ MASTER NAVIGATION CONTROLS BAR */
+        /* CATEGORY ROUTING BAR */
         .navigation-routing-bar {
             background-color: var(--clr-beige);
             padding: 1.2rem 4rem;
@@ -124,11 +124,7 @@
             text-align: center;
         }
         
-        .tab-link-group { 
-            display: flex; 
-            justify-content: center; 
-            gap: 3rem; 
-        }
+        .tab-link-group { display: flex; justify-content: center; gap: 3rem; }
         
         .tab-trigger {
             text-decoration: none; 
@@ -140,13 +136,10 @@
             color: var(--clr-dark-green); 
             padding-bottom: 0.5rem;
             border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
         }
-        .tab-trigger:hover, .tab-trigger.active { 
-            border-bottom-color: var(--clr-dark-green);
-        }
+        .tab-trigger.active { border-bottom-color: var(--clr-dark-green); }
 
-        /* UNIFIED WORKSPACE LAYOUT */
+        /* DOUBLE COLUMN MAIN STAGE */
         .dashboard-layout-stage {
             flex: 1;
             display: flex;
@@ -177,29 +170,27 @@
             padding-bottom: 0.4rem;
         }
 
-        .sidebar-menu-list { list-style: none; }
-        .sidebar-menu-item { margin-bottom: 0.6rem; }
-        .sidebar-menu-link {
-            text-decoration: none;
-            color: var(--clr-dark-green);
-            font-size: 0.85rem;
-            opacity: 0.8;
+        /* DYNAMIC ADMIN ENTRY MANAGEMENT DASHBOARD */
+        .admin-management-card {
+            border: 2px dashed var(--clr-rosy-brown);
+            background-color: rgba(211, 150, 140, 0.1);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 2.5rem;
+            display: none;
         }
-        .sidebar-menu-link:hover { opacity: 1; font-weight: bold; }
 
+        .admin-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* PRODUCTS ARCHITECTURE DISPLAY */
         .main-presentation-chamber { flex: 1; display: flex; flex-direction: column; }
+        .page-editorial-heading { font-size: 1.6rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; border-bottom: 1px solid rgba(131, 153, 88, 0.2); padding-bottom: 0.5rem; }
 
-        .page-editorial-heading {
-            font-size: 1.6rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
-            padding-bottom: 0.5rem;
-        }
-
-        /* CATALOG LAYOUT */
         .catalog-showcase-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -213,62 +204,34 @@
             padding: 1.2rem;
             display: flex; 
             flex-direction: column;
+            position: relative;
         }
 
-        .card-photo-frame {
-            width: 100%; 
-            aspect-ratio: 1 / 1; 
-            overflow: hidden;
-            border-radius: 2px; 
-            margin-bottom: 1rem;
-            background-color: rgba(131, 153, 88, 0.05);
-        }
+        .card-photo-frame { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 2px; margin-bottom: 1rem; background-color: rgba(131, 153, 88, 0.05); }
         .card-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-
         .card-meta-line { font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 0.3rem; }
         .card-product-title { font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--clr-dark-green); }
         .card-product-price { font-family: sans-serif; font-size: 1rem; font-weight: bold; color: var(--clr-midnight); }
 
-        /* MODAL OVERLAY PORTAL */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 51, 35, 0.5);
-            backdrop-filter: blur(4px);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1000; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease;
+        .item-delete-trigger {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: var(--clr-alert); color: white; border: none;
+            border-radius: 3px; padding: 0.2rem 0.5rem; font-size: 0.7rem;
+            font-family: sans-serif; cursor: pointer; display: none;
+            font-weight: bold;
         }
+
+        /* SYSTEM DIALOG OVERLAYS */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 51, 35, 0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
-        .modal-window {
-            background: #ffffff;
-            border-radius: 6px;
-            width: 100%; max-width: 500px;
-            padding: 2.5rem;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            position: relative;
-        }
-
-        .modal-close-btn {
-            position: absolute; top: 1.2rem; right: 1.5rem;
-            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--clr-dark-green);
-        }
-
-        .form-title { font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
-        .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
-        .form-group label { font-family: sans-serif; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; opacity: 0.8; }
-        .form-input { padding: 0.75rem; border: 1px solid #ccc; font-family: sans-serif; font-size: 0.9rem; border-radius: 4px; outline: none; }
-        .form-input:focus { border-color: var(--clr-dark-green); }
+        .modal-window { background: #ffffff; border-radius: 6px; width: 100%; max-width: 450px; padding: 2.5rem; position: relative; }
+        .modal-close-btn { position: absolute; top: 1.2rem; right: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--clr-dark-green); }
         
-        .form-row-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-        .action-submit-trigger {
-            width: 100%; padding: 0.9rem; background: var(--clr-dark-green); color: var(--clr-beige);
-            border: none; border-radius: 4px; font-family: sans-serif; text-transform: uppercase;
-            font-weight: bold; letter-spacing: 1.5px; cursor: pointer; margin-top: 0.5rem;
-        }
-        .action-submit-trigger:hover { background: var(--clr-midnight); }
+        .form-title { font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .form-group { margin-bottom: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; }
+        .form-group label { font-family: sans-serif; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; opacity: 0.8; }
+        .form-input { padding: 0.7rem; border: 1px solid #ccc; font-family: sans-serif; font-size: 0.9rem; border-radius: 4px; outline: none; }
+        .action-submit-trigger { width: 100%; padding: 0.85rem; background: var(--clr-dark-green); color: var(--clr-beige); border: none; border-radius: 4px; font-family: sans-serif; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -283,18 +246,18 @@
         </a>
         
         <div class="right-utilities-gate">
-            <button class="util-btn" onclick="toggleModalPortal('account-modal')">Account / Access</button>
-            <button class="util-btn" onclick="toggleModalPortal('shipping-modal')">Shipping Manager</button>
-            <span class="basket-pill">Cart: 0</span>
+            <span class="admin-session-badge" id="admin-indicator">Creator Access Mode</span>
+            <button class="util-btn" id="login-toggle-btn" onclick="toggleModalPortal('account-modal')">Identity Access</button>
+            <button class="util-btn" onclick="toggleModalPortal('shipping-modal')">Shipping Terminal</button>
         </div>
     </header>
 
     <nav class="navigation-routing-bar">
         <div class="tab-link-group">
             <a href="index.html" class="tab-trigger active">Hub Showcase</a>
-            <a href="art.html" class="tab-trigger">Art & Prints</a>
-            <a href="handcrafts.html" class="tab-trigger">Studio Crafts</a>
-            <a href="hobbies.html" class="tab-trigger">Mind Games & TCG</a>
+            <a href="#" class="tab-trigger" onclick="filterCategory('Art')">Art & Prints</a>
+            <a href="#" class="tab-trigger" onclick="filterCategory('Crafts')">Studio Crafts</a>
+            <a href="#" class="tab-trigger" onclick="filterCategory('Hobbies')">Mind Games & TCG</a>
         </div>
     </nav>
 
@@ -302,94 +265,215 @@
         <aside class="sidebar-filter-column">
             <div class="sidebar-card">
                 <h3>Global Index</h3>
-                <ul class="sidebar-menu-list">
-                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">All Active Staging</a></li>
-                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">Recent Catalog Runs</a></li>
-                </ul>
+                <div style="font-family: sans-serif; font-size: 0.85rem; opacity: 0.8;">
+                    <p>Welcome to the adaptive content console.</p>
+                </div>
             </div>
         </aside>
 
         <main class="main-presentation-chamber">
-            <h2 class="page-editorial-heading">Master Hub Showcase</h2>
             
-            <div class="catalog-showcase-grid">
-                <div class="craft-card">
-                    <div class="card-photo-frame"><img src="5.JPG" alt="B.A. Cooper Signature Run" onerror="this.src='2.jpg';"></div>
-                    <span class="card-meta-line">B.A. Cooper Signature Line</span>
-                    <h4 class="card-product-title">Boy Portrait Study Canvas</h4>
-                    <p class="card-product-price">Staging Profile</p>
-                </div>
+            <section class="admin-management-card" id="product-creator-box">
+                <h3 style="text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem;">Upload Catalog Entry</h3>
+                <form id="new-product-form" onsubmit="handleProductInjection(event)">
+                    <div class="admin-form-grid">
+                        <div class="form-group">
+                            <label>Product Title</label>
+                            <input type="text" id="prod-title" class="form-input" placeholder="e.g., Original Watercolour Canvas" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Collection Line / Artist Name</label>
+                            <input type="text" id="prod-meta" class="form-input" placeholder="e.g., B.A. Cooper Signature Line" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Valuation Price Tag</label>
+                            <input type="text" id="prod-price" class="form-input" placeholder="e.g., £145.00" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Assigned Section</label>
+                            <select id="prod-category" class="form-input" style="background:#fff;" required>
+                                <option value="Art">Art & Prints</option>
+                                <option value="Crafts">Studio Crafts</option>
+                                <option value="Hobbies">Mind Games & TCG</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Image Source Route</label>
+                            <select id="prod-img" class="form-input" style="background:#fff;" required>
+                                <option value="5.JPG">Boy Portrait Study (5.JPG)</option>
+                                <option value="6.PNG">Girl Portrait Study (6.PNG)</option>
+                                <option value="2.jpg">Standard Studio Badge (2.jpg)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="action-submit-trigger" style="margin-top: 1rem; width: auto; padding: 0.6rem 2rem;">Commit Entry to Live Hub</button>
+                </form>
+            </section>
 
-                <div class="craft-card">
-                    <div class="card-photo-frame"><img src="6.PNG" alt="T.L. Ku Fine Art Collection" onerror="this.src='2.jpg';"></div>
-                    <span class="card-meta-line">T.L. Ku Fine Art Collection</span>
-                    <h4 class="card-product-title">Girl Portrait Study Canvas</h4>
-                    <p class="card-product-price">Staging Profile</p>
-                </div>
-            </div>
+            <h2 class="page-editorial-heading" id="gallery-view-title">Master Catalog Grid</h2>
+            <div class="catalog-showcase-grid" id="products-assembly-deck"></div>
         </main>
     </div>
 
     <div class="modal-overlay" id="account-modal">
         <div class="modal-window">
             <button class="modal-close-btn" onclick="toggleModalPortal('account-modal')">×</button>
-            <h3 class="form-title">Collector Authentication</h3>
-            <form onsubmit="event.preventDefault();">
+            <h3 class="form-title" id="login-panel-title">Verify Identity</h3>
+            <form onsubmit="handleAuthenticationAttempt(event)">
                 <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" class="form-input" placeholder="collector@domain.com" required>
+                    <label>Identity Handle (Your Name or Thasia)</label>
+                    <input type="text" id="user-identity" class="form-input" placeholder="Enter name..." required>
                 </div>
                 <div class="form-group">
-                    <label>Security Password</label>
-                    <input type="password" class="form-input" placeholder="••••••••" required>
+                    <label>Access Key</label>
+                    <input type="password" id="user-key" class="form-input" placeholder="••••" required>
                 </div>
-                <button type="submit" class="action-submit-trigger">Verify Identity</button>
+                <button type="submit" class="action-submit-trigger">Process Validation</button>
             </form>
+            <p style="font-family:sans-serif; font-size:0.75rem; color:#666; margin-top:1rem; text-align:center;">Tip: Enter your name or Thasia with any password to open your administration access boards.</p>
         </div>
     </div>
 
     <div class="modal-overlay" id="shipping-modal">
         <div class="modal-window">
             <button class="modal-close-btn" onclick="toggleModalPortal('shipping-modal')">×</button>
-            <h3 class="form-title">Fulfillment & Shipping Registry</h3>
+            <h3 class="form-title">Shipping Registry</h3>
             <form onsubmit="event.preventDefault(); toggleModalPortal('shipping-modal');">
-                <div class="form-row-split">
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-input" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Street Address Line 1</label>
-                    <input type="text" class="form-input" placeholder="123 Studio Way" required>
-                </div>
-                <div class="form-row-split">
-                    <div class="form-group">
-                        <label>City</label>
-                        <input type="text" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Postal Code / ZIP</label>
-                        <input type="text" class="form-input" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Destination Country</label>
-                    <input type="text" class="form-input" value="United Kingdom" required>
-                </div>
-                <button type="submit" class="action-submit-trigger">Commit Shipping Destination</button>
+                <div class="form-group"><label>Recipient Name</label><input type="text" class="form-input" required></div>
+                <div class="form-group"><label>Street Destination Address</label><input type="text" class="form-input" required></div>
+                <div class="form-group"><label>Postal Code</label><input type="text" class="form-input" required></div>
+                <button type="submit" class="action-submit-trigger">Save Delivery File</button>
             </form>
         </div>
     </div>
 
     <script>
+        let isCreatorLoggedIn = false;
+        let selectedCategoryFilter = 'All';
+
+        // Base structural catalog assets
+        const defaultCatalogAssortment = [
+            { id: 101, title: "Boy Portrait Study Canvas", meta: "B.A. Cooper Signature Line", price: "Staging Profile", img: "5.JPG", category: "Art" },
+            { id: 102, title: "Girl Portrait Study Canvas", meta: "T.L. Ku Fine Art Collection", price: "Staging Profile", img: "6.PNG", category: "Art" }
+        ];
+
+        // Retrieve saved database modifications from localStorage
+        let masterDynamicDatabase = JSON.parse(localStorage.getItem('bt_studio_store')) || defaultCatalogAssortment;
+
         function toggleModalPortal(elementId) {
             document.getElementById(elementId).classList.toggle('active');
         }
+
+        // Handles user and Thasia login checks
+        function handleAuthenticationAttempt(e) {
+            e.preventDefault();
+            const identityInput = document.getElementById('user-identity').value.trim().toLowerCase();
+            
+            if (identityInput === 'thasia' || identityInput === 'me' || identityInput === 'admin') {
+                isCreatorLoggedIn = true;
+                localStorage.setItem('bt_admin_session', 'active');
+                applySessionStateUIPatterns();
+                toggleModalPortal('account-modal');
+            } else {
+                alert("Identity signature not recognized. Verification rejected.");
+            }
+        }
+
+        function applySessionStateUIPatterns() {
+            const creatorBox = document.getElementById('product-creator-box');
+            const indicatorBadge = document.getElementById('admin-indicator');
+            const toggleButton = document.getElementById('login-toggle-btn');
+
+            if (isCreatorLoggedIn) {
+                creatorBox.style.display = 'block';
+                indicatorBadge.style.display = 'inline-block';
+                toggleButton.innerText = 'Exit Session';
+                toggleButton.onclick = executeLogoutRoutine;
+            } else {
+                creatorBox.style.display = 'none';
+                indicatorBadge.style.display = 'none';
+                toggleButton.innerText = 'Identity Access';
+                toggleButton.onclick = () => toggleModalPortal('account-modal');
+            }
+            renderActiveCatalogDeck();
+        }
+
+        function executeLogoutRoutine() {
+            isCreatorLoggedIn = false;
+            localStorage.removeItem('bt_admin_session');
+            applySessionStateUIPatterns();
+        }
+
+        // Injection handler for new items
+        function handleProductInjection(e) {
+            e.preventDefault();
+            
+            const newObject = {
+                id: Date.now(),
+                title: document.getElementById('prod-title').value,
+                meta: document.getElementById('prod-meta').value,
+                price: document.getElementById('prod-price').value,
+                category: document.getElementById('prod-category').value,
+                img: document.getElementById('prod-img').value
+            };
+
+            masterDynamicDatabase.unshift(newObject);
+            localStorage.setItem('bt_studio_store', JSON.stringify(masterDynamicDatabase));
+            
+            document.getElementById('new-product-form').reset();
+            renderActiveCatalogDeck();
+        }
+
+        function deleteCatalogEntry(idKey) {
+            masterDynamicDatabase = masterDynamicDatabase.filter(item => item.id !== idKey);
+            localStorage.setItem('bt_studio_store', JSON.stringify(masterDynamicDatabase));
+            renderActiveCatalogDeck();
+        }
+
+        function filterCategory(targetSector) {
+            selectedCategoryFilter = targetSector;
+            document.getElementById('gallery-view-title').innerText = `${targetSector} Assortment Display`;
+            renderActiveCatalogDeck();
+        }
+
+        // Main rendering engine
+        function renderActiveCatalogDeck() {
+            const platformDeck = document.getElementById('products-assembly-deck');
+            platformDeck.innerHTML = '';
+
+            const activeDisplaySet = masterDynamicDatabase.filter(item => {
+                if (selectedCategoryFilter === 'All') return true;
+                return item.category === selectedCategoryFilter;
+            });
+
+            if (activeDisplaySet.length === 0) {
+                platformDeck.innerHTML = `<p style="grid-column: 1/-1; text-align: center; font-style: italic; opacity: 0.6; padding: 3rem;">No staged items currently located in this division profile.</p>`;
+                return;
+            }
+
+            activeDisplaySet.forEach(item => {
+                const elementCard = document.createElement('div');
+                elementCard.className = 'craft-card';
+                elementCard.innerHTML = `
+                    <button class="item-delete-trigger" style="display: ${isCreatorLoggedIn ? 'block' : 'none'};" onclick="deleteCatalogEntry(${item.id})">Remove Entry</button>
+                    <div class="card-photo-frame">
+                        <img src="${item.img}" alt="${item.title}" onerror="this.src='2.jpg';">
+                    </div>
+                    <span class="card-meta-line">${item.meta}</span>
+                    <h4 class="card-product-title">${item.title}</h4>
+                    <p class="card-product-price">${item.price}</p>
+                `;
+                platformDeck.appendChild(elementCard);
+            });
+        }
+
+        // Automatic session tracking evaluation upon loading
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('bt_admin_session') === 'active') {
+                isCreatorLoggedIn = true;
+            }
+            applySessionStateUIPatterns();
+        });
     </script>
 </body>
 </html>
