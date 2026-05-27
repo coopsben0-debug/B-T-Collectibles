@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&T Crafted — Studio Hub</title>
+    <title>B&T Collectibles — Studio Hub</title>
     
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
@@ -20,9 +20,9 @@
     <style>
         /* 🎨 Core Water Lily Pond Color Palette & Token System */
         :root {
-            --clr-beige: #F7F4D5;
             --clr-dark-green: #0A3323;
             --clr-moss-green: #839958;
+            --clr-beige: #F7F4D5;
             --clr-rosy-brown: #D3968C;
             --clr-midnight: #105666;
             
@@ -76,41 +76,32 @@
         /* 🏛️ Top Control Header Bar Component */
         .top-navbar {
             max-width: 1400px;
-            margin: 0 auto 2.5rem auto;
+            margin: 0 auto 1.5rem auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
         }
 
-        /* Custom Logo Construction Frame (Top Left) */
+        /* Top-Left Professional Image Branding Layout Frame */
         .studio-logo-frame {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
             text-decoration: none;
             color: var(--current-text);
         }
-
-        /* SVG Vector implementation matching your circular hand-drawn logo assets */
-        .logo-circle-icon {
-            width: 55px;
+        
+        .studio-logo-frame .logo-graphic-img {
             height: 55px;
-            border: 1.5px solid var(--current-text);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
-        .logo-circle-icon .letters { font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px; line-height: 1; }
-        .logo-circle-icon .sub-text { font-family: sans-serif; font-size: 0.38rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
-        .logo-circle-icon .leaf-node { position: absolute; bottom: 2px; left: 4px; font-size: 0.6rem; transform: rotate(-15deg); }
+        .studio-logo-frame:hover .logo-graphic-img { transform: scale(1.03); }
 
-        .logo-meta-title h2 { font-size: 1.4rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; }
-        .logo-meta-title p { font-family: sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.8; }
+        .logo-meta-title h2 { font-size: 1.6rem; letter-spacing: 1.5px; font-weight: 400; text-transform: uppercase; }
+        .logo-meta-title p { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; margin-top: 2px; }
 
         /* Customer Auth / Checkout Utilities Block (Top Right) */
         .right-utilities-gate {
@@ -129,12 +120,12 @@
         /* 🗺️ Global Navigation Tabs Panel */
         .global-navigation-tray {
             max-width: 1400px;
-            margin: 0 auto 3rem auto;
+            margin: 0 auto 2.5rem auto;
             text-align: center;
         }
-        .nav-editorial-sub { font-style: italic; opacity: 0.85; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .nav-editorial-sub { font-style: italic; opacity: 0.85; margin-bottom: 2rem; font-size: 1.1rem; }
         
-        .tab-link-group { display: flex; justify-content: center; gap: 3.5rem; }
+        .tab-link-group { display: flex; justify-content: center; gap: 3.5rem; border-bottom: 1px solid rgba(131, 153, 88, 0.15); padding-bottom: 1rem; }
         .tab-trigger {
             background: none; border: none; font-family: sans-serif; font-size: 0.9rem;
             text-transform: uppercase; letter-spacing: 3px; font-weight: bold;
@@ -148,7 +139,7 @@
         .sorting-dashboard-bar {
             max-width: 1400px;
             margin: 0 auto 2rem auto;
-            background: rgba(131, 153, 88, 0.05);
+            background: rgba(131, 153, 88, 0.04);
             padding: 1rem 1.5rem;
             border-radius: 4px;
             display: flex;
@@ -179,9 +170,9 @@
             border: 1px solid rgba(131, 153, 88, 0.2);
             padding: 1.8rem;
             border-radius: 4px;
-            display: none; /* Controlled dynamically via controller script */
+            display: none; 
         }
-        .sidebar-navigation-column.visible { display: block; }
+        .sidebar-navigation-column.visible { block-size: auto; display: block; }
 
         .sidebar-header-title {
             font-size: 1.4rem; font-weight: 400; text-transform: uppercase;
@@ -212,12 +203,12 @@
         /* Custom Commissions Request Controls Button */
         .custom-order-btn {
             display: block; width: 100%; text-align: center; background: var(--clr-rosy-brown);
-            color: #white; border: none; text-decoration: none; padding: 0.5rem;
+            color: white; border: none; text-decoration: none; padding: 0.5rem;
             font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase;
             letter-spacing: 1px; font-weight: bold; border-radius: 3px; margin: 0.5rem 0 0.8rem 0;
-            cursor: pointer; color: white; transition: background 0.2s;
+            cursor: pointer; transition: background 0.2s;
         }
-        .custom-order-btn:hover { background: var(--clr-dark-green); color: var(--clr-beige); }
+        .custom-order-btn:hover { background: var(--current-text); color: var(--current-bg); }
 
         /* 🛍️ Infinite Grid Catalog Matrix Workspace Display */
         .catalog-showcase-grid {
@@ -268,13 +259,9 @@
 
     <div class="top-navbar">
         <a href="#" class="studio-logo-frame" onclick="switchApplicationContext('all')">
-            <div class="logo-circle-icon">
-                <span class="letters">B+T</span>
-                <span class="sub-text">Crafted</span>
-                <span class="leaf-node">🪷</span>
-            </div>
+            <img src="2.jpg" alt="B&T Logo Badge" class="logo-graphic-img">
             <div class="logo-meta-title">
-                <h2>B&T Crafted</h2>
+                <h2>B&T Collectibles</h2>
                 <p>Studio & Archive Hub</p>
             </div>
         </a>
@@ -317,30 +304,32 @@
     </div>
 
     <script>
-        // Complete Database Inventory matching exact photo notes and custom-request variables
+        // Complete Dynamic Catalog Database containing your signature custom photo streams
         const databaseInventory = [
-            // ART CATEGORY ITEMS
-            { id: 1, section: 'art', subsection: 'paintings', child: 'b-cooper', price: 150.00, title: 'Custom Portrait: B.A. Cooper Fine Line Canvas', tag: 'Original Drop', label: 'B.A. Cooper Signature Line', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500' },
-            { id: 2, section: 'art', subsection: 'paintings', child: 't-ku', price: 125.00, title: 'Botanical Study: T.L. Ku Watercolour Original', tag: 'Watercolour Original', label: 'T.L. Ku Signature Collection', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500' },
-            { id: 3, section: 'art', subsection: 'wooden', child: 'carving', price: 65.00, title: 'Hand-Carved Walnut Meadow Jewelry Plaque', tag: 'Wood Studio', label: 'Wooden Carvings', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500' },
-            { id: 4, section: 'art', subsection: 'wooden', child: 'burning', price: 45.00, title: 'Pyrography Forest Silhouette Coaster Deck', tag: 'Wood Burned', label: 'Wooden Pyrography', img: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=500' },
-            { id: 5, section: 'art', subsection: 'stonework', child: null, price: 85.00, title: 'Sculpted Garden Riverbed Fossil Ornament', tag: 'Stonework', label: 'Chiselled Sculpture', img: 'https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=500' },
-            { id: 6, section: 'art', subsection: 'claywork', child: null, price: 38.00, title: 'Abstract Ceramic Speckle Organic Vase', tag: 'Clay Work', label: 'Hand-thrown Ceramic', img: 'https://images.unsplash.com/photo-1576016770956-debb63d900ef?w=500' },
-            { id: 7, section: 'art', subsection: 'mosaic', child: null, price: 110.00, title: 'Stained Glass Iridescent Water Lily Catch-Light', tag: 'Glass/Mosaic', label: 'Leaded Glass Studio', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=500' },
+            // ART CATEGORY ITEMS (Paintings, Woodwork, Stonework, Claywork, Mosaics, and Photography)
+            { id: 1, section: 'art', subsection: 'paintings', child: 'b-cooper', price: 150.00, title: 'B.A. Cooper Signature Collection: Custom Portrait Drop', tag: 'Signature Line', label: 'B.A. Cooper Original Canvas', img: '5.JPG' },
+            { id: 2, section: 'art', subsection: 'paintings', child: 't-ku', price: 125.00, title: 'T.L. Ku Signature Collection: Fine Art Portrait Drop', tag: 'Signature Line', label: 'T.L. Ku Original Canvas', img: '6.PNG' },
+            { id: 3, section: 'art', subsection: 'paintings', child: 'featured-couple', price: 175.00, title: 'B&T Signature Collection: Custom Couple Portrait Canvas', tag: 'Signature Line', label: 'B&T Hand-Painted Series', img: '7.PNG' },
+            { id: 4, section: 'art', subsection: 'photography', child: 'portraiture', price: 85.00, title: 'Studio Portrait Photography Session / Digital Drop', tag: 'Art Photography', label: 'B&T Portrait Studio', img: '2.jpg' },
+            { id: 5, section: 'art', subsection: 'wooden', child: 'carving', price: 65.00, title: 'Hand-Carved Walnut Meadow Jewelry Plaque', tag: 'Wood Studio', label: 'Wooden Carvings', img: '2.jpg' },
+            { id: 6, section: 'art', subsection: 'wooden', child: 'burning', price: 45.00, title: 'Pyrography Forest Silhouette Coaster Deck', tag: 'Wood Burned', label: 'Wooden Pyrography', img: '2.jpg' },
+            { id: 7, section: 'art', subsection: 'stonework', child: null, price: 85.00, title: 'Sculpted Garden Riverbed Fossil Ornament', tag: 'Stonework', label: 'Chiselled Sculpture', img: '2.jpg' },
+            { id: 8, section: 'art', subsection: 'claywork', child: null, price: 38.00, title: 'Abstract Ceramic Speckle Organic Vase', tag: 'Clay Work', label: 'Hand-thrown Ceramic', img: '2.jpg' },
+            { id: 9, section: 'art', subsection: 'mosaic', child: null, price: 110.00, title: 'Stained Glass Iridescent Water Lily Catch-Light', tag: 'Glass/Mosaic', label: 'Leaded Glass Studio', img: '2.jpg' },
             
             // KITS CATEGORY ITEMS
-            { id: 8, section: 'kits', subsection: 'paint', price: 28.00, title: 'Master Watercolor Basics Kit: Lily Pond Edition', tag: 'Paint Kits', label: 'DIY Studio Supplies', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500' },
-            { id: 9, section: 'kits', subsection: 'clay', price: 24.50, title: 'Air-Dry Clay Trinket Modeling Set', tag: 'Clay Kits', label: 'B&T Craft Kits', img: 'https://images.unsplash.com/photo-1534531173927-aeb928d54385?w=500' },
-            { id: 10, section: 'kits', subsection: 'crossstitch', price: 19.00, title: 'Wildflower Modern Tapestry Cross-Stitch Kit', tag: 'Cross Stitch', label: 'Needlework Sets', img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500' },
-            { id: 11, section: 'kits', subsection: 'felting', price: 22.00, title: 'Needle Felting Miniature Forest Creature Pack', tag: 'Felting Kits', label: 'Soft Wool Textile Pack', img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=500' },
+            { id: 10, section: 'kits', subsection: 'paint', price: 28.00, title: 'Master Watercolor Basics Kit: Lily Pond Edition', tag: 'Paint Kits', label: 'DIY Studio Supplies', img: '2.jpg' },
+            { id: 11, section: 'kits', subsection: 'clay', price: 24.50, title: 'Air-Dry Clay Trinket Modeling Set', tag: 'Clay Kits', label: 'B&T Craft Kits', img: '2.jpg' },
+            { id: 12, section: 'kits', subsection: 'crossstitch', price: 19.00, title: 'Wildflower Modern Tapestry Cross-Stitch Kit', tag: 'Cross Stitch', label: 'Needlework Sets', img: '2.jpg' },
+            { id: 13, section: 'kits', subsection: 'felting', price: 22.00, title: 'Needle Felting Miniature Forest Creature Pack', tag: 'Felting Kits', label: 'Soft Wool Textile Pack', img: '2.jpg' },
             
             // HOBBIES CATEGORY ITEMS
-            { id: 12, section: 'hobbies', subsection: 'pokemon', price: 5.50, title: 'Pokémon TCG: Obsidian Flames Booster Pack', tag: 'TCG Packs', label: 'TCG Vault Archive', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500' },
-            { id: 13, section: 'hobbies', subsection: 'cubing', price: 14.00, title: 'Pro-Speed 3x3 Magnetic Matte Speedcube', tag: 'Cubes', label: 'Dexterity Modifications', img: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=500' },
-            { id: 14, section: 'hobbies', subsection: 'penspinning', price: 11.50, title: 'VGG Weighted Custom Pen Spinning Mod', tag: 'Pen Spinning', label: 'Dexterity Focus Mod', img: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500' },
-            { id: 15, section: 'hobbies', subsection: 'balisong', price: 45.00, title: 'Dull Trainer Balisong Safe Practice Tool', tag: 'Balisong', label: 'Performance Mod Tools', img: 'https://images.unsplash.com/photo-1532448177591-5360980077ec?w=500' },
-            { id: 16, section: 'hobbies', subsection: 'kendama', price: 26.00, title: 'Solid Beechwood Competition Spec Kendama', tag: 'Kendama', label: 'Traditional Skill Toys', img: 'https://images.unsplash.com/photo-1558645487-f286f687c4f4?w=500' },
-            { id: 17, section: 'hobbies', subsection: 'books', price: 9.99, title: 'The Collected Practical Compendium of Hand-Crafts', tag: 'Book Library', label: 'Studio Archives Reference', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=500' }
+            { id: 14, section: 'hobbies', subsection: 'pokemon', price: 5.50, title: 'Pokémon TCG: Booster Pack Box Drop', tag: 'TCG Packs', label: 'TCG Vault Archive', img: '2.jpg' },
+            { id: 15, section: 'hobbies', subsection: 'cubing', price: 14.00, title: 'Pro-Speed 3x3 Magnetic Matte Speedcube', tag: 'Cubes', label: 'Dexterity Modifications', img: '2.jpg' },
+            { id: 16, section: 'hobbies', subsection: 'penspinning', price: 11.50, title: 'VGG Weighted Custom Pen Spinning Mod', tag: 'Pen Spinning', label: 'Dexterity Focus Mod', img: '2.jpg' },
+            { id: 17, section: 'hobbies', subsection: 'balisong', price: 45.00, title: 'Dull Trainer Balisong Safe Practice Tool', tag: 'Balisong', label: 'Performance Mod Tools', img: '2.jpg' },
+            { id: 18, section: 'hobbies', subsection: 'kendama', price: 26.00, title: 'Solid Beechwood Competition Spec Kendama', tag: 'Kendama', label: 'Traditional Skill Toys', img: '2.jpg' },
+            { id: 19, section: 'hobbies', subsection: 'books', price: 9.99, title: 'The Collected Practical Compendium of Hand-Crafts', tag: 'Book Library', label: 'Studio Archives Reference', img: '2.jpg' }
         ];
 
         let activeContext = 'all';
@@ -377,12 +366,12 @@
                 document.getElementById('filter-status-label').innerText = `Showing all items inside: ${targetContext.toUpperCase()}`;
             }
 
-            processSortExecution(); // Synchronize listing matrix automatically
+            processSortExecution(); 
         }
 
         // 🧭 Programmatic Sidebar Architecture Generator
         function generateBespokeSidebarElements(context, mountNode) {
-            mountNode.innerHTML = ''; // Clear layout parameters
+            mountNode.innerHTML = ''; 
 
             if (context === 'art') {
                 mountNode.innerHTML = `
@@ -394,6 +383,10 @@
                             <li class="bracket-sub-node" onclick="isolateSubFilter('child', 'b-cooper')">— B.A. Cooper Signature</li>
                             <li class="bracket-sub-node" onclick="isolateSubFilter('child', 't-ku')">— T.L. Ku Signature</li>
                         </ul>
+                    </div>
+                    <div class="menu-tree-node">
+                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'photography')">Photography <span>▾</span></div>
+                        <button class="custom-order-btn" onclick="alert('Opening Photography Commission Desk...')">Book Session/Commissions</button>
                     </div>
                     <div class="menu-tree-node">
                         <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'wooden')">Wooden Crafts <span>▾</span></div>
@@ -454,7 +447,6 @@
             } else if (sortingRule === 'high-low') {
                 currentFilteredInventory.sort((a, b) => b.price - a.price);
             } else {
-                // Featured Default sorting state recovery rule
                 currentFilteredInventory.sort((a, b) => a.id - b.id);
             }
 
@@ -464,7 +456,7 @@
         // 🛍️ Matrix Render Array Layout Blueprint
         function renderCatalogDisplayGrid() {
             const targetsNode = document.getElementById('master-catalog-display-target');
-            targetsNode.innerHTML = ''; // Drop buffer values
+            targetsNode.innerHTML = ''; 
 
             if(currentFilteredInventory.length === 0) {
                 targetsNode.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 4rem; font-style: italic;">No specific vault drops match this item track currently.</p>`;
