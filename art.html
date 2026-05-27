@@ -4,44 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fine Art Gallery — B&T Collectibles</title>
+    
     <style>
-        /* Common Style Architecture copied from Hub */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        :root { --bg-color: #F7F4D5; --text-main: #0A3323; --accent-moss: #839958; --accent-rose: #D3968C; --accent-midnight: #105666; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Georgia', serif; line-height: 1.6; padding: 2rem; }
-        header { text-align: center; padding: 5rem 0 3rem 0; border-bottom: 1px solid rgba(10, 51, 35, 0.08); max-width: 1200px; margin: 0 auto 3rem auto; }
-        .studio-logo-container { display: inline-block; border: 1px solid var(--text-main); padding: 1.2rem 3rem; margin-bottom: 1.5rem; position: relative; }
-        .studio-logo-container::after { content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border: 1px solid var(--accent-moss); pointer-events: none; }
+        
+        :root { 
+            --clr-dark-green: #0A3323; 
+            --clr-moss-green: #839958; 
+            --clr-beige: #F7F4D5; 
+            --clr-rosy-brown: #D3968C; 
+            --clr-midnight: #105666; 
+        }
+
+        body { 
+            background-color: var(--clr-dark-green); 
+            color: var(--clr-beige); 
+            font-family: 'Georgia', serif; 
+            line-height: 1.6; 
+            padding: 2rem; 
+        }
+
+        header { 
+            text-align: center; 
+            padding: 3rem 0; 
+            border-bottom: 1px solid rgba(247, 244, 213, 0.15); 
+            max-width: 1400px; 
+            margin: 0 auto 3rem auto; 
+        }
+
+        .studio-logo-container { 
+            display: inline-block; 
+            border: 1px solid var(--clr-beige); 
+            padding: 1.2rem 3rem; 
+            margin-bottom: 1.5rem; 
+            position: relative; 
+            text-decoration: none;
+            color: inherit;
+        }
+        .studio-logo-container::after { 
+            content: ''; 
+            position: absolute; 
+            top: 2px; left: 2px; right: 2px; bottom: 2px; 
+            border: 1px solid var(--clr-moss-green); 
+            pointer-events: none; 
+        }
         .studio-logo-container h1 { font-size: 2.8rem; font-weight: 400; letter-spacing: 2px; line-height: 1; text-transform: uppercase; }
-        .studio-logo-container span { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 6px; color: var(--accent-midnight); display: block; }
+        .studio-logo-container span { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 6px; color: var(--clr-rosy-brown); display: block; }
+
         nav { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
         nav a { text-decoration: none; font-family: sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; }
-        nav a.active { color: var(--accent-midnight); font-weight: bold; border-bottom: 1px solid var(--accent-midnight); padding-bottom: 2px; }
-        nav a.inactive { color: var(--text-main); opacity: 0.8; }
-        .subsection-header { max-width: 1200px; margin: 4rem auto 1.5rem auto; font-size: 1.1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-midnight); border-bottom: 1px solid rgba(131, 153, 88, 0.25); padding-bottom: 0.4rem; }
-        .collection-grid { max-width: 1200px; margin: 0 auto 4rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
-        .image-container { width: 100%; aspect-ratio: 4 / 5; background-color: rgba(131, 153, 88, 0.12); overflow: hidden; margin-bottom: 1.2rem; border: 1px solid rgba(10, 51, 35, 0.05); }
+        nav a.active { color: var(--clr-rosy-brown); font-weight: bold; border-bottom: 1px solid var(--clr-rosy-brown); padding-bottom: 2px; }
+        nav a.inactive { color: var(--clr-beige); opacity: 0.8; }
+        nav a.inactive:hover { opacity: 1; color: var(--clr-rosy-brown); }
+
+        .workspace-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 3rem;
+        }
+
+        /* Responsive Art Left Sidebar Navigation */
+        .sidebar-panel {
+            width: 280px;
+            background: rgba(247, 244, 213, 0.05);
+            border: 1px solid rgba(131, 153, 88, 0.25);
+            padding: 1.5rem;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+        .sidebar-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 0.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--clr-beige); }
+        .sidebar-list { list-style: none; }
+        .sidebar-list li { padding: 0.4rem 0; font-family: sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; opacity: 0.8; transition: transform 0.2s; }
+        .sidebar-list li:hover { opacity: 1; color: var(--clr-rosy-brown); transform: translateX(3px); }
+
+        .main-content-flow { flex-grow: 1; }
+
+        .subsection-header { 
+            font-size: 1.1rem; 
+            font-weight: 400; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            color: var(--clr-rosy-brown); 
+            border-bottom: 1px solid rgba(131, 153, 88, 0.25); 
+            padding-bottom: 0.4rem; 
+            margin-bottom: 2rem;
+        }
+
+        .collection-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 2.5rem; 
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: rgba(247, 244, 213, 0.03);
+            border: 1px solid rgba(131, 153, 88, 0.15);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+        .product-card:hover { transform: translateY(-4px); }
+
+        .image-container { width: 100%; aspect-ratio: 1 / 1; background-color: rgba(131, 153, 88, 0.12); overflow: hidden; margin-bottom: 1.2rem; border: 1px solid rgba(247, 244, 213, 0.1); }
         .image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .badge-tag { display: inline-block; font-family: sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; background-color: var(--accent-rose); color: #fff; padding: 0.2rem 0.5rem; margin-bottom: 0.6rem; border-radius: 2px; }
-        .artist-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-moss); margin-bottom: 0.3rem; font-weight: bold; }
-        .product-title { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.3rem; color: var(--text-main); }
-        .product-price { font-size: 1.1rem; margin-bottom: 1.2rem; font-family: sans-serif; }
-        .buy-btn { display: inline-block; width: 100%; text-align: center; background-color: transparent; color: var(--text-main); border: 1px solid var(--text-main); text-decoration: none; padding: 0.9rem; font-family: sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; }
-        .buy-btn:hover { background-color: var(--accent-midnight); color: var(--bg-color); border-color: var(--accent-midnight); }
-        .commission-box { grid-column: 1 / -1; background-color: rgba(131, 153, 88, 0.08); padding: 3rem; text-align: center; margin-top: 1.5rem; border: 1px dashed var(--accent-moss); }
-        .commission-box h4 { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; letter-spacing: 1px; color: var(--text-main); }
-        .commission-box p { font-style: italic; font-size: 0.95rem; color: var(--accent-midnight); margin-bottom: 1.5rem; }
-        .commission-btn { display: inline-block; padding: 0.8rem 2rem; border: 1px solid var(--text-main); color: var(--text-main); text-decoration: none; font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; }
-        .commission-btn:hover { background-color: var(--text-main); color: var(--bg-color); }
+
+        .badge-tag { display: inline-block; font-family: sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; background-color: var(--clr-rosy-brown); color: #fff; padding: 0.2rem 0.5rem; margin-bottom: 0.6rem; border-radius: 2px; }
+        .artist-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--clr-moss-green); margin-bottom: 0.3rem; font-weight: bold; }
+        .product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.3rem; color: var(--clr-beige); min-height: 2.8rem; }
+        .product-price { font-size: 1.1rem; margin-bottom: 1.2rem; font-family: sans-serif; color: var(--clr-beige); }
+
+        .buy-btn { display: inline-block; width: 100%; text-align: center; background-color: transparent; color: var(--clr-beige); border: 1px solid var(--clr-beige); text-decoration: none; padding: 0.9rem; font-family: sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; }
+        .buy-btn:hover { background-color: var(--clr-beige); color: var(--clr-dark-green); }
+
+        .commission-box { grid-column: 1 / -1; background-color: rgba(247, 244, 213, 0.04); padding: 3rem; text-align: center; margin-top: 1.5rem; border: 1px dashed var(--clr-moss-green); }
+        .commission-box h4 { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; letter-spacing: 1px; color: var(--clr-beige); }
+        .commission-box p { font-style: italic; font-size: 0.95rem; color: var(--clr-rosy-brown); margin-bottom: 1.5rem; }
+        .commission-btn { display: inline-block; padding: 0.8rem 2rem; border: 1px solid var(--clr-beige); color: var(--clr-beige); text-decoration: none; font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; }
+        .commission-btn:hover { background-color: var(--clr-beige); color: var(--clr-dark-green); }
+
+        @media (max-width: 768px) {
+            .workspace-layout { flex-direction: column; }
+            .sidebar-panel { width: 100%; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="studio-logo-container">
+        <a href="index.html" class="studio-logo-container">
             <h1>B&T</h1>
             <span>Collectibles</span>
-        </div>
+        </a>
         <nav>
             <a href="index.html" class="inactive">Hub Hub</a>
             <a href="art.html" class="active">Art & Prints</a>
@@ -50,37 +145,74 @@
         </nav>
     </header>
 
-    <h3 class="subsection-header">Signature Originals</h3>
-    <div class="collection-grid">
-        <div class="product-card">
-            <div class="image-container"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500" alt="Original Watercolour"></div>
-            <div class="product-meta">
-                <p class="artist-label">Original Canvas Drop</p>
-                <h3 class="product-title">Serene Waterlily Pond Original</h3>
-                <p class="product-price">£120.00</p>
-                <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
-            </div>
-        </div>
-    </div>
+    <div class="workspace-layout">
+        <aside class="sidebar-panel">
+            <h4 class="sidebar-title">Art Categories</h4>
+            <ul class="sidebar-list">
+                <li>Original Canvases</li>
+                <li>Fine Art Prints</li>
+                <li>Portrait Series</li>
+                <li>Custom Drop Orders</li>
+            </ul>
+        </aside>
 
-    <h3 class="subsection-header">Fine Art Print Replications</h3>
-    <div class="collection-grid">
-        <div class="product-card">
-            <div class="image-container"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500" alt="Art Print Replica"></div>
-            <div class="product-meta">
-                <span class="badge-tag">Replication Print</span>
-                <p class="artist-label">Matte Finished Satin Print</p>
-                <h3 class="product-title">Waterlily Pond Study Print (A4)</h3>
-                <p class="product-price">£15.00</p>
-                <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
-            </div>
-        </div>
+        <main class="main-content-flow">
+            <h3 class="subsection-header">Signature Originals</h3>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <div class="image-container"><img src="5.JPG" alt="B.A. Cooper Portrait"></div>
+                    <div class="product-meta">
+                        <span class="badge-tag">Signature Line</span>
+                        <p class="artist-label">B.A. Cooper Original Canvas</p>
+                        <h3 class="product-title">B.A. Cooper Signature Collection: Custom Portrait Drop</h3>
+                        <p class="product-price">£150.00</p>
+                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
+                    </div>
+                </div>
 
-        <div class="commission-box">
-            <h4>Request a Dedicated Watercolour Study?</h4>
-            <p>From custom landscape sizes to personal botanical illustrations built around a favorite verse. Let's create it.</p>
-            <a href="mailto:your-studio-email@example.com?subject=B%26T%20Art%20Bespoke%20Request" class="commission-btn">Submit Bespoke Request</a>
-        </div>
+                <div class="product-card">
+                    <div class="image-container"><img src="6.PNG" alt="T.L. Ku Portrait"></div>
+                    <div class="product-meta">
+                        <span class="badge-tag">Signature Line</span>
+                        <p class="artist-label">T.L. Ku Original Canvas</p>
+                        <h3 class="product-title">T.L. Ku Signature Collection: Fine Art Portrait Drop</h3>
+                        <p class="product-price">£125.00</p>
+                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="image-container"><img src="7.PNG" alt="Featured Couple Portrait Canvas"></div>
+                    <div class="product-meta">
+                        <span class="badge-tag">Signature Line</span>
+                        <p class="artist-label">B&T Hand-Painted Series</p>
+                        <h3 class="product-title">B&T Signature Collection: Custom Couple Portrait Canvas</h3>
+                        <p class="product-price">£175.00</p>
+                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-header">Fine Art Print Replications</h3>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <div class="image-container"><img src="2.jpg" alt="Art Print Replica"></div>
+                    <div class="product-meta">
+                        <span class="badge-tag">Replication Print</span>
+                        <p class="artist-label">Matte Finished Satin Print</p>
+                        <h3 class="product-title">Waterlily Pond Study Print (A4)</h3>
+                        <p class="product-price">£15.00</p>
+                        <button class="buy-btn payhip-buy-button">Add to Basket</button>
+                    </div>
+                </div>
+
+                <div class="commission-box">
+                    <h4>Request a Dedicated Watercolour Study?</h4>
+                    <p>From custom landscape sizes to personal botanical illustrations built around a favorite verse. Let's create it.</p>
+                    <a href="mailto:your-studio-email@example.com?subject=B%26T%20Art%20Bespoke%20Request" class="commission-btn">Submit Bespoke Request</a>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script type="text/javascript" src="https://payhip.com/payhip.js?v=24842"></script>
