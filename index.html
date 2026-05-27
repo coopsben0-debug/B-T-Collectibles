@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&T Collectibles — Studio Hub</title>
+    <title>B&T Crafted — Studio Hub</title>
     
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
@@ -18,371 +18,477 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
 
     <style>
-        /* Modern Reset and Water Lily Pond Color System */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        /* 🎨 Core Water Lily Pond Color Palette & Token System */
         :root {
-            --bg-color: #F7F4D5;        /* Warm Lily Beige */
-            --text-main: #0A3323;       /* Deep Pond Dark Green */
-            --accent-moss: #839958;     /* Fresh Willow Moss Green */
-            --accent-rose: #D3968C;     /* Antique Rosy Brown Blossom */
-            --accent-midnight: #105666; /* Deep Midnight Teal */
-            --card-bg: #ffffff;
+            --clr-beige: #F7F4D5;
+            --clr-dark-green: #0A3323;
+            --clr-moss-green: #839958;
+            --clr-rosy-brown: #D3968C;
+            --clr-midnight: #105666;
+            
+            /* Dynamic Functional Pointers */
+            --current-bg: var(--clr-beige);
+            --current-text: var(--clr-dark-green);
+            --current-card-bg: #ffffff;
+            --current-ui-accent: var(--clr-moss-green);
         }
 
-        body { 
-            background-color: var(--bg-color);
-            color: var(--text-main);
+        /* Smooth Application State Context Transitions */
+        body.theme-all {
+            --current-bg: var(--clr-beige);
+            --current-text: var(--clr-dark-green);
+            --current-card-bg: #ffffff;
+            --current-ui-accent: var(--clr-moss-green);
+        }
+
+        body.theme-art {
+            --current-bg: var(--clr-dark-green);
+            --current-text: var(--clr-beige);
+            --current-card-bg: rgba(247, 244, 213, 0.07);
+            --current-ui-accent: var(--clr-rosy-brown);
+        }
+
+        body.theme-kits {
+            --current-bg: var(--clr-moss-green);
+            --current-text: #ffffff;
+            --current-card-bg: rgba(10, 51, 35, 0.15);
+            --current-ui-accent: var(--clr-beige);
+        }
+
+        body.theme-hobbies {
+            --current-bg: var(--clr-midnight);
+            --current-text: var(--clr-beige);
+            --current-card-bg: rgba(255, 255, 255, 0.08);
+            --current-ui-accent: var(--clr-rosy-brown);
+        }
+
+        /* Reset and Base Global Rules */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--current-bg);
+            color: var(--current-text);
             font-family: 'Georgia', serif;
-            line-height: 1.6;
+            line-height: 1.5;
             padding: 2rem;
-            padding-bottom: 7rem; /* Room for fixed basket */
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        header {
-            text-align: center;
-            padding: 4rem 0 2rem 0;
-            border-bottom: 1px solid rgba(10, 51, 35, 0.08);
-            max-width: 1200px;
-            margin: 0 auto 2rem auto;
-        }
-
-        /* 🖼️ The Clean B&T Logo Box Frame */
-        .studio-logo-container {
-            display: inline-block;
-            border: 1px solid var(--text-main);
-            padding: 1.2rem 3.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .studio-logo-container::after {
-            content: '';
-            position: absolute;
-            top: 3px; left: 3px; right: 3px; bottom: 3px;
-            border: 1px solid var(--accent-moss);
-            pointer-events: none;
-        }
-
-        .studio-logo-container h1 {
-            font-size: 3.2rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            line-height: 1;
-            margin-bottom: 0.1rem;
-            text-transform: uppercase;
-        }
-
-        .studio-logo-container span {
-            font-family: sans-serif;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--accent-midnight);
-            display: block;
-        }
-
-        header p {
-            font-style: italic;
-            color: var(--accent-midnight);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        /* 🗺️ Main Navigation Bars: ART, KITS, HOBBIES */
-        nav { 
-            display: flex; 
-            justify-content: center; 
-            gap: 3rem; 
-            flex-wrap: wrap; 
-        }
-        nav a { 
-            text-decoration: none; 
-            font-family: sans-serif; 
-            font-size: 0.85rem; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            color: var(--text-main);
-            font-weight: bold;
-            opacity: 0.8;
-            transition: all 0.2s ease; 
-        }
-        nav a:hover, nav a.active { 
-            color: var(--accent-midnight); 
-            opacity: 1; 
-            border-bottom: 2px solid var(--accent-midnight);
-            padding-bottom: 4px;
-        }
-
-        /* 🎛️ Interactive Controls Panel (Sorting & Filtering) */
-        .controls-wrapper {
-            max-width: 1200px;
-            margin: 2rem auto;
-            background-color: rgba(131, 153, 88, 0.06);
-            border: 1px solid rgba(10, 51, 35, 0.05);
-            padding: 1rem 1.5rem;
+        /* 🏛️ Top Control Header Bar Component */
+        .top-navbar {
+            max-width: 1400px;
+            margin: 0 auto 2.5rem auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
         }
 
-        .filter-group {
+        /* Custom Logo Construction Frame (Top Left) */
+        .studio-logo-frame {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            font-family: sans-serif;
-            font-size: 0.85rem;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--current-text);
         }
 
-        .filter-btn {
-            background: transparent;
-            border: 1px solid var(--accent-moss);
-            color: var(--text-main);
-            padding: 0.4rem 1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--text-main);
-            color: var(--bg-color);
-            border-color: var(--text-main);
-        }
-
-        .sort-select {
-            padding: 0.4rem 1rem;
-            font-family: sans-serif;
-            font-size: 0.8srem;
-            color: var(--text-main);
-            background-color: var(--bg-color);
-            border: 1px solid var(--accent-moss);
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* 🛍️ Dynamic Product Display Grid */
-        .collection-grid {
-            max-width: 1200px;
-            margin: 0 auto 4rem auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-        }
-
-        .product-card { 
-            background: transparent; 
-            transition: transform 0.3s ease; 
+        /* SVG Vector implementation matching your circular hand-drawn logo assets */
+        .logo-circle-icon {
+            width: 55px;
+            height: 55px;
+            border: 1.5px solid var(--current-text);
+            border-radius: 50%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
-        .product-card:hover { transform: translateY(-5px); }
+        .logo-circle-icon .letters { font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px; line-height: 1; }
+        .logo-circle-icon .sub-text { font-family: sans-serif; font-size: 0.38rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
+        .logo-circle-icon .leaf-node { position: absolute; bottom: 2px; left: 4px; font-size: 0.6rem; transform: rotate(-15deg); }
 
-        .image-container {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            background-color: rgba(131, 153, 88, 0.12);
-            overflow: hidden;
-            margin-bottom: 1.2rem;
-            border: 1px solid rgba(10, 51, 35, 0.05);
-        }
+        .logo-meta-title h2 { font-size: 1.4rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; }
+        .logo-meta-title p { font-family: sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.8; }
 
-        .image-container img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .badge-tag {
-            display: inline-block;
-            font-family: sans-serif;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background-color: var(--accent-rose);
-            color: #fff;
-            padding: 0.2rem 0.6rem;
-            margin-bottom: 0.6rem;
-            border-radius: 2px;
-            align-self: flex-start;
-        }
-
-        .artist-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-moss); margin-bottom: 0.3rem; font-weight: bold; }
-        .product-title { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.3rem; color: var(--text-main); minimum-height: 2.8rem; }
-        .product-price { font-size: 1.1rem; margin-bottom: 1.2rem; font-family: sans-serif; font-weight: bold; }
-
-        .buy-btn {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            background-color: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--text-main);
-            text-decoration: none;
-            padding: 0.9rem;
-            font-family: sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            margin-top: auto;
-        }
-        .buy-btn:hover { background-color: var(--accent-midnight); color: var(--bg-color); border-color: var(--accent-midnight); }
-
-        /* 🛒 Fixed Corner Anchor Basket (Showing 0) */
-        .fixed-basket-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: var(--text-main);
-            color: var(--bg-color);
-            padding: 1rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-family: sans-serif;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 8px 24px rgba(10, 51, 35, 0.25);
+        /* Customer Auth / Checkout Utilities Block (Top Right) */
+        .right-utilities-gate {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            z-index: 9999;
-            transition: all 0.2s ease;
-            border: 1px solid var(--accent-moss);
+            gap: 2rem;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
-        .fixed-basket-float:hover { background-color: var(--accent-midnight); transform: translateY(-3px); }
-        .basket-count-badge { background-color: var(--accent-rose); color: white; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 20px; }
+        .util-link { text-decoration: none; color: var(--current-text); font-weight: bold; transition: opacity 0.2s; }
+        .util-link:hover { opacity: 0.7; }
+        .basket-pill { background-color: var(--clr-rosy-brown); color: white; padding: 0.3rem 0.7rem; border-radius: 12px; font-size: 0.75rem; margin-left: 0.3rem; }
+
+        /* 🗺️ Global Navigation Tabs Panel */
+        .global-navigation-tray {
+            max-width: 1400px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+        }
+        .nav-editorial-sub { font-style: italic; opacity: 0.85; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        
+        .tab-link-group { display: flex; justify-content: center; gap: 3.5rem; }
+        .tab-trigger {
+            background: none; border: none; font-family: sans-serif; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 3px; font-weight: bold;
+            color: var(--current-text); cursor: pointer; padding-bottom: 0.4rem;
+            border-bottom: 2px solid transparent; transition: all 0.2s ease;
+            opacity: 0.7;
+        }
+        .tab-trigger:hover, .tab-trigger.active { opacity: 1; border-bottom-color: var(--current-text); }
+
+        /* 🎛️ Sorting Control Bar Component */
+        .sorting-dashboard-bar {
+            max-width: 1400px;
+            margin: 0 auto 2rem auto;
+            background: rgba(131, 153, 88, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sorting-dashboard-bar span { font-family: sans-serif; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .native-select-input {
+            padding: 0.5rem 1.5rem; font-family: sans-serif; font-size: 0.8rem;
+            background: var(--current-card-bg); color: var(--current-text);
+            border: 1px solid rgba(131, 153, 88, 0.3); outline: none; border-radius: 2px;
+        }
+
+        /* 🧱 Structural Flex Grid Split Layout Workspace */
+        .workspace-body-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        /* Dynamic Component Sidebar Column Navigation */
+        .sidebar-navigation-column {
+            width: 320px;
+            flex-shrink: 0;
+            background: var(--current-card-bg);
+            border: 1px solid rgba(131, 153, 88, 0.2);
+            padding: 1.8rem;
+            border-radius: 4px;
+            display: none; /* Controlled dynamically via controller script */
+        }
+        .sidebar-navigation-column.visible { display: block; }
+
+        .sidebar-header-title {
+            font-size: 1.4rem; font-weight: 400; text-transform: uppercase;
+            letter-spacing: 1px; padding-bottom: 0.8rem; margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--current-text);
+        }
+
+        /* Category Submenu Accordion Architecture */
+        .menu-tree-node { margin-bottom: 1.2rem; }
+        .node-trigger-title {
+            font-size: 1.1rem; font-weight: bold; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.3rem 0;
+        }
+        .node-subtree-leaves {
+            list-style: none; padding-left: 1rem; margin-top: 0.5rem;
+            border-left: 1px dashed rgba(131, 153, 88, 0.4);
+        }
+        .node-subtree-leaves li {
+            font-size: 0.95rem; padding: 0.3rem 0; opacity: 0.85;
+            cursor: pointer; transition: transform 0.2s ease;
+        }
+        .node-subtree-leaves li:hover { opacity: 1; transform: translateX(4px); font-weight: bold; }
+        
+        /* Deep Level 3 Bracket Sub-categories style pointers */
+        .bracket-sub-node { font-size: 0.85rem !important; opacity: 0.75 !important; padding-left: 0.8rem !important; font-style: italic; }
+
+        /* Custom Commissions Request Controls Button */
+        .custom-order-btn {
+            display: block; width: 100%; text-align: center; background: var(--clr-rosy-brown);
+            color: #white; border: none; text-decoration: none; padding: 0.5rem;
+            font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 1px; font-weight: bold; border-radius: 3px; margin: 0.5rem 0 0.8rem 0;
+            cursor: pointer; color: white; transition: background 0.2s;
+        }
+        .custom-order-btn:hover { background: var(--clr-dark-green); color: var(--clr-beige); }
+
+        /* 🛍️ Infinite Grid Catalog Matrix Workspace Display */
+        .catalog-showcase-grid {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Fine Art Craft Showcase Item Cards */
+        .craft-card {
+            background: var(--current-card-bg);
+            border: 1px solid rgba(131, 153, 88, 0.15);
+            border-radius: 4px; padding: 1rem;
+            display: flex; flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .craft-card:hover { transform: translateY(-5px); }
+
+        .card-photo-frame {
+            width: 100%; aspect-ratio: 1 / 1; overflow: hidden;
+            border-radius: 2px; margin-bottom: 1rem;
+            background-color: rgba(131, 153, 88, 0.05);
+        }
+        .card-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-tag-badge {
+            display: inline-block; font-family: sans-serif; font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 1px; background: var(--clr-rosy-brown);
+            color: white; padding: 0.2rem 0.5rem; border-radius: 2px; margin-bottom: 0.5rem;
+            align-self: flex-start;
+        }
+        .card-meta-line { font-family: sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.75; margin-bottom: 0.2rem; }
+        .card-product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3; }
+        .card-product-price { font-family: sans-serif; font-size: 1.05rem; font-weight: bold; margin-bottom: 1.2rem; }
+        
+        .card-action-trigger {
+            display: block; width: 100%; text-align: center; background: transparent;
+            color: var(--current-text); border: 1.5px solid var(--current-text);
+            padding: 0.8rem; text-decoration: none; font-family: sans-serif;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
+            font-weight: bold; margin-top: auto; cursor: pointer; transition: all 0.2s ease;
+        }
+        .card-action-trigger:hover { background: var(--current-text); color: var(--current-bg); }
     </style>
 </head>
-<body>
+<body class="theme-all">
 
-    <header>
-        <div class="studio-logo-container">
-            <h1>B&T</h1>
-            <span>Collectibles</span>
-        </div>
-        <p>Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
+    <div class="top-navbar">
+        <a href="#" class="studio-logo-frame" onclick="switchApplicationContext('all')">
+            <div class="logo-circle-icon">
+                <span class="letters">B+T</span>
+                <span class="sub-text">Crafted</span>
+                <span class="leaf-node">🪷</span>
+            </div>
+            <div class="logo-meta-title">
+                <h2>B&T Crafted</h2>
+                <p>Studio & Archive Hub</p>
+            </div>
+        </a>
         
-        <nav>
-            <a href="#" class="active" onclick="filterCategory('all')">View All Hub</a>
-            <a href="#" onclick="filterCategory('art')">Art</a>
-            <a href="#" onclick="filterCategory('kits')">Kits</a>
-            <a href="#" onclick="filterCategory('hobbies')">Hobbies</a>
-        </nav>
-    </header>
+        <div class="right-utilities-gate">
+            <a href="#" class="util-link">Sign In / Register</a>
+            <a href="#" class="util-link payhip-open-cart">Studio Basket <span class="basket-pill payhip-cart-count">0</span></a>
+        </div>
+    </div>
 
-    <div class="controls-wrapper">
-        <div class="filter-group">
-            <span>Section:</span>
-            <button class="filter-btn active" id="btn-all" onclick="filterCategory('all')">All</button>
-            <button class="filter-btn" id="btn-art" onclick="filterCategory('art')">Art</button>
-            <button class="filter-btn" id="btn-kits" onclick="filterCategory('kits')">Kits</button>
-            <button class="filter-btn" id="btn-hobbies" onclick="filterCategory('hobbies')">Hobbies</button>
+    <div class="global-navigation-tray">
+        <p class="nav-editorial-sub">Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
+        <div class="tab-link-group">
+            <button class="tab-trigger active" id="tab-all" onclick="switchApplicationContext('all')">View All Hub</button>
+            <button class="tab-trigger" id="tab-art" onclick="switchApplicationContext('art')">Art Drops</button>
+            <button class="tab-trigger" id="tab-kits" onclick="switchApplicationContext('kits')">Project Kits</button>
+            <button class="tab-trigger" id="tab-hobbies" onclick="switchApplicationContext('hobbies')">Hobbies & Vault</button>
         </div>
-        
+    </div>
+
+    <div class="sorting-dashboard-bar">
+        <div><span id="filter-status-label">Showing Everything</span></div>
         <div>
-            <select class="sort-select" id="sort-dropdown" onchange="sortProducts()">
-                <option value="default">Sort: Default Featured</option>
+            <select class="native-select-input" id="price-sort-engine" onchange="processSortExecution()">
+                <option value="featured">Sort: Featured Collection</option>
                 <option value="low-high">Price: Low to High</option>
                 <option value="high-low">Price: High to Low</option>
             </select>
         </div>
     </div>
 
-    <div class="collection-grid" id="product-grid-container">
-        </div>
+    <div class="workspace-body-container">
+        
+        <aside class="sidebar-navigation-column" id="dynamic-sidebar-viewport">
+            </aside>
 
-    <a href="#" class="fixed-basket-float payhip-open-cart">
-        <span>Studio Basket</span>
-        <span class="basket-count-badge payhip-cart-count">0</span>
-    </a>
+        <main class="catalog-showcase-grid" id="master-catalog-display-target">
+            </main>
+        
+    </div>
 
     <script>
-        // Core Memory Database for your notebook items across Art, Kits, and Hobbies
-        const studioInventory = [
-            { id: 1, section: 'art', price: 145.00, title: 'Serene Waterlily Pond Original Canvas', tag: 'Watercolour Drop', label: 'Signature Original', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500', link: 'YOUR_STRIPE_OR_PAYHIP_LINK' },
-            { id: 2, section: 'art', price: 15.00, title: 'Waterlily Pond Landscape Replica Print (A4)', tag: 'Studio Print', label: 'Matte Finish Replication', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500', link: 'YOUR_STRIPE_OR_PAYHIP_LINK' },
-            { id: 3, section: 'kits', price: 18.00, title: 'Personalised Clay Jewelry Dish Kit', tag: 'Earthen Clay', label: 'Letter Stamped Studio', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500', link: 'YOUR_STRIPE_OR_PAYHIP_LINK' },
-            { id: 4, section: 'kits', price: 55.00, title: 'Wildflower Stitch Cuff Embroidery Denim', tag: 'Hand Embroidered', label: 'Upcycled Sewing Kits', img: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=500', link: 'YOUR_STRIPE_OR_PAYHIP_LINK' },
-            { id: 5, section: 'hobbies', price: 12.00, title: 'Premium Matte 3x3 Smooth Speedcube', tag: 'Mind Game', label: 'Dexterity Focus Mod', img: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=500', link: 'YOUR_STRIPE_OR_PAYHIP_LINK' },
-            { id: 6, section: 'hobbies', price: 4.50, title: 'Pokémon TCG: Sealed Factory Booster Pack', tag: 'TCG Vault', label: 'Collective Archive Card', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500', link: 'YOUR_STRIPE_OR_PAYHIP_LINK' }
+        // Complete Database Inventory matching exact photo notes and custom-request variables
+        const databaseInventory = [
+            // ART CATEGORY ITEMS
+            { id: 1, section: 'art', subsection: 'paintings', child: 'b-cooper', price: 150.00, title: 'Custom Portrait: B.A. Cooper Fine Line Canvas', tag: 'Original Drop', label: 'B.A. Cooper Signature Line', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500' },
+            { id: 2, section: 'art', subsection: 'paintings', child: 't-ku', price: 125.00, title: 'Botanical Study: T.L. Ku Watercolour Original', tag: 'Watercolour Original', label: 'T.L. Ku Signature Collection', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500' },
+            { id: 3, section: 'art', subsection: 'wooden', child: 'carving', price: 65.00, title: 'Hand-Carved Walnut Meadow Jewelry Plaque', tag: 'Wood Studio', label: 'Wooden Carvings', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500' },
+            { id: 4, section: 'art', subsection: 'wooden', child: 'burning', price: 45.00, title: 'Pyrography Forest Silhouette Coaster Deck', tag: 'Wood Burned', label: 'Wooden Pyrography', img: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=500' },
+            { id: 5, section: 'art', subsection: 'stonework', child: null, price: 85.00, title: 'Sculpted Garden Riverbed Fossil Ornament', tag: 'Stonework', label: 'Chiselled Sculpture', img: 'https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=500' },
+            { id: 6, section: 'art', subsection: 'claywork', child: null, price: 38.00, title: 'Abstract Ceramic Speckle Organic Vase', tag: 'Clay Work', label: 'Hand-thrown Ceramic', img: 'https://images.unsplash.com/photo-1576016770956-debb63d900ef?w=500' },
+            { id: 7, section: 'art', subsection: 'mosaic', child: null, price: 110.00, title: 'Stained Glass Iridescent Water Lily Catch-Light', tag: 'Glass/Mosaic', label: 'Leaded Glass Studio', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=500' },
+            
+            // KITS CATEGORY ITEMS
+            { id: 8, section: 'kits', subsection: 'paint', price: 28.00, title: 'Master Watercolor Basics Kit: Lily Pond Edition', tag: 'Paint Kits', label: 'DIY Studio Supplies', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500' },
+            { id: 9, section: 'kits', subsection: 'clay', price: 24.50, title: 'Air-Dry Clay Trinket Modeling Set', tag: 'Clay Kits', label: 'B&T Craft Kits', img: 'https://images.unsplash.com/photo-1534531173927-aeb928d54385?w=500' },
+            { id: 10, section: 'kits', subsection: 'crossstitch', price: 19.00, title: 'Wildflower Modern Tapestry Cross-Stitch Kit', tag: 'Cross Stitch', label: 'Needlework Sets', img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500' },
+            { id: 11, section: 'kits', subsection: 'felting', price: 22.00, title: 'Needle Felting Miniature Forest Creature Pack', tag: 'Felting Kits', label: 'Soft Wool Textile Pack', img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=500' },
+            
+            // HOBBIES CATEGORY ITEMS
+            { id: 12, section: 'hobbies', subsection: 'pokemon', price: 5.50, title: 'Pokémon TCG: Obsidian Flames Booster Pack', tag: 'TCG Packs', label: 'TCG Vault Archive', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500' },
+            { id: 13, section: 'hobbies', subsection: 'cubing', price: 14.00, title: 'Pro-Speed 3x3 Magnetic Matte Speedcube', tag: 'Cubes', label: 'Dexterity Modifications', img: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=500' },
+            { id: 14, section: 'hobbies', subsection: 'penspinning', price: 11.50, title: 'VGG Weighted Custom Pen Spinning Mod', tag: 'Pen Spinning', label: 'Dexterity Focus Mod', img: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500' },
+            { id: 15, section: 'hobbies', subsection: 'balisong', price: 45.00, title: 'Dull Trainer Balisong Safe Practice Tool', tag: 'Balisong', label: 'Performance Mod Tools', img: 'https://images.unsplash.com/photo-1532448177591-5360980077ec?w=500' },
+            { id: 16, section: 'hobbies', subsection: 'kendama', price: 26.00, title: 'Solid Beechwood Competition Spec Kendama', tag: 'Kendama', label: 'Traditional Skill Toys', img: 'https://images.unsplash.com/photo-1558645487-f286f687c4f4?w=500' },
+            { id: 17, section: 'hobbies', subsection: 'books', price: 9.99, title: 'The Collected Practical Compendium of Hand-Crafts', tag: 'Book Library', label: 'Studio Archives Reference', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=500' }
         ];
 
-        let activeFilter = 'all';
+        let activeContext = 'all';
+        let currentFilteredInventory = [...databaseInventory];
 
-        // Startup Bootstrapper
+        // Application Start Engine Init
         document.addEventListener("DOMContentLoaded", () => {
-            renderActiveGrid(studioInventory);
+            switchApplicationContext('all');
         });
 
-        // Category Filter Switcher Engine
-        function filterCategory(category) {
-            activeFilter = category;
+        // 🔀 Application SPA State Context Control Switchboard
+        function switchApplicationContext(targetContext) {
+            activeContext = targetContext;
             
-            // Update filter buttons styling states
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${category}`).classList.add('active');
+            // Clean active classes across global buttons
+            document.querySelectorAll('.tab-trigger').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${targetContext}`).classList.add('active');
 
-            // Synchronize top navigation styling states
-            document.querySelectorAll('nav a').forEach(navLink => {
-                if(navLink.innerText.toLowerCase().includes(category) || (category === 'all' && navLink.innerText.toLowerCase().includes('hub'))) {
-                    navLink.className = 'active';
-                } else {
-                    navLink.className = 'inactive';
-                }
-            });
+            // Apply specific layout color skins via atomic body modifiers
+            document.body.className = ''; 
+            document.body.classList.add(`theme-${targetContext}`);
 
-            sortProducts(); // Chain sorting filters
-        }
-
-        // Processing Sort Requests
-        function sortProducts() {
-            let itemsToProcess = [...studioInventory];
+            // Programmatically configure sidebar interfaces based on specific user view selection
+            const sidebarElement = document.getElementById('dynamic-sidebar-viewport');
             
-            // Apply category filter step first
-            if (activeFilter !== 'all') {
-                itemsToProcess = itemsToProcess.filter(item => item.section === activeFilter);
+            if (targetContext === 'all') {
+                sidebarElement.classList.remove('visible');
+                document.getElementById('filter-status-label').innerText = "Main Hub Showcase";
+                currentFilteredInventory = [...databaseInventory];
+            } else {
+                sidebarElement.classList.add('visible');
+                generateBespokeSidebarElements(targetContext, sidebarElement);
+                currentFilteredInventory = databaseInventory.filter(item => item.section === targetContext);
+                document.getElementById('filter-status-label').innerText = `Showing all items inside: ${targetContext.toUpperCase()}`;
             }
 
-            // Apply Sort Order Parameters
-            const sortingRule = document.getElementById('sort-dropdown').value;
-            if (sortingRule === 'low-high') {
-                itemsToProcess.sort((a, b) => a.price - b.price);
-            } else if (sortingRule === 'high-low') {
-                itemsToProcess.sort((a, b) => b.price - a.price);
-            }
-
-            renderActiveGrid(itemsToProcess);
+            processSortExecution(); // Synchronize listing matrix automatically
         }
 
-        // Render Cards Matrix to Output Target
-        function renderActiveGrid(productsList) {
-            const gridContainer = document.getElementById('product-grid-container');
-            gridContainer.innerHTML = ''; // Flush layout buffer
+        // 🧭 Programmatic Sidebar Architecture Generator
+        function generateBespokeSidebarElements(context, mountNode) {
+            mountNode.innerHTML = ''; // Clear layout parameters
 
-            productsList.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="image-container">
-                        <img src="${product.img}" alt="${product.title}">
+            if (context === 'art') {
+                mountNode.innerHTML = `
+                    <h3 class="sidebar-header-title">Fine Art Library</h3>
+                    <div class="menu-tree-node">
+                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'paintings')">Paintings <span>▾</span></div>
+                        <button class="custom-order-btn" onclick="alert('Redirecting to Custom Paint Request Portal...')">Request Custom Painting</button>
+                        <ul class="node-subtree-leaves">
+                            <li class="bracket-sub-node" onclick="isolateSubFilter('child', 'b-cooper')">— B.A. Cooper Signature</li>
+                            <li class="bracket-sub-node" onclick="isolateSubFilter('child', 't-ku')">— T.L. Ku Signature</li>
+                        </ul>
                     </div>
-                    <div class="product-meta">
-                        <span class="badge-tag">${product.tag}</span>
-                        <p class="artist-label">${product.label}</p>
-                        <h3 class="product-title">${product.title}</h3>
-                        <p class="product-price">£${product.price.toFixed(2)}</p>
-                        <a href="${product.link}" class="buy-btn payhip-buy-button">Add to Basket</a>
+                    <div class="menu-tree-node">
+                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'wooden')">Wooden Crafts <span>▾</span></div>
+                        <button class="custom-order-btn" onclick="alert('Redirecting to Custom Woodwork Portal...')">Request Custom Woodwork</button>
+                        <ul class="node-subtree-leaves">
+                            <li onclick="isolateSubFilter('child', 'carving')">Carving Work</li>
+                            <li onclick="isolateSubFilter('child', 'burning')">Burning / Pyrography</li>
+                        </ul>
                     </div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'stonework')">Stone Work</div></div>
+                    <div class="menu-tree-node">
+                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'claywork')">Clay Work</div>
+                        <button class="custom-order-btn" onclick="alert('Redirecting to Clay Order Form...')">Request Custom Clay</button>
+                    </div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'mosaic')">Glass / Mosaic</div></div>
                 `;
-                gridContainer.appendChild(card);
+            } else if (context === 'kits') {
+                mountNode.innerHTML = `
+                    <h3 class="sidebar-header-title">Project Kits</h3>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'paint')">Paint Kits</div></div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'clay')">Clay Kits</div></div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'crossstitch')">Cross Stitch</div></div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'felting')">Needle Felting</div></div>
+                `;
+            } else if (context === 'hobbies') {
+                mountNode.innerHTML = `
+                    <h3 class="sidebar-header-title">Hobbies & Vault</h3>
+                    <div class="menu-tree-node">
+                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'pokemon')">TCG Cards <span>▾</span></div>
+                        <ul class="node-subtree-leaves">
+                            <li class="bracket-sub-node">— Pokémon Collectibles</li>
+                            <li class="bracket-sub-node">— Sealed Booster Packs</li>
+                            <li class="bracket-sub-node">— Individual Archives</li>
+                        </ul>
+                    </div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'cubing')">Speed Cubes</div></div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'penspinning')">Pen Spinning</div></div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'balisong')">Balisong Trainers</div></div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'kendama')">Kendama Mods</div></div>
+                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'books')">Book Library</div></div>
+                `;
+            }
+        }
+
+        // 🔍 Sidebar Child Filter Engine
+        function isolateSubFilter(key, targetValue) {
+            currentFilteredInventory = databaseInventory.filter(item => item[key] === targetValue);
+            document.getElementById('filter-status-label').innerText = `Filtered Category Archive View: [${targetValue.toUpperCase()}]`;
+            processSortExecution();
+        }
+
+        // 🎚️ Sorting Execution Core Processing Engine
+        function processSortExecution() {
+            const sortingRule = document.getElementById('price-sort-engine').value;
+            
+            if (sortingRule === 'low-high') {
+                currentFilteredInventory.sort((a, b) => a.price - b.price);
+            } else if (sortingRule === 'high-low') {
+                currentFilteredInventory.sort((a, b) => b.price - a.price);
+            } else {
+                // Featured Default sorting state recovery rule
+                currentFilteredInventory.sort((a, b) => a.id - b.id);
+            }
+
+            renderCatalogDisplayGrid();
+        }
+
+        // 🛍️ Matrix Render Array Layout Blueprint
+        function renderCatalogDisplayGrid() {
+            const targetsNode = document.getElementById('master-catalog-display-target');
+            targetsNode.innerHTML = ''; // Drop buffer values
+
+            if(currentFilteredInventory.length === 0) {
+                targetsNode.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 4rem; font-style: italic;">No specific vault drops match this item track currently.</p>`;
+                return;
+            }
+
+            currentFilteredInventory.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'craft-card';
+                card.innerHTML = `
+                    <div class="card-photo-frame">
+                        <img src="${item.img}" alt="${item.title}">
+                    </div>
+                    <span class="card-tag-badge">${item.tag}</span>
+                    <p class="card-meta-line">${item.label}</p>
+                    <h4 class="card-product-title">${item.title}</h4>
+                    <p class="card-product-price">£${item.price.toFixed(2)}</p>
+                    <button class="card-action-trigger payhip-buy-button">Add to Basket</button>
+                `;
+                targetsNode.appendChild(card);
             });
         }
     </script>
-    
+
     <script type="text/javascript" src="https://payhip.com/payhip.js?v=24842"></script>
 </body>
 </html>
