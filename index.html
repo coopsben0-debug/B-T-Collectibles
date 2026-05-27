@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&T Collectibles — Studio Hub</title>
+    <title>B&T Crafted — Studio Hub</title>
     
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        script-src 'self' 'unsafe-inline' https://js.stripe.com https://b.stripe.com; 
+        script-src 'self' 'unsafe-inline' https://js.stripe.com https://b.stripe.com https://payhip.com; 
         style-src 'self' 'unsafe-inline'; 
-        img-src 'self' data: https://images.unsplash.com https://*.stripe.com; 
+        img-src 'self' data: https://images.unsplash.com https://*.stripe.com https://payhip.com; 
         connect-src 'self' https://api.stripe.com; 
-        frame-src 'self' https://js.stripe.com https://hooks.stripe.com;
+        frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://payhip.com;
         frame-ancestors 'none';
     ">
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -259,9 +259,9 @@
 
     <div class="top-navbar">
         <a href="#" class="studio-logo-frame" onclick="switchApplicationContext('all')">
-            <img src="2.jpg" alt="B&T Logo Badge" class="logo-graphic-img">
+            <img src="2.jpg" alt="B&T Crafted Logo" class="logo-graphic-img">
             <div class="logo-meta-title">
-                <h2>B&T Collectibles</h2>
+                <h2>B&T Crafted</h2>
                 <p>Studio & Archive Hub</p>
             </div>
         </a>
@@ -304,7 +304,7 @@
     </div>
 
     <script>
-        // Complete Dynamic Catalog Database containing your signature custom photo streams
+        // Complete Dynamic Catalog Database fully mapped to case-sensitive GitHub uploaded assets
         const databaseInventory = [
             // ART CATEGORY ITEMS (Paintings, Woodwork, Stonework, Claywork, Mosaics, and Photography)
             { id: 1, section: 'art', subsection: 'paintings', child: 'b-cooper', price: 150.00, title: 'B.A. Cooper Signature Collection: Custom Portrait Drop', tag: 'Signature Line', label: 'B.A. Cooper Original Canvas', img: '5.JPG' },
