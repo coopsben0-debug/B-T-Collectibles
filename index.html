@@ -18,7 +18,6 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
 
     <style>
-        /* 🎨 Master Water Lily Pond Color Palette */
         :root {
             --clr-dark-green: #0A3323;
             --clr-moss-green: #839958;
@@ -27,44 +26,54 @@
             --clr-midnight: #105666;
         }
 
-        /* Reset & Global Base Layout Rules */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
             background-color: var(--clr-beige);
             color: var(--clr-dark-green);
             font-family: 'Georgia', serif;
             line-height: 1.6;
-            padding: 2rem;
         }
 
-        /* 🏛️ Header Branding Engine Components */
-        .top-navbar {
-            max-width: 1400px;
-            margin: 0 auto 2rem auto;
+        /* 🏛️ SHARED BRANDING HEADER ZONE */
+        .brand-header-banner {
+            background-color: var(--clr-beige);
+            padding: 2rem 4rem 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1.5rem;
             border-bottom: 1px solid rgba(131, 153, 88, 0.2);
         }
 
         .studio-logo-frame {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
             text-decoration: none;
             color: var(--clr-dark-green);
         }
         
         .studio-logo-frame .logo-graphic-img {
-            height: 65px;
-            width: 65px;
+            height: 60px;
+            width: 60px;
             object-fit: contain;
-            border-radius: 50%;
         }
 
-        .logo-meta-title h2 { font-size: 1.8rem; letter-spacing: 2px; font-weight: 400; text-transform: uppercase; }
-        .logo-meta-title p { font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; margin-top: 2px; }
+        .logo-meta-title h1 { 
+            font-size: 1.8rem; 
+            letter-spacing: 3px; 
+            font-weight: 400; 
+            text-transform: uppercase; 
+            line-height: 1.1;
+        }
+        .logo-meta-title p { 
+            font-family: sans-serif; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            opacity: 0.8; 
+            margin-top: 4px; 
+        }
 
         .right-utilities-gate {
             display: flex;
@@ -78,42 +87,55 @@
         .util-link { text-decoration: none; color: var(--clr-dark-green); font-weight: bold; }
         .basket-pill { background-color: var(--clr-dark-green); color: var(--clr-beige); padding: 0.3rem 0.7rem; border-radius: 50px; font-size: 0.75rem; margin-left: 0.3rem; }
 
-        /* 🗺️ Global Navigation Tray Component */
-        .global-navigation-tray {
-            max-width: 1400px;
-            margin: 0 auto 3rem auto;
+        /* 🗺️ SHARED NAVIGATION CONTROLS BAR */
+        .navigation-routing-bar {
+            background-color: var(--clr-beige);
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
             text-align: center;
-        }
-        .nav-editorial-sub {
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--clr-midnight);
-            margin-bottom: 1.5rem;
         }
         
         .tab-link-group { 
             display: flex; 
             justify-content: center; 
-            gap: 2rem; 
-            flex-wrap: wrap;
+            gap: 3rem; 
         }
+        
         .tab-trigger {
-            text-decoration: none; font-family: sans-serif; font-size: 0.85rem;
-            text-transform: uppercase; letter-spacing: 2px; font-weight: bold;
-            color: var(--clr-dark-green); padding: 0.5rem 1.5rem;
-            border: 1px solid var(--clr-dark-green);
-            border-radius: 2px;
+            text-decoration: none; 
+            font-family: sans-serif; 
+            font-size: 0.85rem;
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: bold;
+            color: var(--clr-dark-green); 
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
             transition: all 0.2s ease;
         }
         .tab-trigger:hover, .tab-trigger.active { 
-            background-color: var(--clr-dark-green);
-            color: var(--clr-beige);
+            color: var(--clr-dark-green);
+            border-bottom-color: var(--clr-dark-green);
         }
 
-        /* 🎛️ Dashboard Control Strip Layout */
-        .sorting-dashboard-bar {
+        /* PAGE CONTENT BODY SECTION CONTAINER */
+        .page-content-wrapper {
+            padding: 3rem 4rem;
             max-width: 1400px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto;
+        }
+
+        .section-editorial-intro {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--clr-midnight);
+            margin-bottom: 2.5rem;
+        }
+
+        /* 🎛️ Sorting Dashboard Strip Component */
+        .sorting-dashboard-bar {
+            margin-bottom: 2.5rem;
             background: rgba(131, 153, 88, 0.08);
             padding: 1rem 1.5rem;
             border-radius: 2px;
@@ -128,48 +150,41 @@
             border: 1px solid var(--clr-moss-green); outline: none; border-radius: 2px;
         }
 
-        /* 🧱 Master Catalog Grid Engine */
+        /* 🧱 Structural Catalog Cards Grid */
         .catalog-showcase-grid {
-            max-width: 1400px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2.5rem;
         }
 
         .craft-card {
             background: #ffffff;
-            border: 1px solid rgba(131, 153, 88, 0.2);
+            border: 1px solid rgba(131, 153, 88, 0.15);
             border-radius: 4px; padding: 1.2rem;
             display: flex; flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease;
         }
-        .craft-card:hover { 
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(10, 51, 35, 0.05);
-        }
+        .craft-card:hover { transform: translateY(-4px); }
 
-        /* Fixed Aspect-Ratio Wrapper to prevent grid collapses */
         .card-photo-frame {
             width: 100%; 
-            aspect-ratio: 4 / 3; 
+            aspect-ratio: 1 / 1; 
             overflow: hidden;
             border-radius: 2px; 
             margin-bottom: 1.2rem;
             background-color: rgba(131, 153, 88, 0.05);
-            border: 1px solid rgba(131, 153, 88, 0.1);
         }
         .card-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
         .card-tag-badge {
             display: inline-block; font-family: sans-serif; font-size: 0.65rem;
             text-transform: uppercase; letter-spacing: 1px; background: var(--clr-rosy-brown);
-            color: white; padding: 0.2.5rem 0.6rem; border-radius: 2px; margin-bottom: 0.6rem;
+            color: white; padding: 0.25rem 0.6rem; border-radius: 2px; margin-bottom: 0.6rem;
             align-self: flex-start; font-weight: bold;
         }
         .card-meta-line { font-family: sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 0.3rem; }
-        .card-product-title { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.4; color: var(--clr-dark-green); min-height: 3.5rem; }
-        .card-product-price { font-family: sans-serif; font-size: 1.1rem; font-weight: bold; margin-bottom: 1.2rem; color: var(--clr-midnight); }
+        .card-product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.4; color: var(--clr-dark-green); min-height: 3.2rem; }
+        .card-product-price { font-family: sans-serif; font-size: 1.05rem; font-weight: bold; margin-bottom: 1.2rem; }
         
         .card-action-trigger {
             display: block; width: 100%; text-align: center; background: transparent;
@@ -177,18 +192,17 @@
             padding: 0.8rem; text-decoration: none; font-family: sans-serif;
             font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
             font-weight: bold; margin-top: auto; cursor: pointer; transition: all 0.2s ease;
-            border-radius: 2px;
         }
         .card-action-trigger:hover { background: var(--clr-dark-green); color: var(--clr-beige); }
     </style>
 </head>
 <body>
 
-    <div class="top-navbar">
+    <header class="brand-header-banner">
         <a href="index.html" class="studio-logo-frame">
-            <img src="2.jpg" alt="B&T Crafted" class="logo-graphic-img">
+            <img src="2.jpg" alt="B&T Crafted Logo" class="logo-graphic-img">
             <div class="logo-meta-title">
-                <h2>B&T Crafted</h2>
+                <h1>B&T Crafted</h1>
                 <p>Studio & Archive Hub</p>
             </div>
         </a>
@@ -197,77 +211,63 @@
             <a href="#" class="util-link">Sign In / Register</a>
             <a href="#" class="util-link payhip-open-cart">Studio Basket <span class="basket-pill payhip-cart-count">0</span></a>
         </div>
-    </div>
+    </header>
 
-    <div class="global-navigation-tray">
-        <p class="nav-editorial-sub">Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
+    <nav class="navigation-routing-bar">
         <div class="tab-link-group">
             <a href="index.html" class="tab-trigger active">View All Hub</a>
             <a href="art.html" class="tab-trigger">Art Drops</a>
-            <a href="handcrafts.html" class="tab-trigger">Studio Handcrafts</a>
+            <a href="handcrafts.html" class="tab-trigger">Project Kits</a>
             <a href="hobbies.html" class="tab-trigger">Hobbies & Vault</a>
         </div>
-    </div>
+    </nav>
 
-    <div class="sorting-dashboard-bar">
-        <div><span>Master Hub Vault Archive</span></div>
-        <div>
-            <select class="native-select-input" id="price-sort-engine" onchange="processSortExecution()">
-                <option value="featured">Sort: Featured Collection</option>
-                <option value="low-high">Price: Low to High</option>
-                <option value="high-low">Price: High to Low</option>
-            </select>
+    <div class="page-content-wrapper">
+        <p class="section-editorial-intro">Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
+
+        <div class="sorting-dashboard-bar">
+            <div><span>Main Hub Showcase</span></div>
+            <div>
+                <select class="native-select-input" id="price-sort-engine" onchange="processSortExecution()">
+                    <option value="featured">Sort: Featured Collection</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                </select>
+            </div>
         </div>
-    </div>
 
-    <main class="catalog-showcase-grid" id="master-catalog-display-target">
-        </main>
+        <main class="catalog-showcase-grid" id="master-catalog-display-target">
+            </main>
+    </div>
 
     <script>
-        // Master Local DB Array
-        // IMPORTANT: Update image paths below to point to your placeholder or stock assets if needed!
         const masterDatabase = [
-            { id: 1, price: 150.00, title: 'B.A. Cooper Signature Collection: Custom Portrait Drop', tag: 'Signature Line', label: 'B.A. Cooper Original Canvas', img: '5.JPG' },
-            { id: 2, price: 125.00, title: 'T.L. Ku Signature Collection: Fine Art Portrait Drop', tag: 'Signature Line', label: 'T.L. Ku Original Canvas', img: '6.PNG' },
-            { id: 3, price: 175.00, title: 'B&T Signature Collection: Custom Couple Portrait Canvas', tag: 'Signature Line', label: 'B&T Hand-Painted Series', img: '7.PNG' },
-            { id: 4, price: 18.00, title: 'Earthy Initial Clay Jewelry Dish', tag: 'Letter Stamped', label: 'Clay Jewelry Pots', img: '2.jpg' },
-            { id: 5, price: 55.00, title: 'Wildflower Stitch Cuff Denim Jacket', tag: 'Hand Stitched', label: 'Upcycled Embroidery', img: '2.jpg' },
-            { id: 6, price: 12.00, title: 'Premium Matte 3x3 Speedcube', tag: 'Matte Finish', label: 'Speedcubing Precise', img: '2.jpg' },
-            { id: 7, price: 4.50, title: 'Pokémon TCG: Sword & Shield Booster Pack', tag: 'TCG Vault Pack', label: 'Pokémon Booster Archive', img: '2.jpg' },
-            { id: 8, price: 15.00, title: 'Waterlily Pond Study Print (A4)', tag: 'Replication Print', label: 'Matte Finished Satin Print', img: '2.jpg' }
+            { id: 1, price: 150.00, title: 'B.A. Cooper Signature Collection: Custom Portrait Drop', tag: 'Original Drop', label: 'B.A. Cooper Signature Line', img: '5.JPG' },
+            { id: 2, price: 125.00, title: 'T.L. Ku Signature Collection: Fine Art Portrait Drop', tag: 'Watercolor Original', label: 'T.L. Ku Signature Collection', img: '6.PNG' },
+            { id: 3, price: 175.00, title: 'B&T Signature Collection: Custom Couple Portrait Canvas', tag: 'Wood Studio', label: 'Wooden Carvings', img: '7.PNG' },
+            { id: 4, price: 18.00, title: 'Earthy Initial Clay Jewelry Dish', tag: 'Wood Burned', label: 'Wooden Pyrography', img: '2.jpg' }
         ];
 
         let activeInventory = [...masterDatabase];
 
-        document.addEventListener("DOMContentLoaded", () => {
-            renderCatalogDisplayGrid();
-        });
+        document.addEventListener("DOMContentLoaded", () => { renderCatalogDisplayGrid(); });
 
         function processSortExecution() {
             const sortingRule = document.getElementById('price-sort-engine').value;
-            
-            if (sortingRule === 'low-high') {
-                activeInventory.sort((a, b) => a.price - b.price);
-            } else if (sortingRule === 'high-low') {
-                activeInventory.sort((a, b) => b.price - a.price);
-            } else {
-                activeInventory.sort((a, b) => a.id - b.id);
-            }
-
+            if (sortingRule === 'low-high') activeInventory.sort((a, b) => a.price - b.price);
+            else if (sortingRule === 'high-low') activeInventory.sort((a, b) => b.price - a.price);
+            else activeInventory.sort((a, b) => a.id - b.id);
             renderCatalogDisplayGrid();
         }
 
         function renderCatalogDisplayGrid() {
             const targetsNode = document.getElementById('master-catalog-display-target');
             targetsNode.innerHTML = ''; 
-
             activeInventory.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'craft-card';
                 card.innerHTML = `
-                    <div class="card-photo-frame">
-                        <img src="${item.img}" alt="${item.title}" onerror="this.onerror=null; this.src='2.jpg';">
-                    </div>
+                    <div class="card-photo-frame"><img src="${item.img}" alt="${item.title}" onerror="this.src='2.jpg';"></div>
                     <span class="card-tag-badge">${item.tag}</span>
                     <p class="card-meta-line">${item.label}</p>
                     <h4 class="card-product-title">${item.title}</h4>
@@ -278,7 +278,6 @@
             });
         }
     </script>
-
     <script type="text/javascript" src="https://payhip.com/payhip.js?v=24842"></script>
 </body>
 </html>
