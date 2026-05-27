@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fine Art Gallery — B&T Collectibles</title>
-    
+    <title>Art Drops — B&T Collectibles</title>
     <style>
         :root {
             --clr-dark-green: #0A3323;
@@ -21,208 +20,68 @@
             color: var(--clr-dark-green);
             font-family: 'Georgia', serif;
             line-height: 1.6;
-        }
-
-        /* 🌸 MASTER SYSTEM-WIDE TOP HEADER (LOCKED PINK-BEIGE) */
-        .brand-header-banner {
-            background-color: var(--clr-beige);
-            padding: 2rem 4rem 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
-        }
-
-        /* Top-Left Logo Configuration Frame */
-        .studio-logo-frame {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            text-decoration: none;
-            color: var(--clr-dark-green);
-        }
-        
-        .studio-logo-frame .logo-graphic-img {
-            height: 60px;
-            width: 60px;
-            object-fit: contain;
-        }
-
-        .logo-meta-title h1 { 
-            font-size: 1.8rem; 
-            letter-spacing: 3px; 
-            font-weight: 400; 
-            text-transform: uppercase; 
-            line-height: 1.1;
-        }
-        .logo-meta-title p { 
-            font-family: sans-serif; 
-            font-size: 0.7rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            opacity: 0.8; 
-            margin-top: 4px; 
-        }
-
-        .right-utilities-gate {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            font-family: sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        .util-link { text-decoration: none; color: var(--clr-dark-green); font-weight: bold; }
-        .basket-pill { background-color: var(--clr-dark-green); color: var(--clr-beige); padding: 0.3rem 0.7rem; border-radius: 50px; font-size: 0.75rem; margin-left: 0.3rem; }
-
-        /* 🗺️ MASTER NAVIGATION CONTROLS BAR */
-        .navigation-routing-bar {
-            background-color: var(--clr-beige);
-            padding: 1.5rem 4rem;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
-            text-align: center;
-        }
-        
-        .tab-link-group { 
-            display: flex; 
-            justify-content: center; 
-            gap: 3rem; 
-        }
-        
-        .tab-trigger {
-            text-decoration: none; 
-            font-family: sans-serif; 
-            font-size: 0.85rem;
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-weight: bold;
-            color: var(--clr-dark-green); 
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
-        .tab-trigger:hover, .tab-trigger.active { 
-            color: var(--clr-dark-green);
-            border-bottom-color: var(--clr-dark-green);
-        }
-
-        /* 🌲 DARK IMMERSION LOWER ZONE */
-        .gallery-immersion-chamber {
-            background-color: var(--clr-dark-green);
-            color: var(--clr-beige);
-            padding: 4rem;
-            min-height: calc(100vh - 165px);
-        }
-
-        .gallery-split-layout {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 4rem;
-        }
-
-        .gallery-sidebar h3 {
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--clr-rosy-brown);
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(247, 244, 213, 0.2);
-            padding-bottom: 0.5rem;
-        }
-
-        .filter-vertical-list {
-            list-style: none;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
         }
 
-        .filter-action-link {
-            text-decoration: none;
+        .brand-hero-panel {
+            background-color: var(--clr-beige);
+            padding: 3.5rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .logo-img { height: 120px; width: 120px; object-fit: contain; margin-bottom: 1.5rem; }
+        .brand-title { font-size: 2.4rem; letter-spacing: 4px; font-weight: 400; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .brand-tagline { font-style: italic; font-size: 1.1rem; color: var(--clr-midnight); opacity: 0.9; }
+
+        .navigation-routing-bar {
+            background-color: var(--clr-beige);
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(131, 153, 88, 0.2);
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+            text-align: center;
+        }
+        .tab-link-group { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .tab-trigger { text-decoration: none; font-family: sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; color: var(--clr-dark-green); padding-bottom: 0.5rem; border-bottom: 2px solid transparent; }
+        .tab-trigger:hover, .tab-trigger.active { border-bottom-color: var(--clr-dark-green); }
+
+        /* 🌲 DARK GALLERY TRANSITION ZONE */
+        .dynamic-zone {
+            flex: 1;
+            background-color: var(--clr-dark-green);
             color: var(--clr-beige);
-            font-family: sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            opacity: 0.7;
-            transition: opacity 0.2s;
+            padding: 5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
-        .filter-action-link:hover, .filter-action-link.active { opacity: 1; font-weight: bold; }
 
-        .showcase-content-zone h2 {
-            font-size: 1.5rem;
+        .placeholder-box {
+            border: 1px dashed rgba(247, 244, 213, 0.3);
+            padding: 4rem;
+            border-radius: 4px;
+            max-width: 600px;
+        }
+
+        .placeholder-box h2 {
             font-weight: 400;
+            font-size: 1.6rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--clr-rosy-brown);
-            margin-bottom: 2rem;
-        }
-
-        .art-grid-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .art-display-card {
-            background: rgba(257, 244, 213, 0.03);
-            border: 1px solid rgba(247, 244, 213, 0.1);
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            border-radius: 4px;
-        }
-
-        .art-photo-frame {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            margin-bottom: 1.2rem;
-            background: rgba(0,0,0,0.2);
-        }
-        .art-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-
-        .art-card-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--clr-beige); }
-        .art-card-price { font-family: sans-serif; font-size: 1rem; color: var(--clr-moss-green); font-weight: bold; margin-bottom: 1rem; }
-        
-        .art-buy-btn {
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--clr-beige);
-            color: var(--clr-beige);
-            padding: 0.7rem;
-            font-family: sans-serif;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            margin-top: auto;
-            transition: all 0.2s ease;
-        }
-        .art-buy-btn:hover {
-            background: var(--clr-beige);
-            color: var(--clr-dark-green);
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body>
 
-    <header class="brand-header-banner">
-        <a href="index.html" class="studio-logo-frame">
-            <img src="2.jpg" alt="B&T Collectibles Logo" class="logo-graphic-img">
-            <div class="logo-meta-title">
-                <h1>B&T Collectibles</h1>
-                <p>Studio & Archive Hub</p>
-            </div>
-        </a>
-        
-        <div class="right-utilities-gate">
-            <a href="#" class="util-link">Sign In / Register</a>
-            <a href="#" class="util-link payhip-open-cart">Studio Basket <span class="basket-pill payhip-cart-count">0</span></a>
-        </div>
+    <header class="brand-hero-panel">
+        <img src="2.jpg" alt="B&T Collectibles Logo" class="logo-img">
+        <h1 class="brand-title">B&T Collectibles</h1>
+        <p class="brand-tagline">Signature Portrait Series & Original Watercolor Canvas Drops</p>
     </header>
 
     <nav class="navigation-routing-bar">
@@ -234,49 +93,12 @@
         </div>
     </nav>
 
-    <div class="gallery-immersion-chamber">
-        <div class="gallery-split-layout">
-            
-            <aside class="gallery-sidebar">
-                <h3>Art Categories</h3>
-                <ul class="filter-vertical-list">
-                    <li><a href="#" class="filter-action-link active">Original Canvases</a></li>
-                    <li><a href="#" class="filter-action-link">Fine Art Prints</a></li>
-                    <li><a href="#" class="filter-action-link">Portrait Series</a></li>
-                    <li><a href="#" class="filter-action-link">Custom Drop Orders</a></li>
-                </ul>
-            </aside>
-
-            <main class="showcase-content-zone">
-                <h2>Signature Originals</h2>
-                
-                <div class="art-grid-showcase">
-                    <div class="art-display-card">
-                        <div class="art-photo-frame"><img src="5.JPG" alt="B.A. Cooper Portrait" onerror="this.src='2.jpg';"></div>
-                        <h4 class="art-card-title">B.A. Cooper Signature Canvas</h4>
-                        <p class="art-card-price">£150.00</p>
-                        <button class="art-buy-btn payhip-buy-button">Add to Basket</button>
-                    </div>
-
-                    <div class="art-display-card">
-                        <div class="art-photo-frame"><img src="6.PNG" alt="T.L. Ku Portrait" onerror="this.src='2.jpg';"></div>
-                        <h4 class="art-card-title">T.L. Ku Signature Canvas</h4>
-                        <p class="art-card-price">£125.00</p>
-                        <button class="art-buy-btn payhip-buy-button">Add to Basket</button>
-                    </div>
-
-                    <div class="art-display-card">
-                        <div class="art-photo-frame"><img src="7.PNG" alt="Couple Portrait Canvas" onerror="this.src='2.jpg';"></div>
-                        <h4 class="art-card-title">Custom Couple Portrait Canvas</h4>
-                        <p class="art-card-price">£175.00</p>
-                        <button class="art-buy-btn payhip-buy-button">Add to Basket</button>
-                    </div>
-                </div>
-            </main>
-
+    <main class="dynamic-zone">
+        <div class="placeholder-box">
+            <h2>Fine Art Gallery</h2>
+            <p>Ready for staging. Your upcoming signature physical drops and custom canvas options will be loaded into this deep gallery workspace.</p>
         </div>
-    </div>
+    </main>
 
-    <script type="text/javascript" src="https://payhip.com/payhip.js?v=24842"></script>
 </body>
 </html>
