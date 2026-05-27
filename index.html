@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&T Collectibles — Studio Workspace & Gallery</title>
     <style>
-        /* Unified Reset & Water Lily Pond System */
+        /* Modern Editorial Reset and Water Lily Pond Color System */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         :root {
@@ -32,7 +32,7 @@
             margin: 0 auto 3rem auto;
         }
 
-        /* Architectural Typographic Logo Frame */
+        /* Typographic CSS Logo Frame (Based on image_1.png design) */
         .studio-logo-container {
             display: inline-block;
             border: 1px solid var(--text-main);
@@ -44,13 +44,13 @@
         .studio-logo-container::after {
             content: '';
             position: absolute;
-            top: 3px; left: 3px; right: 3px; bottom: 3px;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
             border: 1px solid var(--accent-moss);
             pointer-events: none;
         }
 
         .studio-logo-container h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 400;
             letter-spacing: 2px;
             line-height: 1;
@@ -62,7 +62,7 @@
             font-family: sans-serif;
             font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             color: var(--accent-midnight);
             display: block;
         }
@@ -104,7 +104,8 @@
 
         /* Product Cards */
         .product-card { background: transparent; transition: transform 0.3s ease; }
-        
+        .product-card:hover { transform: translateY(-5px); }
+
         .image-container {
             width: 100%;
             aspect-ratio: 4 / 5;
@@ -120,12 +121,12 @@
         .badge-tag {
             display: inline-block;
             font-family: sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             background-color: var(--accent-rose);
             color: #fff;
-            padding: 0.2rem 0.6rem;
+            padding: 0.2rem 0.5rem;
             margin-bottom: 0.6rem;
             border-radius: 2px;
         }
@@ -152,6 +153,20 @@
             cursor: pointer;
         }
         .buy-btn:hover { background-color: var(--accent-midnight); color: var(--bg-color); border-color: var(--accent-midnight); }
+
+        /* Elegant Custom Commission Area */
+        .commission-box {
+            grid-column: 1 / -1;
+            background-color: rgba(131, 153, 88, 0.08);
+            padding: 3rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            border: 1px dashed var(--accent-moss);
+        }
+        .commission-box h4 { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; letter-spacing: 1px; color: var(--text-main); }
+        .commission-box p { font-style: italic; font-size: 0.95rem; color: var(--accent-midnight); margin-bottom: 1.5rem; }
+        .commission-btn { display: inline-block; padding: 0.8rem 2rem; border: 1px solid var(--text-main); color: var(--text-main); text-decoration: none; font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; }
+        .commission-btn:hover { background-color: var(--text-main); color: var(--bg-color); }
     </style>
 </head>
 <body>
@@ -161,52 +176,51 @@
             <h1>B&T</h1>
             <span>Collectibles</span>
         </div>
-        <p>Hand-drawn prints, stitched embroidery textiles, and custom curated treasures</p>
+        <p>Handmade narratives, fine illustrations, and functional art for slower days</p>
         
         <nav>
-            <a href="index.html" class="active">Home Hub</a>
+            <a href="index.html" class="active">Hub Hub</a>
             <a href="art.html" class="inactive">Art & Prints</a>
             <a href="handcrafts.html" class="inactive">Studio Handcrafts</a>
             <a href="hobbies.html" class="inactive">Mind Games & TCG</a>
         </nav>
     </header>
 
-    <h2 class="section-title">New Studio Showpieces</h2>
+    <h2 class="section-title">New Studio arrivals</h2>
     <div class="collection-grid">
         
         <div class="product-card">
             <div class="image-container"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500" alt="Original Watercolour Painting"></div>
             <div class="product-meta">
                 <span class="badge-tag">Watercolour Drop</span>
-                <p class="artist-label">Signature Canvas</p>
+                <p class="artist-label">Signature Canvas Original</p>
                 <h3 class="product-title">Serene Waterlily Pond Original</h3>
-                <p class="product-price">£145.00</p>
+                <p class="product-price">£120.00</p>
                 <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="image-container"><img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500" alt="Clay Trinket Bowl"></div>
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500" alt="Stamped Clay Pot"></div>
             <div class="product-meta">
-                <span class="badge-tag">Letter Stamped</span>
-                <p class="artist-label">Clay Studio</p>
-                <h3 class="product-title">Personalised Clay Jewellery Pot</h3>
+                <span class="badge-tag">Stamped Initial</span>
+                <p class="artist-label">Handcrafted Clay Studio</p>
+                <h3 class="product-title">Clay Jewelry Trinket Dish</h3>
                 <p class="product-price">£18.00</p>
                 <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="image-container"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=500" alt="Botanical Embroidery Work"></div>
+            <div class="image-container"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=500" alt="Botanical Embroidery Denim"></div>
             <div class="product-meta">
                 <span class="badge-tag">Hand Embroidered</span>
-                <p class="artist-label">Upcycled Apparel</p>
+                <p class="artist-label">Upcycled Threadwork</p>
                 <h3 class="product-title">Wildflower Stitch Cuff Denim Jacket</h3>
                 <p class="product-price">£55.00</p>
                 <a href="YOUR_PAYHIP_PRODUCT_URL_HERE" class="buy-btn payhip-buy-button">Add to Basket</a>
             </div>
         </div>
-
     </div>
 
     <script type="text/javascript" src="https://payhip.com/payhip.js?v=24842"></script>
