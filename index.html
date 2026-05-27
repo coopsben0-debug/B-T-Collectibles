@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&T Crafted — Hub Showcase</title>
+    <title>B&T Collectibles — Studio Hub</title>
     <style>
         :root {
             --clr-dark-green: #0A3323;
@@ -11,6 +11,7 @@
             --clr-beige: #F7F4D5;
             --clr-rosy-brown: #D3968C;
             --clr-midnight: #105666;
+            --clr-charcoal: #1F2421;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,41 +26,100 @@
             flex-direction: column;
         }
 
-        /* MASTER BRAND HEADER BANNER */
+        /* 🌸 MASTER SYSTEM-WIDE TOP HEADER (LOCKED BEIGE) */
         .brand-header-banner {
             background-color: var(--clr-beige);
-            padding: 3rem 2rem 2rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
         }
 
-        .logo-frame img {
-            height: 110px;
-            width: 110px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-        }
-
-        .brand-title {
-            font-size: 2.2rem;
-            letter-spacing: 4px;
-            font-weight: 400;
-            text-transform: uppercase;
+        /* Vibey Logo Configuration Frame */
+        .studio-logo-frame {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
             color: var(--clr-dark-green);
-            margin-bottom: 0.4rem;
         }
 
-        .brand-tagline {
-            font-style: italic;
-            font-size: 1.05rem;
-            color: var(--clr-midnight);
-            opacity: 0.85;
+        .vibey-logo-badge {
+            background: linear-gradient(135deg, var(--clr-dark-green), var(--clr-midnight));
+            color: var(--clr-beige);
+            font-family: sans-serif;
+            font-weight: 900;
+            font-size: 1.4rem;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid var(--clr-rosy-brown);
+            box-shadow: 0 4px 10px rgba(10, 51, 35, 0.15);
+            position: relative;
+            letter-spacing: -1px;
         }
 
-        /* MASTER NAVIGATION CONTROLS BAR */
+        .vibey-logo-badge::after {
+            content: '✦';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            color: var(--clr-rosy-brown);
+            font-size: 0.8rem;
+        }
+
+        .logo-meta-title h1 { 
+            font-size: 1.4rem; 
+            letter-spacing: 2px; 
+            font-weight: 400; 
+            text-transform: uppercase; 
+            line-height: 1.1;
+        }
+        .logo-meta-title p { 
+            font-family: sans-serif; 
+            font-size: 0.65rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            opacity: 0.8; 
+            margin-top: 2px; 
+        }
+
+        .right-utilities-gate {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .util-btn { 
+            background: none;
+            border: none;
+            color: var(--clr-dark-green); 
+            font-weight: bold; 
+            cursor: pointer;
+            font-family: sans-serif;
+            text-transform: uppercase;
+        }
+        
+        .basket-pill { 
+            background-color: var(--clr-dark-green); 
+            color: var(--clr-beige); 
+            padding: 0.3rem 0.7rem; 
+            border-radius: 50px; 
+            font-size: 0.75rem; 
+        }
+
+        /* 🗺️ MASTER NAVIGATION CONTROLS BAR */
         .navigation-routing-bar {
             background-color: var(--clr-beige);
-            padding: 1.2rem 2rem;
+            padding: 1.2rem 4rem;
             border-bottom: 1px solid rgba(131, 153, 88, 0.15);
             text-align: center;
         }
@@ -78,7 +138,7 @@
             letter-spacing: 2px; 
             font-weight: bold;
             color: var(--clr-dark-green); 
-            padding-bottom: 0.4rem;
+            padding-bottom: 0.5rem;
             border-bottom: 2px solid transparent;
             transition: all 0.2s ease;
         }
@@ -86,95 +146,147 @@
             border-bottom-color: var(--clr-dark-green);
         }
 
-        /* UNIFIED DOUBLE-COLUMN LAYOUT SYSTEM */
+        /* UNIFIED WORKSPACE LAYOUT */
         .dashboard-layout-stage {
             flex: 1;
             display: flex;
             max-width: 1400px;
             width: 100%;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 3rem 4rem;
             gap: 3rem;
         }
 
-        /* STICKY SIDEBAR NAVIGATION */
-        .sidebar-filter-column {
-            width: 260px;
-            flex-shrink: 0;
-        }
-
+        .sidebar-filter-column { width: 260px; flex-shrink: 0; }
+        
         .sidebar-card {
             border: 1px solid rgba(131, 153, 88, 0.2);
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
             border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 1.5rem;
         }
 
         .sidebar-card h3 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+            padding-bottom: 0.4rem;
+        }
+
+        .sidebar-menu-list { list-style: none; }
+        .sidebar-menu-item { margin-bottom: 0.6rem; }
+        .sidebar-menu-link {
+            text-decoration: none;
+            color: var(--clr-dark-green);
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .sidebar-menu-link:hover { opacity: 1; font-weight: bold; }
+
+        .main-presentation-chamber { flex: 1; display: flex; flex-direction: column; }
+
+        .page-editorial-heading {
+            font-size: 1.6rem;
             font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
             border-bottom: 1px solid rgba(131, 153, 88, 0.2);
             padding-bottom: 0.5rem;
         }
 
-        .sidebar-menu-list { list-style: none; }
-        .sidebar-menu-item { margin-bottom: 0.8rem; }
-        .sidebar-menu-link {
-            text-decoration: none;
-            color: var(--clr-dark-green);
-            font-size: 0.9rem;
-            opacity: 0.8;
-            transition: opacity 0.2s;
+        /* CATALOG LAYOUT */
+        .catalog-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
-        .sidebar-menu-link:hover { opacity: 1; font-weight: bold; }
 
-        /* MAIN PRESENTATION CHAMBER */
-        .main-presentation-chamber {
-            flex: 1;
-            display: flex;
+        .craft-card {
+            background: #ffffff;
+            border: 1px solid rgba(131, 153, 88, 0.15);
+            border-radius: 4px; 
+            padding: 1.2rem;
+            display: flex; 
             flex-direction: column;
         }
 
-        .page-editorial-heading {
-            font-size: 1.8rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
-            padding-bottom: 0.75rem;
+        .card-photo-frame {
+            width: 100%; 
+            aspect-ratio: 1 / 1; 
+            overflow: hidden;
+            border-radius: 2px; 
+            margin-bottom: 1rem;
+            background-color: rgba(131, 153, 88, 0.05);
+        }
+        .card-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-meta-line { font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 0.3rem; }
+        .card-product-title { font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--clr-dark-green); }
+        .card-product-price { font-family: sans-serif; font-size: 1rem; font-weight: bold; color: var(--clr-midnight); }
+
+        /* MODAL OVERLAY PORTAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 51, 35, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-window {
+            background: #ffffff;
+            border-radius: 6px;
+            width: 100%; max-width: 500px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            position: relative;
         }
 
-        .canvas-placeholder-box {
-            flex: 1;
-            border: 1px dashed rgba(131, 153, 88, 0.4);
-            border-radius: 4px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.15);
+        .modal-close-btn {
+            position: absolute; top: 1.2rem; right: 1.5rem;
+            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--clr-dark-green);
         }
 
-        .canvas-placeholder-box p {
-            max-width: 500px;
-            opacity: 0.8;
+        .form-title { font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+        .form-group label { font-family: sans-serif; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; opacity: 0.8; }
+        .form-input { padding: 0.75rem; border: 1px solid #ccc; font-family: sans-serif; font-size: 0.9rem; border-radius: 4px; outline: none; }
+        .form-input:focus { border-color: var(--clr-dark-green); }
+        
+        .form-row-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .action-submit-trigger {
+            width: 100%; padding: 0.9rem; background: var(--clr-dark-green); color: var(--clr-beige);
+            border: none; border-radius: 4px; font-family: sans-serif; text-transform: uppercase;
+            font-weight: bold; letter-spacing: 1.5px; cursor: pointer; margin-top: 0.5rem;
         }
+        .action-submit-trigger:hover { background: var(--clr-midnight); }
     </style>
 </head>
 <body>
 
     <header class="brand-header-banner">
-        <div class="logo-frame">
-            <img src="2.jpg" alt="B&T Crafted Logo">
+        <a href="index.html" class="studio-logo-frame">
+            <div class="vibey-logo-badge">B&T</div>
+            <div class="logo-meta-title">
+                <h1>B&T Collectibles</h1>
+                <p>Studio & Archive Hub</p>
+            </div>
+        </a>
+        
+        <div class="right-utilities-gate">
+            <button class="util-btn" onclick="toggleModalPortal('account-modal')">Account / Access</button>
+            <button class="util-btn" onclick="toggleModalPortal('shipping-modal')">Shipping Manager</button>
+            <span class="basket-pill">Cart: 0</span>
         </div>
-        <h1 class="brand-title">B&T Crafted</h1>
-        <p class="brand-tagline">Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
     </header>
 
     <nav class="navigation-routing-bar">
@@ -191,20 +303,93 @@
             <div class="sidebar-card">
                 <h3>Global Index</h3>
                 <ul class="sidebar-menu-list">
-                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">All New Drops</a></li>
-                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">Recent Acquisitions</a></li>
-                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">Vault Highlights</a></li>
+                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">All Active Staging</a></li>
+                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">Recent Catalog Runs</a></li>
                 </ul>
             </div>
         </aside>
 
         <main class="main-presentation-chamber">
             <h2 class="page-editorial-heading">Master Hub Showcase</h2>
-            <div class="canvas-placeholder-box">
-                <p>Catalog drops are hidden while staging is in progress. When you are ready, your master assortment of items across all divisions will be dynamically presented here.</p>
+            
+            <div class="catalog-showcase-grid">
+                <div class="craft-card">
+                    <div class="card-photo-frame"><img src="5.JPG" alt="B.A. Cooper Signature Run" onerror="this.src='2.jpg';"></div>
+                    <span class="card-meta-line">B.A. Cooper Signature Line</span>
+                    <h4 class="card-product-title">Boy Portrait Study Canvas</h4>
+                    <p class="card-product-price">Staging Profile</p>
+                </div>
+
+                <div class="craft-card">
+                    <div class="card-photo-frame"><img src="6.PNG" alt="T.L. Ku Fine Art Collection" onerror="this.src='2.jpg';"></div>
+                    <span class="card-meta-line">T.L. Ku Fine Art Collection</span>
+                    <h4 class="card-product-title">Girl Portrait Study Canvas</h4>
+                    <p class="card-product-price">Staging Profile</p>
+                </div>
             </div>
         </main>
     </div>
 
+    <div class="modal-overlay" id="account-modal">
+        <div class="modal-window">
+            <button class="modal-close-btn" onclick="toggleModalPortal('account-modal')">×</button>
+            <h3 class="form-title">Collector Authentication</h3>
+            <form onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-input" placeholder="collector@domain.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Security Password</label>
+                    <input type="password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="action-submit-trigger">Verify Identity</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="shipping-modal">
+        <div class="modal-window">
+            <button class="modal-close-btn" onclick="toggleModalPortal('shipping-modal')">×</button>
+            <h3 class="form-title">Fulfillment & Shipping Registry</h3>
+            <form onsubmit="event.preventDefault(); toggleModalPortal('shipping-modal');">
+                <div class="form-row-split">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Street Address Line 1</label>
+                    <input type="text" class="form-input" placeholder="123 Studio Way" required>
+                </div>
+                <div class="form-row-split">
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Postal Code / ZIP</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Destination Country</label>
+                    <input type="text" class="form-input" value="United Kingdom" required>
+                </div>
+                <button type="submit" class="action-submit-trigger">Commit Shipping Destination</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleModalPortal(elementId) {
+            document.getElementById(elementId).classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
