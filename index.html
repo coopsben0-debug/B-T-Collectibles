@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&T Collectibles — Studio Hub</title>
+    <title>B&T Crafted — Hub Showcase</title>
     <style>
         :root {
             --clr-dark-green: #0A3323;
@@ -25,45 +25,42 @@
             flex-direction: column;
         }
 
-        /* ✨ BRAND HERO PANEL */
-        .brand-hero-panel {
+        /* MASTER BRAND HEADER BANNER */
+        .brand-header-banner {
             background-color: var(--clr-beige);
-            padding: 3.5rem 2rem 2rem 2rem;
+            padding: 3rem 2rem 2rem 2rem;
             text-align: center;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
         }
 
-        .logo-wrapper {
-            margin-bottom: 1.5rem;
-        }
-
-        .logo-img {
-            height: 120px;
-            width: 120px;
+        .logo-frame img {
+            height: 110px;
+            width: 110px;
             object-fit: contain;
+            margin-bottom: 1rem;
         }
 
         .brand-title {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             letter-spacing: 4px;
             font-weight: 400;
             text-transform: uppercase;
             color: var(--clr-dark-green);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .brand-tagline {
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--clr-midnight);
-            opacity: 0.9;
+            opacity: 0.85;
         }
 
-        /* 🗺️ NAVIGATION CONTROLS */
+        /* MASTER NAVIGATION CONTROLS BAR */
         .navigation-routing-bar {
             background-color: var(--clr-beige);
-            padding: 1.5rem 2rem;
-            border-top: 1px solid rgba(131, 153, 88, 0.2);
-            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
             text-align: center;
         }
         
@@ -71,7 +68,6 @@
             display: flex; 
             justify-content: center; 
             gap: 3rem; 
-            flex-wrap: wrap;
         }
         
         .tab-trigger {
@@ -82,7 +78,7 @@
             letter-spacing: 2px; 
             font-weight: bold;
             color: var(--clr-dark-green); 
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
             border-bottom: 2px solid transparent;
             transition: all 0.2s ease;
         }
@@ -90,58 +86,125 @@
             border-bottom-color: var(--clr-dark-green);
         }
 
-        /* 🎨 SECTION LOWER CONTENT SPACE */
-        .dynamic-zone {
+        /* UNIFIED DOUBLE-COLUMN LAYOUT SYSTEM */
+        .dashboard-layout-stage {
             flex: 1;
-            padding: 5rem 2rem;
+            display: flex;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            gap: 3rem;
+        }
+
+        /* STICKY SIDEBAR NAVIGATION */
+        .sidebar-filter-column {
+            width: 260px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-card {
+            border: 1px solid rgba(131, 153, 88, 0.2);
+            padding: 2rem 1.5rem;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar-menu-list { list-style: none; }
+        .sidebar-menu-item { margin-bottom: 0.8rem; }
+        .sidebar-menu-link {
+            text-decoration: none;
+            color: var(--clr-dark-green);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .sidebar-menu-link:hover { opacity: 1; font-weight: bold; }
+
+        /* MAIN PRESENTATION CHAMBER */
+        .main-presentation-chamber {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-editorial-heading {
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
+            padding-bottom: 0.75rem;
+        }
+
+        .canvas-placeholder-box {
+            flex: 1;
+            border: 1px dashed rgba(131, 153, 88, 0.4);
+            border-radius: 4px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-        }
-
-        .placeholder-box {
-            border: 1px dashed rgba(131, 153, 88, 0.4);
             padding: 4rem;
-            border-radius: 4px;
-            max-width: 600px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.15);
         }
 
-        .placeholder-box h2 {
-            font-weight: 400;
-            font-size: 1.6rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
+        .canvas-placeholder-box p {
+            max-width: 500px;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
 
-    <header class="brand-hero-panel">
-        <div class="logo-wrapper">
-            <img src="2.jpg" alt="B&T Collectibles Logo" class="logo-img">
+    <header class="brand-header-banner">
+        <div class="logo-frame">
+            <img src="2.jpg" alt="B&T Crafted Logo">
         </div>
-        <h1 class="brand-title">B&T Collectibles</h1>
+        <h1 class="brand-title">B&T Crafted</h1>
         <p class="brand-tagline">Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
     </header>
 
     <nav class="navigation-routing-bar">
         <div class="tab-link-group">
-            <a href="index.html" class="tab-trigger active">View All Hub</a>
-            <a href="art.html" class="tab-trigger">Art Drops</a>
-            <a href="handcrafts.html" class="tab-trigger">Project Kits</a>
-            <a href="hobbies.html" class="tab-trigger">Hobbies & Vault</a>
+            <a href="index.html" class="tab-trigger active">Hub Showcase</a>
+            <a href="art.html" class="tab-trigger">Art & Prints</a>
+            <a href="handcrafts.html" class="tab-trigger">Studio Crafts</a>
+            <a href="hobbies.html" class="tab-trigger">Mind Games & TCG</a>
         </div>
     </nav>
 
-    <main class="dynamic-zone">
-        <div class="placeholder-box">
-            <h2>Master Collection Hub</h2>
-            <p>Your master archive showcase is ready. Items added to your catalog will display here across all mixed categories.</p>
-        </div>
-    </main>
+    <div class="dashboard-layout-stage">
+        <aside class="sidebar-filter-column">
+            <div class="sidebar-card">
+                <h3>Global Index</h3>
+                <ul class="sidebar-menu-list">
+                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">All New Drops</a></li>
+                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">Recent Acquisitions</a></li>
+                    <li class="sidebar-menu-item"><a href="#" class="sidebar-menu-link">Vault Highlights</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-presentation-chamber">
+            <h2 class="page-editorial-heading">Master Hub Showcase</h2>
+            <div class="canvas-placeholder-box">
+                <p>Catalog drops are hidden while staging is in progress. When you are ready, your master assortment of items across all divisions will be dynamically presented here.</p>
+            </div>
+        </main>
+    </div>
 
 </body>
 </html>
