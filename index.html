@@ -3,417 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&T Collectibles — Studio Hub</title>
-    
+    <title>B&T Collectibles | Studio & Archive</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <style>
         :root {
-            --clr-dark-green: #0A3323;
-            --clr-moss-green: #839958;
-            --clr-beige: #F7F4D5;
-            --clr-rosy-brown: #D3968C;
-            --clr-midnight: #105666;
-            --clr-alert: #d9534f;
+            --bg: #FDFBF7;
+            --accent: #2A3B35;
+            --soft: #E8E3D9;
+            --text: #1A1A1A;
+            --glass: rgba(255, 255, 255, 0.7);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
         
-        body {
-            background-color: var(--clr-beige);
-            color: var(--clr-dark-green);
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        /* Glassmorphism Header */
+        header { 
+            padding: 2rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            backdrop-filter: blur(10px); 
+            background: var(--glass);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        /* LOGO BANNER REGION */
-        .brand-header-banner {
-            background-color: var(--clr-beige);
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; color: var(--accent); }
+
+        .nav-bar { display: flex; gap: 2rem; padding: 2rem 5%; justify-content: center; }
+        .tab { cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; color: #888; }
+        .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 2rem; 
+            padding: 2rem 5%; 
         }
 
-        .studio-logo-frame {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: var(--clr-dark-green);
+        .card { 
+            background: #fff; 
+            padding: 1rem; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
-
-        .vibey-logo-badge {
-            background: linear-gradient(135deg, var(--clr-dark-green), var(--clr-midnight));
-            color: var(--clr-beige);
-            font-family: sans-serif;
-            font-weight: 900;
-            font-size: 1.4rem;
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 2px solid var(--clr-rosy-brown);
-            position: relative;
-            letter-spacing: -1px;
-        }
-
-        .vibey-logo-badge::after {
-            content: '✦';
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            color: var(--clr-rosy-brown);
-            font-size: 0.8rem;
-        }
-
-        .logo-meta-title h1 { font-size: 1.4rem; letter-spacing: 2px; font-weight: 400; text-transform: uppercase; line-height: 1.1; }
-        .logo-meta-title p { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; margin-top: 2px; }
-
-        .right-utilities-gate { display: flex; align-items: center; gap: 1.5rem; font-family: sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .util-btn { background: none; border: none; color: var(--clr-dark-green); font-weight: bold; cursor: pointer; font-family: sans-serif; text-transform: uppercase; }
-        .admin-session-badge { background-color: var(--clr-rosy-brown); color: #fff; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: bold; display: none; }
-
-        /* NAVIGATION TABS CONTROLLER */
-        .navigation-routing-bar {
-            background-color: var(--clr-beige);
-            padding: 1.2rem 4rem;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
-            text-align: center;
-        }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; border-radius: 8px; height: 300px; object-fit: cover; }
         
-        .tab-link-group { display: flex; justify-content: center; gap: 3rem; }
-        
-        .tab-trigger {
-            text-decoration: none; 
-            font-family: sans-serif; 
-            font-size: 0.85rem;
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-weight: bold;
-            color: var(--clr-dark-green); 
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid transparent;
-            cursor: pointer;
-        }
-        .tab-trigger.active { border-bottom-color: var(--clr-dark-green); }
-
-        /* DECK DISPLAY FRAMEWORK */
-        .dashboard-layout-stage {
-            flex: 1;
-            display: flex;
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 3rem 4rem;
-            gap: 3rem;
-        }
-
-        .main-presentation-chamber { flex: 1; display: flex; flex-direction: column; }
-        .page-editorial-heading { font-size: 1.6rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; border-bottom: 1px solid rgba(131, 153, 88, 0.2); padding-bottom: 0.5rem; }
-
-        /* UPLOAD REGISTRY CONSOLE */
-        .admin-management-card {
-            border: 2px dashed var(--clr-rosy-brown);
-            background-color: rgba(211, 150, 140, 0.1);
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-bottom: 2.5rem;
-            display: none;
-        }
-
-        .admin-form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
-
-        /* PRODUCT TILES MESH */
-        .catalog-showcase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
-        .craft-card { background: #ffffff; border: 1px solid rgba(131, 153, 88, 0.15); border-radius: 4px; padding: 1.2rem; display: flex; flex-direction: column; position: relative; }
-        .card-photo-frame { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 2px; margin-bottom: 1rem; background-color: rgba(131, 153, 88, 0.05); }
-        .card-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .card-meta-line { font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 0.3rem; }
-        .card-product-title { font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--clr-dark-green); }
-        .card-product-price { font-family: sans-serif; font-size: 1rem; font-weight: bold; color: var(--clr-midnight); }
-
-        .item-delete-trigger { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--clr-alert); color: white; border: none; border-radius: 3px; padding: 0.2rem 0.5rem; font-size: 0.7rem; font-family: sans-serif; cursor: pointer; display: none; font-weight: bold; z-index: 10; }
-
-        /* POPUP SYSTEM WINDOWS */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 51, 35, 0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        .modal-window { background: #ffffff; border-radius: 6px; width: 100%; max-width: 450px; padding: 2.5rem; position: relative; }
-        .modal-close-btn { position: absolute; top: 1.2rem; right: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--clr-dark-green); }
-        .form-title { font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
-        .form-group { margin-bottom: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; }
-        .form-group label { font-family: sans-serif; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; opacity: 0.8; }
-        .form-input { padding: 0.7rem; border: 1px solid #ccc; font-family: sans-serif; font-size: 0.9rem; border-radius: 4px; outline: none; }
-        .action-submit-trigger { width: 100%; padding: 0.85rem; background: var(--clr-dark-green); color: var(--clr-beige); border: none; border-radius: 4px; font-family: sans-serif; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; cursor: pointer; }
+        button { cursor: pointer; padding: 0.8rem 1.5rem; border: none; background: var(--accent); color: white; border-radius: 6px; }
     </style>
 </head>
 <body>
 
-    <header class="brand-header-banner">
-        <div class="studio-logo-frame">
-            <div class="vibey-logo-badge">B&T</div>
-            <div class="logo-meta-title">
-                <h1>B&T Collectibles</h1>
-                <p>Studio & Archive Hub</p>
-            </div>
-        </div>
-        
-        <div class="right-utilities-gate">
-            <span class="admin-session-badge" id="admin-indicator">Creator Access Mode</span>
-            <button class="util-btn" id="login-toggle-btn" onclick="toggleModalPortal('account-modal')">Identity Access</button>
-            <button class="util-btn" onclick="toggleModalPortal('shipping-modal')">Shipping Terminal</button>
-        </div>
-    </header>
+<header>
+    <div class="logo">B&T COLLECTIBLES</div>
+    <div>
+        <button onclick="toggleModal('login-modal')">Admin Access</button>
+    </div>
+</header>
 
-    <nav class="navigation-routing-bar">
-        <div class="tab-link-group">
-            <span class="tab-trigger active" id="tab-All" onclick="switchCategoryTab('All')">View All Hub</span>
-            <span class="tab-trigger" id="tab-Art" onclick="switchCategoryTab('Art')">Art Drops</span>
-            <span class="tab-trigger" id="tab-Crafts" onclick="switchCategoryTab('Crafts')">Project Kits</span>
-            <span class="tab-trigger" id="tab-Hobbies" onclick="switchCategoryTab('Hobbies')">Hobbies & Vault</span>
-        </div>
-    </nav>
+<div class="nav-bar">
+    <div class="tab active" onclick="filterItems('All')">All</div>
+    <div class="tab" onclick="filterItems('Art')">Art</div>
+    <div class="tab" onclick="filterItems('Crafts')">Crafts</div>
+</div>
 
-    <div class="dashboard-layout-stage">
-        <main class="main-presentation-chamber">
-            
-            <section class="admin-management-card" id="product-creator-box">
-                <h3 style="text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem;">Upload Catalog Entry</h3>
-                <form id="new-product-form" onsubmit="handleProductInjection(event)">
-                    <div class="admin-form-grid">
-                        <div class="form-group">
-                            <label>Product Title</label>
-                            <input type="text" id="prod-title" class="form-input" placeholder="e.g., Earthy Initial Clay Jewelry Dish" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Collection Line / Artist Name</label>
-                            <input type="text" id="prod-meta" class="form-input" placeholder="e.g., Clay Jewelry Pots" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Valuation Price Tag</label>
-                            <input type="text" id="prod-price" class="form-input" placeholder="e.g., £25.00" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Assigned Section</label>
-                            <select id="prod-category" class="form-input" style="background:#fff;" required>
-                                <option value="Art">Art Drops</option>
-                                <option value="Crafts">Project Kits</option>
-                                <option value="Hobbies">Hobbies & Vault</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Image Filename / Source Route</label>
-                            <input type="text" id="prod-img" class="form-input" placeholder="e.g., 5.JPG or image.png" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="action-submit-trigger" style="margin-top: 1rem; width: auto; padding: 0.6rem 2rem;">Commit Entry to Live Hub</button>
-                </form>
-            </section>
-
-            <h2 class="page-editorial-heading" id="gallery-view-title">Main Hub Showcase</h2>
-            <div class="catalog-showcase-grid" id="products-assembly-deck"></div>
-        </main>
+<div class="grid" id="product-grid">
     </div>
 
-    <div class="modal-overlay" id="account-modal">
-        <div class="modal-window">
-            <button class="modal-close-btn" onclick="toggleModalPortal('account-modal')">×</button>
-            <h3 class="form-title">Verify Identity</h3>
-            <form onsubmit="handleAuthenticationAttempt(event)">
-                <div class="form-group">
-                    <label>Identity Handle (Your Name or Thasia)</label>
-                    <input type="text" id="user-identity" class="form-input" placeholder="Enter handle..." required>
+<div id="login-modal" style="display:none; position:fixed; top:30%; left:35%; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+    <input type="password" id="pass" placeholder="Enter Access Key"><br><br>
+    <button onclick="checkAccess()">Sign In</button>
+</div>
+
+<script>
+    const SUPABASE_URL = "https://whwofdemokzubboftsbu.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function loadItems() {
+        const { data, error } = await supabase.from('products').select('*');
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = '';
+        data.forEach(item => {
+            grid.innerHTML += `
+                <div class="card">
+                    <img src="${item.img}" alt="${item.title}">
+                    <h3>${item.title}</h3>
+                    <p>${item.price}</p>
                 </div>
-                <div class="form-group">
-                    <label>Access Key</label>
-                    <input type="password" id="user-key" class="form-input" placeholder="••••" required>
-                </div>
-                <button type="submit" class="action-submit-trigger">Process Validation</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="shipping-modal">
-        <div class="modal-window">
-            <button class="modal-close-btn" onclick="toggleModalPortal('shipping-modal')">×</button>
-            <h3 class="form-title">Shipping Registry</h3>
-            <form onsubmit="event.preventDefault(); toggleModalPortal('shipping-modal');">
-                <div class="form-group"><label>Recipient Name</label><input type="text" class="form-input" required></div>
-                <div class="form-group"><label>Street Destination Address</label><input type="text" class="form-input" required></div>
-                <div class="form-group"><label>Postal Code</label><input type="text" class="form-input" required></div>
-                <button type="submit" class="action-submit-trigger">Save Delivery File</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // 🔗 YOUR LIVE SECURE CONNECTION PIPELINE
-        const SUPABASE_URL = "https://whwofdemokzubboftsbu.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
-
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        let isCreatorLoggedIn = false;
-        let selectedCategoryFilter = 'All';
-
-        function toggleModalPortal(elementId) {
-            document.getElementById(elementId).classList.toggle('active');
-        }
-
-        // ⚡ SIGN IN EVALUATOR
-        function handleAuthenticationAttempt(e) {
-            e.preventDefault();
-            const identityInput = document.getElementById('user-identity').value.trim().toLowerCase();
-            
-            if (identityInput === 'thasia' || identityInput === 'me' || identityInput === 'admin') {
-                isCreatorLoggedIn = true;
-                localStorage.setItem('bt_admin_session', 'active');
-                applySessionStateUIPatterns();
-                toggleModalPortal('account-modal');
-            } else {
-                alert("Identity signature not recognized.");
-            }
-        }
-
-        function applySessionStateUIPatterns() {
-            const creatorBox = document.getElementById('product-creator-box');
-            const indicatorBadge = document.getElementById('admin-indicator');
-            const toggleButton = document.getElementById('login-toggle-btn');
-
-            if (isCreatorLoggedIn) {
-                if (creatorBox) creatorBox.style.display = 'block';
-                if (indicatorBadge) indicatorBadge.style.display = 'inline-block';
-                toggleButton.innerText = 'Exit Session';
-                toggleButton.onclick = executeLogoutRoutine;
-            } else {
-                if (creatorBox) creatorBox.style.display = 'none';
-                if (indicatorBadge) indicatorBadge.style.display = 'none';
-                toggleButton.innerText = 'Identity Access';
-                toggleButton.onclick = () => toggleModalPortal('account-modal');
-            }
-            renderActiveCatalogDeck();
-        }
-
-        function executeLogoutRoutine() {
-            isCreatorLoggedIn = false;
-            localStorage.removeItem('bt_admin_session');
-            applySessionStateUIPatterns();
-        }
-
-        // ⚡ SAVE NEW PRODUCTS STRAIGHT INTO THE CLOUD SPREADSHEET
-        async function handleProductInjection(e) {
-            e.preventDefault();
-            
-            const newProduct = {
-                title: document.getElementById('prod-title').value,
-                meta: document.getElementById('prod-meta').value,
-                price: document.getElementById('prod-price').value,
-                category: document.getElementById('prod-category').value,
-                img: document.getElementById('prod-img').value
-            };
-
-            const { data, error } = await supabase
-                .from('products')
-                .insert([newProduct]);
-
-            if (error) {
-                alert("Upload failed: " + error.message);
-            } else {
-                document.getElementById('new-product-form').reset();
-                await renderActiveCatalogDeck(); // Refresh display grid instantly
-            }
-        }
-
-        // ⚡ ERASE AN ITEM LINE FROM THE DATABASE
-        async function deleteCatalogEntry(idKey) {
-            const { error } = await supabase
-                .from('products')
-                .delete()
-                .eq('id', idKey);
-
-            if (error) {
-                alert("Could not remove item: " + error.message);
-            } else {
-                await renderActiveCatalogDeck();
-            }
-        }
-
-        // ⚡ NAVIGATION VIEW SWAP CONTROLLER
-        function switchCategoryTab(targetSector) {
-            selectedCategoryFilter = targetSector;
-            
-            document.querySelectorAll('.tab-trigger').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(`tab-${targetSector}`).classList.add('active');
-
-            const titleElement = document.getElementById('gallery-view-title');
-            if(targetSector === 'All') titleElement.innerText = "Main Hub Showcase";
-            else if(targetSector === 'Art') titleElement.innerText = "Fine Art Drops";
-            else if(targetSector === 'Crafts') titleElement.innerText = "Handcrafted Project Kits";
-            else if(targetSector === 'Hobbies') titleElement.innerText = "Hobbies & Archive Vault";
-
-            renderActiveCatalogDeck();
-        }
-
-        // ⚡ MAIN RENDER PLUG: READS DIRECTLY FROM CLOUD
-        async function renderActiveCatalogDeck() {
-            const platformDeck = document.getElementById('products-assembly-deck');
-            if (!platformDeck) return;
-            
-            platformDeck.innerHTML = '';
-
-            // Pull fresh records down from Supabase
-            let { data: products, error } = await supabase
-                .from('products')
-                .select('*')
-                .order('id', { ascending: false });
-
-            if (error) {
-                console.error("Error fetching data:", error);
-                return;
-            }
-
-            // Filter sets inside browser natively
-            const activeDisplaySet = products.filter(item => {
-                if (selectedCategoryFilter === 'All') return true;
-                return item.category === selectedCategoryFilter;
-            });
-
-            if (activeDisplaySet.length === 0) {
-                platformDeck.innerHTML = `<p style="grid-column: 1/-1; text-align: center; font-style: italic; opacity: 0.5; padding: 4rem;">No stock items uploaded to this category division yet.</p>`;
-                return;
-            }
-
-            // Create cards
-            activeDisplaySet.forEach(item => {
-                const elementCard = document.createElement('div');
-                elementCard.className = 'craft-card';
-                elementCard.innerHTML = `
-                    <button class="item-delete-trigger" style="display: ${isCreatorLoggedIn ? 'block' : 'none'};" onclick="deleteCatalogEntry(${item.id})">Remove</button>
-                    <div class="card-photo-frame">
-                        <img src="${item.img}" alt="${item.title}" onerror="this.src='2.jpg';">
-                    </div>
-                    <span class="card-meta-line">${item.meta}</span>
-                    <h4 class="card-product-title">${item.title}</h4>
-                    <p class="card-product-price">${item.price}</p>
-                `;
-                platformDeck.appendChild(elementCard);
-            });
-        }
-
-        // ⚡ AUTOMATIC ENGINE BOOTSTRAPPER UPON LOAD
-        window.addEventListener('DOMContentLoaded', async () => {
-            if (localStorage.getItem('bt_admin_session') === 'active') {
-                isCreatorLoggedIn = true;
-            }
-            applySessionStateUIPatterns();
-            await renderActiveCatalogDeck();
+            `;
         });
-    </script>
+    }
+
+    function toggleModal(id) {
+        const m = document.getElementById(id);
+        m.style.display = m.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function checkAccess() {
+        const p = document.getElementById('pass').value;
+        if(p === 'thasia') {
+            alert('Welcome, Admin');
+            toggleModal('login-modal');
+        } else {
+            alert('Access Denied');
+        }
+    }
+
+    window.onload = loadItems;
+</script>
 </body>
 </html>
