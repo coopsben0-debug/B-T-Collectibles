@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Kits — B&T Collectibles</title>
-    
     <style>
         :root {
             --clr-dark-green: #0A3323;
@@ -21,165 +20,68 @@
             color: var(--clr-dark-green);
             font-family: 'Georgia', serif;
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* 🌸 MASTER SYSTEM-WIDE TOP HEADER */
-        .brand-header-banner {
+        .brand-hero-panel {
             background-color: var(--clr-beige);
-            padding: 2rem 4rem 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+            padding: 3.5rem 2rem 2rem 2rem;
+            text-align: center;
         }
 
-        .studio-logo-frame {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            text-decoration: none;
-            color: var(--clr-dark-green);
-        }
-        
-        .studio-logo-frame .logo-graphic-img {
-            height: 60px;
-            width: 60px;
-            object-fit: contain;
-        }
+        .logo-img { height: 120px; width: 120px; object-fit: contain; margin-bottom: 1.5rem; }
+        .brand-title { font-size: 2.4rem; letter-spacing: 4px; font-weight: 400; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .brand-tagline { font-style: italic; font-size: 1.1rem; color: var(--clr-midnight); opacity: 0.9; }
 
-        .logo-meta-title h1 { 
-            font-size: 1.8rem; 
-            letter-spacing: 3px; 
-            font-weight: 400; 
-            text-transform: uppercase; 
-            line-height: 1.1;
-        }
-        .logo-meta-title p { 
-            font-family: sans-serif; 
-            font-size: 0.7rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            opacity: 0.8; 
-            margin-top: 4px; 
-        }
-
-        .right-utilities-gate {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            font-family: sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        .util-link { text-decoration: none; color: var(--clr-dark-green); font-weight: bold; }
-        .basket-pill { background-color: var(--clr-dark-green); color: var(--clr-beige); padding: 0.3rem 0.7rem; border-radius: 50px; font-size: 0.75rem; margin-left: 0.3rem; }
-
-        /* 🗺️ MASTER NAVIGATION CONTROLS BAR */
         .navigation-routing-bar {
             background-color: var(--clr-beige);
-            padding: 1.5rem 4rem;
-            border-bottom: 1px solid rgba(131, 153, 88, 0.15);
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(131, 153, 88, 0.2);
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
             text-align: center;
         }
-        
-        .tab-link-group { 
-            display: flex; 
-            justify-content: center; 
-            gap: 3rem; 
-        }
-        
-        .tab-trigger {
-            text-decoration: none; 
-            font-family: sans-serif; 
-            font-size: 0.85rem;
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-weight: bold;
-            color: var(--clr-dark-green); 
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
-        .tab-trigger:hover, .tab-trigger.active { 
-            color: var(--clr-dark-green);
-            border-bottom-color: var(--clr-dark-green);
-        }
+        .tab-link-group { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .tab-trigger { text-decoration: none; font-family: sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; color: var(--clr-dark-green); padding-bottom: 0.5rem; border-bottom: 2px solid transparent; }
+        .tab-trigger:hover, .tab-trigger.active { border-bottom-color: var(--clr-dark-green); }
 
-        /* BRIGHT HANDCRAFTS CONTENT CONTAINER */
-        .page-content-wrapper {
-            padding: 3rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-editorial-intro {
+        /* 🌿 MOSS CRAFT TRANSITION ZONE */
+        .dynamic-zone {
+            flex: 1;
+            background-color: var(--clr-moss-green);
+            color: var(--clr-beige);
+            padding: 5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            font-style: italic;
-            font-size: 1.15rem;
-            color: var(--clr-midnight);
-            margin-bottom: 2.5rem;
         }
 
-        .catalog-showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2.5rem;
+        .placeholder-box {
+            border: 1px dashed rgba(247, 244, 213, 0.4);
+            padding: 4rem;
+            border-radius: 4px;
+            max-width: 600px;
         }
 
-        .craft-card {
-            background: #ffffff;
-            border: 1px solid rgba(131, 153, 88, 0.15);
-            border-radius: 4px; padding: 1.2rem;
-            display: flex; flex-direction: column;
-            transition: transform 0.2s ease;
+        .placeholder-box h2 {
+            font-weight: 400;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--clr-beige);
+            margin-bottom: 1rem;
         }
-        .craft-card:hover { transform: translateY(-4px); }
-
-        .card-photo-frame {
-            width: 100%; 
-            aspect-ratio: 1 / 1; 
-            overflow: hidden;
-            border-radius: 2px; 
-            margin-bottom: 1.2rem;
-            background-color: rgba(131, 153, 88, 0.05);
-        }
-        .card-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-
-        .card-tag-badge {
-            display: inline-block; font-family: sans-serif; font-size: 0.65rem;
-            text-transform: uppercase; letter-spacing: 1px; background: var(--clr-rosy-brown);
-            color: white; padding: 0.25rem 0.6rem; border-radius: 2px; margin-bottom: 0.6rem;
-            align-self: flex-start; font-weight: bold;
-        }
-        .card-meta-line { font-family: sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 0.3rem; }
-        .card-product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.4; color: var(--clr-dark-green); min-height: 3.2rem; }
-        .card-product-price { font-family: sans-serif; font-size: 1.05rem; font-weight: bold; margin-bottom: 1.2rem; }
-        
-        .card-action-trigger {
-            display: block; width: 100%; text-align: center; background: transparent;
-            color: var(--clr-dark-green); border: 1.5px solid var(--clr-dark-green);
-            padding: 0.8rem; text-decoration: none; font-family: sans-serif;
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
-            font-weight: bold; margin-top: auto; cursor: pointer; transition: all 0.2s ease;
-        }
-        .card-action-trigger:hover { background: var(--clr-dark-green); color: var(--clr-beige); }
     </style>
 </head>
 <body>
 
-    <header class="brand-header-banner">
-        <a href="index.html" class="studio-logo-frame">
-            <img src="2.jpg" alt="B&T Collectibles Logo" class="logo-graphic-img">
-            <div class="logo-meta-title">
-                <h1>B&T Collectibles</h1>
-                <p>Studio & Archive Hub</p>
-            </div>
-        </a>
-        <div class="right-utilities-gate">
-            <a href="#" class="util-link">Sign In / Register</a>
-            <a href="#" class="util-link payhip-open-cart">Studio Basket <span class="basket-pill payhip-cart-count">0</span></a>
-        </div>
+    <header class="brand-hero-panel">
+        <img src="2.jpg" alt="B&T Collectibles Logo" class="logo-img">
+        <h1 class="brand-title">B&T Collectibles</h1>
+        <p class="brand-tagline">Handmade studio creations, embroidery sets, and clay material assemblies</p>
     </header>
 
     <nav class="navigation-routing-bar">
@@ -191,30 +93,12 @@
         </div>
     </nav>
 
-    <div class="page-content-wrapper">
-        <p class="section-editorial-intro">Handmade studio creations, stamping materials, and embroidery assemblies</p>
+    <main class="dynamic-zone">
+        <div class="placeholder-box">
+            <h2>Studio Project Kits</h2>
+            <p>Ready for staging. Your custom hand-assembled crafting kits and design runs will appear here.</p>
+        </div>
+    </main>
 
-        <main class="catalog-showcase-grid">
-            <div class="craft-card">
-                <div class="card-photo-frame"><img src="2.jpg" alt="Clay Dish" onerror="this.src='2.jpg';"></div>
-                <span class="card-tag-badge">Letter Stamped</span>
-                <p class="card-meta-line">Clay Jewelry Pots</p>
-                <h4 class="card-product-title">Earthy Initial Clay Jewelry Dish</h4>
-                <p class="card-product-price">£18.00</p>
-                <button class="card-action-trigger payhip-buy-button">Add to Basket</button>
-            </div>
-
-            <div class="craft-card">
-                <div class="card-photo-frame"><img src="2.jpg" alt="Denim Jacket" onerror="this.src='2.jpg';"></div>
-                <span class="card-tag-badge">Hand Stitched</span>
-                <p class="card-meta-line">Upcycled Embroidery</p>
-                <h4 class="card-product-title">Wildflower Stitch Cuff Denim Jacket</h4>
-                <p class="card-product-price">£55.00</p>
-                <button class="card-action-trigger payhip-buy-button">Add to Basket</button>
-            </div>
-        </main>
-    </div>
-
-    <script type="text/javascript" src="https://payhip.com/payhip.js?v=24842"></script>
 </body>
 </html>
