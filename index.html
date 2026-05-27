@@ -8,15 +8,14 @@
     <style>
         :root {
             --bg: #FDFBF7;
-            --accent: #2A3B35;
-            --soft: #E8E3D9;
+            --accent: #2A3B35; /* Sage Green */
+            --danger: #d9534f; /* Original Item Color */
             --text: #1A1A1A;
             --glass: rgba(255, 255, 255, 0.7);
         }
 
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Georgia', serif; margin: 0; padding: 0; }
         
-        /* Glassmorphism Header */
         header { 
             padding: 2rem 5%; 
             display: flex; 
@@ -25,53 +24,49 @@
             backdrop-filter: blur(10px); 
             background: var(--glass);
             position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; color: var(--accent); }
+        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -1px; color: var(--accent); }
 
         .nav-bar { display: flex; gap: 2rem; padding: 2rem 5%; justify-content: center; }
-        .tab { cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; color: #888; }
+        .tab { cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; color: #888; transition: 0.3s; }
         .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-            gap: 2rem; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 2.5rem; 
             padding: 2rem 5%; 
         }
 
         .card { 
-            background: #fff; 
-            padding: 1rem; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            background: #fff; padding: 1.2rem; border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
         }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; border-radius: 8px; height: 300px; object-fit: cover; }
+        .card img { width: 100%; height: 350px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem; }
         
-        button { cursor: pointer; padding: 0.8rem 1.5rem; border: none; background: var(--accent); color: white; border-radius: 6px; }
+        .meta-tag { font-size: 0.7rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
+        
+        button { cursor: pointer; padding: 0.8rem 1.5rem; border: none; background: var(--accent); color: white; border-radius: 4px; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">B&T COLLECTIBLES</div>
-    <div>
-        <button onclick="toggleModal('login-modal')">Admin Access</button>
-    </div>
+    <button onclick="toggleModal('login-modal')">Admin Access</button>
 </header>
 
 <div class="nav-bar">
-    <div class="tab active" onclick="filterItems('All')">All</div>
-    <div class="tab" onclick="filterItems('Art')">Art</div>
-    <div class="tab" onclick="filterItems('Crafts')">Crafts</div>
+    <div class="tab active" id="tab-All" onclick="filterItems('All')">All</div>
+    <div class="tab" id="tab-Art" onclick="filterItems('Art')">Art</div>
 </div>
 
-<div class="grid" id="product-grid">
-    </div>
+<div class="grid" id="product-grid"></div>
 
-<div id="login-modal" style="display:none; position:fixed; top:30%; left:35%; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+<div id="login-modal" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:#fff; padding:2rem; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.1); z-index:200;">
     <input type="password" id="pass" placeholder="Enter Access Key"><br><br>
     <button onclick="checkAccess()">Sign In</button>
 </div>
@@ -81,19 +76,36 @@
     const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+    let allProducts = [];
+
     async function loadItems() {
         const { data, error } = await supabase.from('products').select('*');
+        if (error) return;
+        allProducts = data;
+        render(allProducts);
+    }
+
+    function render(data) {
         const grid = document.getElementById('product-grid');
         grid.innerHTML = '';
         data.forEach(item => {
+            const isOriginal = item.meta.includes('Original');
             grid.innerHTML += `
                 <div class="card">
                     <img src="${item.img}" alt="${item.title}">
+                    <span class="meta-tag" style="color: ${isOriginal ? 'var(--danger)' : 'var(--accent)'}">
+                        ${item.meta}
+                    </span>
                     <h3>${item.title}</h3>
                     <p>${item.price}</p>
                 </div>
             `;
         });
+    }
+
+    function filterItems(cat) {
+        const filtered = cat === 'All' ? allProducts : allProducts.filter(p => p.category === cat);
+        render(filtered);
     }
 
     function toggleModal(id) {
