@@ -25,52 +25,16 @@
             --clr-beige: #F7F4D5;
             --clr-rosy-brown: #D3968C;
             --clr-midnight: #105666;
-            
-            /* Dynamic Functional Pointers */
-            --current-bg: var(--clr-beige);
-            --current-text: var(--clr-dark-green);
-            --current-card-bg: #ffffff;
-            --current-ui-accent: var(--clr-moss-green);
-        }
-
-        /* Smooth Application State Context Transitions */
-        body.theme-all {
-            --current-bg: var(--clr-beige);
-            --current-text: var(--clr-dark-green);
-            --current-card-bg: #ffffff;
-            --current-ui-accent: var(--clr-moss-green);
-        }
-
-        body.theme-art {
-            --current-bg: var(--clr-dark-green);
-            --current-text: var(--clr-beige);
-            --current-card-bg: rgba(247, 244, 213, 0.07);
-            --current-ui-accent: var(--clr-rosy-brown);
-        }
-
-        body.theme-kits {
-            --current-bg: var(--clr-moss-green);
-            --current-text: #ffffff;
-            --current-card-bg: rgba(10, 51, 35, 0.15);
-            --current-ui-accent: var(--clr-beige);
-        }
-
-        body.theme-hobbies {
-            --current-bg: var(--clr-midnight);
-            --current-text: var(--clr-beige);
-            --current-card-bg: rgba(255, 255, 255, 0.08);
-            --current-ui-accent: var(--clr-rosy-brown);
         }
 
         /* Reset and Base Global Rules */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: var(--current-bg);
-            color: var(--current-text);
+            background-color: var(--clr-beige);
+            color: var(--clr-dark-green);
             font-family: 'Georgia', serif;
             line-height: 1.5;
             padding: 2rem;
-            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         /* 🏛️ Top Control Header Bar Component */
@@ -89,7 +53,7 @@
             align-items: center;
             gap: 1.5rem;
             text-decoration: none;
-            color: var(--current-text);
+            color: var(--clr-dark-green);
         }
         
         .studio-logo-frame .logo-graphic-img {
@@ -103,7 +67,7 @@
         .logo-meta-title h2 { font-size: 1.6rem; letter-spacing: 1.5px; font-weight: 400; text-transform: uppercase; }
         .logo-meta-title p { font-family: sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; margin-top: 2px; }
 
-        /* Customer Auth / Checkout Utilities Block (Top Right) */
+        /* Customer Auth / Checkout Utilities Block */
         .right-utilities-gate {
             display: flex;
             align-items: center;
@@ -113,7 +77,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
-        .util-link { text-decoration: none; color: var(--current-text); font-weight: bold; transition: opacity 0.2s; }
+        .util-link { text-decoration: none; color: var(--clr-dark-green); font-weight: bold; transition: opacity 0.2s; }
         .util-link:hover { opacity: 0.7; }
         .basket-pill { background-color: var(--clr-rosy-brown); color: white; padding: 0.3rem 0.7rem; border-radius: 12px; font-size: 0.75rem; margin-left: 0.3rem; }
 
@@ -123,17 +87,17 @@
             margin: 0 auto 2.5rem auto;
             text-align: center;
         }
-        .nav-editorial-sub { font-style: italic; opacity: 0.85; margin-bottom: 2rem; font-size: 1.1rem; }
+        .nav-editorial-sub">Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
         
         .tab-link-group { display: flex; justify-content: center; gap: 3.5rem; border-bottom: 1px solid rgba(131, 153, 88, 0.15); padding-bottom: 1rem; }
         .tab-trigger {
-            background: none; border: none; font-family: sans-serif; font-size: 0.9rem;
+            text-decoration: none; font-family: sans-serif; font-size: 0.9rem;
             text-transform: uppercase; letter-spacing: 3px; font-weight: bold;
-            color: var(--current-text); cursor: pointer; padding-bottom: 0.4rem;
+            color: var(--clr-dark-green); padding-bottom: 0.4rem;
             border-bottom: 2px solid transparent; transition: all 0.2s ease;
             opacity: 0.7;
         }
-        .tab-trigger:hover, .tab-trigger.active { opacity: 1; border-bottom-color: var(--current-text); }
+        .tab-trigger:hover, .tab-trigger.active { opacity: 1; border-bottom-color: var(--clr-dark-green); }
 
         /* 🎛️ Sorting Control Bar Component */
         .sorting-dashboard-bar {
@@ -149,70 +113,14 @@
         .sorting-dashboard-bar span { font-family: sans-serif; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
         .native-select-input {
             padding: 0.5rem 1.5rem; font-family: sans-serif; font-size: 0.8rem;
-            background: var(--current-card-bg); color: var(--current-text);
+            background: #ffffff; color: var(--clr-dark-green);
             border: 1px solid rgba(131, 153, 88, 0.3); outline: none; border-radius: 2px;
         }
 
-        /* 🧱 Structural Flex Grid Split Layout Workspace */
-        .workspace-body-container {
+        /* 🧱 Structural Catalog Matrix Display */
+        .catalog-showcase-grid {
             max-width: 1400px;
             margin: 0 auto;
-            display: flex;
-            gap: 3rem;
-            align-items: flex-start;
-        }
-
-        /* Dynamic Component Sidebar Column Navigation */
-        .sidebar-navigation-column {
-            width: 320px;
-            flex-shrink: 0;
-            background: var(--current-card-bg);
-            border: 1px solid rgba(131, 153, 88, 0.2);
-            padding: 1.8rem;
-            border-radius: 4px;
-            display: none; 
-        }
-        .sidebar-navigation-column.visible { block-size: auto; display: block; }
-
-        .sidebar-header-title {
-            font-size: 1.4rem; font-weight: 400; text-transform: uppercase;
-            letter-spacing: 1px; padding-bottom: 0.8rem; margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--current-text);
-        }
-
-        /* Category Submenu Accordion Architecture */
-        .menu-tree-node { margin-bottom: 1.2rem; }
-        .node-trigger-title {
-            font-size: 1.1rem; font-weight: bold; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.3rem 0;
-        }
-        .node-subtree-leaves {
-            list-style: none; padding-left: 1rem; margin-top: 0.5rem;
-            border-left: 1px dashed rgba(131, 153, 88, 0.4);
-        }
-        .node-subtree-leaves li {
-            font-size: 0.95rem; padding: 0.3rem 0; opacity: 0.85;
-            cursor: pointer; transition: transform 0.2s ease;
-        }
-        .node-subtree-leaves li:hover { opacity: 1; transform: translateX(4px); font-weight: bold; }
-        
-        /* Deep Level 3 Bracket Sub-categories style pointers */
-        .bracket-sub-node { font-size: 0.85rem !important; opacity: 0.75 !important; padding-left: 0.8rem !important; font-style: italic; }
-
-        /* Custom Commissions Request Controls Button */
-        .custom-order-btn {
-            display: block; width: 100%; text-align: center; background: var(--clr-rosy-brown);
-            color: white; border: none; text-decoration: none; padding: 0.5rem;
-            font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase;
-            letter-spacing: 1px; font-weight: bold; border-radius: 3px; margin: 0.5rem 0 0.8rem 0;
-            cursor: pointer; transition: background 0.2s;
-        }
-        .custom-order-btn:hover { background: var(--current-text); color: var(--current-bg); }
-
-        /* 🛍️ Infinite Grid Catalog Matrix Workspace Display */
-        .catalog-showcase-grid {
-            flex-grow: 1;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2.5rem;
@@ -220,7 +128,7 @@
 
         /* Fine Art Craft Showcase Item Cards */
         .craft-card {
-            background: var(--current-card-bg);
+            background: #ffffff;
             border: 1px solid rgba(131, 153, 88, 0.15);
             border-radius: 4px; padding: 1rem;
             display: flex; flex-direction: column;
@@ -242,23 +150,23 @@
             align-self: flex-start;
         }
         .card-meta-line { font-family: sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.75; margin-bottom: 0.2rem; }
-        .card-product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3; }
+        .card-product-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3; color: var(--clr-dark-green); }
         .card-product-price { font-family: sans-serif; font-size: 1.05rem; font-weight: bold; margin-bottom: 1.2rem; }
         
         .card-action-trigger {
             display: block; width: 100%; text-align: center; background: transparent;
-            color: var(--current-text); border: 1.5px solid var(--current-text);
+            color: var(--clr-dark-green); border: 1.5px solid var(--clr-dark-green);
             padding: 0.8rem; text-decoration: none; font-family: sans-serif;
             font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
             font-weight: bold; margin-top: auto; cursor: pointer; transition: all 0.2s ease;
         }
-        .card-action-trigger:hover { background: var(--current-text); color: var(--current-bg); }
+        .card-action-trigger:hover { background: var(--clr-dark-green); color: var(--clr-beige); }
     </style>
 </head>
-<body class="theme-all">
+<body>
 
     <div class="top-navbar">
-        <a href="#" class="studio-logo-frame" onclick="switchApplicationContext('all')">
+        <a href="index.html" class="studio-logo-frame">
             <img src="2.jpg" alt="B&T Crafted Logo" class="logo-graphic-img">
             <div class="logo-meta-title">
                 <h2>B&T Crafted</h2>
@@ -275,15 +183,15 @@
     <div class="global-navigation-tray">
         <p class="nav-editorial-sub">Handcrafted watercolor drops, creative project kits, and curated trading archives</p>
         <div class="tab-link-group">
-            <button class="tab-trigger active" id="tab-all" onclick="switchApplicationContext('all')">View All Hub</button>
-            <button class="tab-trigger" id="tab-art" onclick="switchApplicationContext('art')">Art Drops</button>
-            <button class="tab-trigger" id="tab-kits" onclick="switchApplicationContext('kits')">Project Kits</button>
-            <button class="tab-trigger" id="tab-hobbies" onclick="switchApplicationContext('hobbies')">Hobbies & Vault</button>
+            <a href="index.html" class="tab-trigger active">View All Hub</a>
+            <a href="art.html" class="tab-trigger">Art Drops</a>
+            <a href="handcrafts.html" class="tab-trigger">Studio Handcrafts</a>
+            <a href="hobbies.html" class="tab-trigger">Hobbies & Vault</a>
         </div>
     </div>
 
     <div class="sorting-dashboard-bar">
-        <div><span id="filter-status-label">Showing Everything</span></div>
+        <div><span>Master Hub Vault Archive</span></div>
         <div>
             <select class="native-select-input" id="price-sort-engine" onchange="processSortExecution()">
                 <option value="featured">Sort: Featured Collection</option>
@@ -293,177 +201,47 @@
         </div>
     </div>
 
-    <div class="workspace-body-container">
-        
-        <aside class="sidebar-navigation-column" id="dynamic-sidebar-viewport">
-            </aside>
-
-        <main class="catalog-showcase-grid" id="master-catalog-display-target">
-            </main>
-        
-    </div>
+    <main class="catalog-showcase-grid" id="master-catalog-display-target">
+        </main>
 
     <script>
-        // Complete Dynamic Catalog Database fully mapped to case-sensitive GitHub uploaded assets
-        const databaseInventory = [
-            // ART CATEGORY ITEMS (Paintings, Woodwork, Stonework, Claywork, Mosaics, and Photography)
-            { id: 1, section: 'art', subsection: 'paintings', child: 'b-cooper', price: 150.00, title: 'B.A. Cooper Signature Collection: Custom Portrait Drop', tag: 'Signature Line', label: 'B.A. Cooper Original Canvas', img: '5.JPG' },
-            { id: 2, section: 'art', subsection: 'paintings', child: 't-ku', price: 125.00, title: 'T.L. Ku Signature Collection: Fine Art Portrait Drop', tag: 'Signature Line', label: 'T.L. Ku Original Canvas', img: '6.PNG' },
-            { id: 3, section: 'art', subsection: 'paintings', child: 'featured-couple', price: 175.00, title: 'B&T Signature Collection: Custom Couple Portrait Canvas', tag: 'Signature Line', label: 'B&T Hand-Painted Series', img: '7.PNG' },
-            { id: 4, section: 'art', subsection: 'photography', child: 'portraiture', price: 85.00, title: 'Studio Portrait Photography Session / Digital Drop', tag: 'Art Photography', label: 'B&T Portrait Studio', img: '2.jpg' },
-            { id: 5, section: 'art', subsection: 'wooden', child: 'carving', price: 65.00, title: 'Hand-Carved Walnut Meadow Jewelry Plaque', tag: 'Wood Studio', label: 'Wooden Carvings', img: '2.jpg' },
-            { id: 6, section: 'art', subsection: 'wooden', child: 'burning', price: 45.00, title: 'Pyrography Forest Silhouette Coaster Deck', tag: 'Wood Burned', label: 'Wooden Pyrography', img: '2.jpg' },
-            { id: 7, section: 'art', subsection: 'stonework', child: null, price: 85.00, title: 'Sculpted Garden Riverbed Fossil Ornament', tag: 'Stonework', label: 'Chiselled Sculpture', img: '2.jpg' },
-            { id: 8, section: 'art', subsection: 'claywork', child: null, price: 38.00, title: 'Abstract Ceramic Speckle Organic Vase', tag: 'Clay Work', label: 'Hand-thrown Ceramic', img: '2.jpg' },
-            { id: 9, section: 'art', subsection: 'mosaic', child: null, price: 110.00, title: 'Stained Glass Iridescent Water Lily Catch-Light', tag: 'Glass/Mosaic', label: 'Leaded Glass Studio', img: '2.jpg' },
-            
-            // KITS CATEGORY ITEMS
-            { id: 10, section: 'kits', subsection: 'paint', price: 28.00, title: 'Master Watercolor Basics Kit: Lily Pond Edition', tag: 'Paint Kits', label: 'DIY Studio Supplies', img: '2.jpg' },
-            { id: 11, section: 'kits', subsection: 'clay', price: 24.50, title: 'Air-Dry Clay Trinket Modeling Set', tag: 'Clay Kits', label: 'B&T Craft Kits', img: '2.jpg' },
-            { id: 12, section: 'kits', subsection: 'crossstitch', price: 19.00, title: 'Wildflower Modern Tapestry Cross-Stitch Kit', tag: 'Cross Stitch', label: 'Needlework Sets', img: '2.jpg' },
-            { id: 13, section: 'kits', subsection: 'felting', price: 22.00, title: 'Needle Felting Miniature Forest Creature Pack', tag: 'Felting Kits', label: 'Soft Wool Textile Pack', img: '2.jpg' },
-            
-            // HOBBIES CATEGORY ITEMS
-            { id: 14, section: 'hobbies', subsection: 'pokemon', price: 5.50, title: 'Pokémon TCG: Booster Pack Box Drop', tag: 'TCG Packs', label: 'TCG Vault Archive', img: '2.jpg' },
-            { id: 15, section: 'hobbies', subsection: 'cubing', price: 14.00, title: 'Pro-Speed 3x3 Magnetic Matte Speedcube', tag: 'Cubes', label: 'Dexterity Modifications', img: '2.jpg' },
-            { id: 16, section: 'hobbies', subsection: 'penspinning', price: 11.50, title: 'VGG Weighted Custom Pen Spinning Mod', tag: 'Pen Spinning', label: 'Dexterity Focus Mod', img: '2.jpg' },
-            { id: 17, section: 'hobbies', subsection: 'balisong', price: 45.00, title: 'Dull Trainer Balisong Safe Practice Tool', tag: 'Balisong', label: 'Performance Mod Tools', img: '2.jpg' },
-            { id: 18, section: 'hobbies', subsection: 'kendama', price: 26.00, title: 'Solid Beechwood Competition Spec Kendama', tag: 'Kendama', label: 'Traditional Skill Toys', img: '2.jpg' },
-            { id: 19, section: 'hobbies', subsection: 'books', price: 9.99, title: 'The Collected Practical Compendium of Hand-Crafts', tag: 'Book Library', label: 'Studio Archives Reference', img: '2.jpg' }
+        // Master Collection Array containing every track asset completely case-matched
+        const masterDatabase = [
+            { id: 1, price: 150.00, title: 'B.A. Cooper Signature Collection: Custom Portrait Drop', tag: 'Signature Line', label: 'B.A. Cooper Original Canvas', img: '5.JPG' },
+            { id: 2, price: 125.00, title: 'T.L. Ku Signature Collection: Fine Art Portrait Drop', tag: 'Signature Line', label: 'T.L. Ku Original Canvas', img: '6.PNG' },
+            { id: 3, price: 175.00, title: 'B&T Signature Collection: Custom Couple Portrait Canvas', tag: 'Signature Line', label: 'B&T Hand-Painted Series', img: '7.PNG' },
+            { id: 4, price: 18.00, title: 'Earthy Initial Clay Jewelry Dish', tag: 'Letter Stamped', label: 'Clay Jewelry Pots', img: '2.jpg' },
+            { id: 5, price: 55.00, title: 'Wildflower Stitch Cuff Denim Jacket', tag: 'Hand Stitched', label: 'Upcycled Embroidery', img: '2.jpg' },
+            { id: 6, price: 12.00, title: 'Premium Matte 3x3 Speedcube', tag: 'Matte Finish', label: 'Speedcubing Precise', img: '2.jpg' },
+            { id: 7, price: 4.50, title: 'Pokémon TCG: Sword & Shield Booster Pack', tag: 'TCG Vault Pack', label: 'Pokémon Booster Archive', img: '2.jpg' },
+            { id: 8, price: 15.00, title: 'Waterlily Pond Study Print (A4)', tag: 'Replication Print', label: 'Matte Finished Satin Print', img: '2.jpg' }
         ];
 
-        let activeContext = 'all';
-        let currentFilteredInventory = [...databaseInventory];
+        let activeInventory = [...masterDatabase];
 
-        // Application Start Engine Init
         document.addEventListener("DOMContentLoaded", () => {
-            switchApplicationContext('all');
+            renderCatalogDisplayGrid();
         });
 
-        // 🔀 Application SPA State Context Control Switchboard
-        function switchApplicationContext(targetContext) {
-            activeContext = targetContext;
-            
-            // Clean active classes across global buttons
-            document.querySelectorAll('.tab-trigger').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`tab-${targetContext}`).classList.add('active');
-
-            // Apply specific layout color skins via atomic body modifiers
-            document.body.className = ''; 
-            document.body.classList.add(`theme-${targetContext}`);
-
-            // Programmatically configure sidebar interfaces based on specific user view selection
-            const sidebarElement = document.getElementById('dynamic-sidebar-viewport');
-            
-            if (targetContext === 'all') {
-                sidebarElement.classList.remove('visible');
-                document.getElementById('filter-status-label').innerText = "Main Hub Showcase";
-                currentFilteredInventory = [...databaseInventory];
-            } else {
-                sidebarElement.classList.add('visible');
-                generateBespokeSidebarElements(targetContext, sidebarElement);
-                currentFilteredInventory = databaseInventory.filter(item => item.section === targetContext);
-                document.getElementById('filter-status-label').innerText = `Showing all items inside: ${targetContext.toUpperCase()}`;
-            }
-
-            processSortExecution(); 
-        }
-
-        // 🧭 Programmatic Sidebar Architecture Generator
-        function generateBespokeSidebarElements(context, mountNode) {
-            mountNode.innerHTML = ''; 
-
-            if (context === 'art') {
-                mountNode.innerHTML = `
-                    <h3 class="sidebar-header-title">Fine Art Library</h3>
-                    <div class="menu-tree-node">
-                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'paintings')">Paintings <span>▾</span></div>
-                        <button class="custom-order-btn" onclick="alert('Redirecting to Custom Paint Request Portal...')">Request Custom Painting</button>
-                        <ul class="node-subtree-leaves">
-                            <li class="bracket-sub-node" onclick="isolateSubFilter('child', 'b-cooper')">— B.A. Cooper Signature</li>
-                            <li class="bracket-sub-node" onclick="isolateSubFilter('child', 't-ku')">— T.L. Ku Signature</li>
-                        </ul>
-                    </div>
-                    <div class="menu-tree-node">
-                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'photography')">Photography <span>▾</span></div>
-                        <button class="custom-order-btn" onclick="alert('Opening Photography Commission Desk...')">Book Session/Commissions</button>
-                    </div>
-                    <div class="menu-tree-node">
-                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'wooden')">Wooden Crafts <span>▾</span></div>
-                        <button class="custom-order-btn" onclick="alert('Redirecting to Custom Woodwork Portal...')">Request Custom Woodwork</button>
-                        <ul class="node-subtree-leaves">
-                            <li onclick="isolateSubFilter('child', 'carving')">Carving Work</li>
-                            <li onclick="isolateSubFilter('child', 'burning')">Burning / Pyrography</li>
-                        </ul>
-                    </div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'stonework')">Stone Work</div></div>
-                    <div class="menu-tree-node">
-                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'claywork')">Clay Work</div>
-                        <button class="custom-order-btn" onclick="alert('Redirecting to Clay Order Form...')">Request Custom Clay</button>
-                    </div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'mosaic')">Glass / Mosaic</div></div>
-                `;
-            } else if (context === 'kits') {
-                mountNode.innerHTML = `
-                    <h3 class="sidebar-header-title">Project Kits</h3>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'paint')">Paint Kits</div></div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'clay')">Clay Kits</div></div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'crossstitch')">Cross Stitch</div></div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'felting')">Needle Felting</div></div>
-                `;
-            } else if (context === 'hobbies') {
-                mountNode.innerHTML = `
-                    <h3 class="sidebar-header-title">Hobbies & Vault</h3>
-                    <div class="menu-tree-node">
-                        <div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'pokemon')">TCG Cards <span>▾</span></div>
-                        <ul class="node-subtree-leaves">
-                            <li class="bracket-sub-node">— Pokémon Collectibles</li>
-                            <li class="bracket-sub-node">— Sealed Booster Packs</li>
-                            <li class="bracket-sub-node">— Individual Archives</li>
-                        </ul>
-                    </div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'cubing')">Speed Cubes</div></div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'penspinning')">Pen Spinning</div></div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'balisong')">Balisong Trainers</div></div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'kendama')">Kendama Mods</div></div>
-                    <div class="menu-tree-node"><div class="node-trigger-title" onclick="isolateSubFilter('subsection', 'books')">Book Library</div></div>
-                `;
-            }
-        }
-
-        // 🔍 Sidebar Child Filter Engine
-        function isolateSubFilter(key, targetValue) {
-            currentFilteredInventory = databaseInventory.filter(item => item[key] === targetValue);
-            document.getElementById('filter-status-label').innerText = `Filtered Category Archive View: [${targetValue.toUpperCase()}]`;
-            processSortExecution();
-        }
-
-        // 🎚️ Sorting Execution Core Processing Engine
         function processSortExecution() {
             const sortingRule = document.getElementById('price-sort-engine').value;
             
             if (sortingRule === 'low-high') {
-                currentFilteredInventory.sort((a, b) => a.price - b.price);
+                activeInventory.sort((a, b) => a.price - b.price);
             } else if (sortingRule === 'high-low') {
-                currentFilteredInventory.sort((a, b) => b.price - a.price);
+                activeInventory.sort((a, b) => b.price - a.price);
             } else {
-                currentFilteredInventory.sort((a, b) => a.id - b.id);
+                activeInventory.sort((a, b) => a.id - b.id);
             }
 
             renderCatalogDisplayGrid();
         }
 
-        // 🛍️ Matrix Render Array Layout Blueprint
         function renderCatalogDisplayGrid() {
             const targetsNode = document.getElementById('master-catalog-display-target');
             targetsNode.innerHTML = ''; 
 
-            if(currentFilteredInventory.length === 0) {
-                targetsNode.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 4rem; font-style: italic;">No specific vault drops match this item track currently.</p>`;
-                return;
-            }
-
-            currentFilteredInventory.forEach(item => {
+            activeInventory.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'craft-card';
                 card.innerHTML = `
