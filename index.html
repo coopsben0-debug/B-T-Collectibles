@@ -4,126 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&T Collectibles | Studio & Archive</title>
+    <!-- Load Supabase Library First -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        :root {
-            --bg: #FDFBF7;
-            --accent: #2A3B35; /* Sage Green */
-            --danger: #d9534f; /* Original Item Color */
-            --text: #1A1A1A;
-            --glass: rgba(255, 255, 255, 0.7);
-        }
-
-        body { background-color: var(--bg); color: var(--text); font-family: 'Georgia', serif; margin: 0; padding: 0; }
-        
-        header { 
-            padding: 2rem 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            backdrop-filter: blur(10px); 
-            background: var(--glass);
-            position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -1px; color: var(--accent); }
-
-        .nav-bar { display: flex; gap: 2rem; padding: 2rem 5%; justify-content: center; }
-        .tab { cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; color: #888; transition: 0.3s; }
-        .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
-
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 2.5rem; 
-            padding: 2rem 5%; 
-        }
-
-        .card { 
-            background: #fff; padding: 1.2rem; border-radius: 8px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .card img { width: 100%; height: 350px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem; }
-        
-        .meta-tag { font-size: 0.7rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
-        
-        button { cursor: pointer; padding: 0.8rem 1.5rem; border: none; background: var(--accent); color: white; border-radius: 4px; font-weight: bold; }
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .card { border: 1px solid #ccc; padding: 10px; border-radius: 8px; }
+        .error { color: red; font-weight: bold; border: 1px solid red; padding: 10px; }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">B&T COLLECTIBLES</div>
-    <button onclick="toggleModal('login-modal')">Admin Access</button>
-</header>
+    <h1>B&T Collectibles</h1>
+    <div id="status">Connecting to database...</div>
+    <div class="grid" id="product-grid"></div>
 
-<div class="nav-bar">
-    <div class="tab active" id="tab-All" onclick="filterItems('All')">All</div>
-    <div class="tab" id="tab-Art" onclick="filterItems('Art')">Art</div>
-</div>
+    <script>
+        // REPLACE THESE WITH YOUR ACTUAL NEW ROTATED KEYS
+        const SUPABASE_URL = "https://whwofdemokzubboftsbu.supabase.co";
+        const SUPABASE_KEY = "YOUR_NEW_ROTATED_ANON_KEY"; 
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-<div class="grid" id="product-grid"></div>
+        async function init() {
+            const statusDiv = document.getElementById('status');
+            const { data, error } = await supabase.from('products').select('*');
 
-<div id="login-modal" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:#fff; padding:2rem; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.1); z-index:200;">
-    <input type="password" id="pass" placeholder="Enter Access Key"><br><br>
-    <button onclick="checkAccess()">Sign In</button>
-</div>
+            if (error) {
+                statusDiv.innerHTML = `<div class="error">Database Error: ${error.message}</div>`;
+                return;
+            }
 
-<script>
-    const SUPABASE_URL = "https://whwofdemokzubboftsbu.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            statusDiv.innerHTML = "Connected! Loading items...";
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = ''; // Clear status
 
-    let allProducts = [];
-
-    async function loadItems() {
-        const { data, error } = await supabase.from('products').select('*');
-        if (error) return;
-        allProducts = data;
-        render(allProducts);
-    }
-
-    function render(data) {
-        const grid = document.getElementById('product-grid');
-        grid.innerHTML = '';
-        data.forEach(item => {
-            const isOriginal = item.meta.includes('Original');
-            grid.innerHTML += `
-                <div class="card">
-                    <img src="${item.img}" alt="${item.title}">
-                    <span class="meta-tag" style="color: ${isOriginal ? 'var(--danger)' : 'var(--accent)'}">
-                        ${item.meta}
-                    </span>
-                    <h3>${item.title}</h3>
-                    <p>${item.price}</p>
-                </div>
-            `;
-        });
-    }
-
-    function filterItems(cat) {
-        const filtered = cat === 'All' ? allProducts : allProducts.filter(p => p.category === cat);
-        render(filtered);
-    }
-
-    function toggleModal(id) {
-        const m = document.getElementById(id);
-        m.style.display = m.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function checkAccess() {
-        const p = document.getElementById('pass').value;
-        if(p === 'thasia') {
-            alert('Welcome, Admin');
-            toggleModal('login-modal');
-        } else {
-            alert('Access Denied');
+            data.forEach(item => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <h3>${item.title || 'Untitled'}</h3>
+                        <p>${item.meta || ''}</p>
+                        <p><strong>${item.price || ''}</strong></p>
+                    </div>
+                `;
+            });
+            statusDiv.innerHTML = ""; // Clear status on success
         }
-    }
 
-    window.onload = loadItems;
-</script>
+        init();
+    </script>
 </body>
 </html>
