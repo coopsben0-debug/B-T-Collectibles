@@ -2,26 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&T Collectibles | Studio & Archive</title>
-    <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        :root { --bg: #FDFBF7; --accent: #2A3B35; --text: #1A1A1A; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Georgia', serif; margin: 0; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
-        .card { background: #fff; padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); }
-        .card img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; display: block; margin-bottom: 1rem; }
-        #status { font-weight: bold; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+        body { font-family: sans-serif; padding: 20px; }
+        #status { padding: 15px; border: 2px solid #333; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>B&T COLLECTIBLES</h1>
-    </header>
-
-    <div id="status">Connecting to database...</div>
+    <h1>B&T COLLECTIBLES</h1>
+    <div id="status">Loading...</div>
     <div class="grid" id="product-grid"></div>
 
     <script>
@@ -29,38 +21,40 @@
         const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        async function loadItems() {
+        async function init() {
             const statusDiv = document.getElementById('status');
             const grid = document.getElementById('product-grid');
             
+            console.log("Attempting Supabase fetch...");
+            statusDiv.innerText = "Fetching data from Supabase...";
+
             try {
-                // Fetching from 'products' table
                 const { data, error } = await supabase.from('products').select('*');
                 
-                if (error) throw error;
-                
+                if (error) {
+                    statusDiv.innerHTML = "<strong>Error:</strong> " + error.message;
+                    return;
+                }
+
                 if (!data || data.length === 0) {
-                    statusDiv.innerText = "Connected! But no items found in the 'products' table.";
+                    statusDiv.innerText = "Connected, but the table is empty.";
                     return;
                 }
 
                 statusDiv.style.display = 'none';
                 grid.innerHTML = data.map(item => `
                     <div class="card">
-                        ${item.img ? `<img src="${item.img}" alt="${item.title}">` : ''}
                         <h3>${item.title || 'Untitled'}</h3>
-                        <p>${item.meta || ''}</p>
-                        <p><strong>${item.price || ''}</strong></p>
+                        <p>${item.price || ''}</p>
                     </div>
                 `).join('');
-
+                
             } catch (err) {
-                statusDiv.innerHTML = "❌ Connection Error: " + err.message;
-                console.error("Supabase Error:", err);
+                statusDiv.innerText = "Critical Failure: " + err.message;
             }
         }
 
-        window.onload = loadItems;
+        init();
     </script>
 </body>
 </html>
