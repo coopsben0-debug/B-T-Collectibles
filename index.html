@@ -2,40 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Collectibles | Studio & Archive</title>
+    <title>B&T Collectibles | Studio & Archive Hub</title>
     <style>
-        body { 
-            background-color: #FDF1F0; /* Your consistent pink beige */
-            font-family: 'Georgia', serif; 
-            color: #2D2926; 
-            margin: 0; 
-            padding: 100px 20px; 
-            text-align: center; 
-        }
-        h1 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
-        .subtitle { font-size: 1.2rem; margin-bottom: 60px; color: #5D5653; }
+        :root { --bg: #FDF1F0; --dark-green: #0A3D2E; --accent: #D4A373; }
+        body { background-color: var(--bg); font-family: 'Georgia', serif; margin: 0; color: #2D2926; }
         
-        /* Unified Section Links */
-        .nav-links { display: flex; justify-content: center; gap: 40px; }
-        .nav-links a { 
-            text-decoration: none; 
-            color: #2D2926; 
-            font-size: 1.5rem; 
-            transition: opacity 0.3s; 
-        }
-        .nav-links a:hover { opacity: 0.6; }
+        /* Navigation Hub */
+        header { background-color: rgba(255, 255, 255, 0.5); padding: 20px 40px; border-bottom: 1px solid #E5D5D3; }
+        .nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .nav-hub { display: flex; gap: 40px; justify-content: center; font-size: 0.9rem; letter-spacing: 1px; }
+        .nav-hub a { text-decoration: none; color: #2D2926; text-transform: uppercase; }
+        
+        /* Main Content */
+        .container { text-align: center; padding: 60px 20px; }
+        h1 { font-size: 2.5rem; }
     </style>
 </head>
 <body>
 
-    <h1>B&T COLLECTIBLES</h1>
-    <div class="subtitle">Studio & Archive</div>
+    <header>
+        <div class="nav-top">
+            <strong>B&T COLLECTIBLES | STUDIO & ARCHIVE</strong>
+            <div>ACCOUNT / ACCESS</div>
+        </div>
+        <nav class="nav-hub">
+            <a href="index.html">HUB SHOWCASE</a>
+            <a href="art.html">ART & PRINTS</a>
+            <a href="handcrafts.html">STUDIO CRAFTS</a>
+            <a href="hobbies.html">MIND GAMES & TCG</a>
+        </nav>
+    </header>
 
-    <nav class="nav-links">
-        <a href="art.html">Art</a>
-        <a href="handcrafts.html">Handcrafts</a>
-        <a href="hobbies.html">Hobbies</a>
-    </nav>
+    <div class="container">
+        <h1>B&T COLLECTIBLES</h1>
+        <p>Studio & Archive Hub</p>
+    </div>
 
 </body>
 </html>
