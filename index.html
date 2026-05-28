@@ -2,56 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&T Collectibles | Studio & Archive</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        body { font-family: 'Georgia', serif; background-color: #FDFBF7; padding: 40px; }
+        :root { --bg: #FDFBF7; --accent: #2A3B35; --text: #1A1A1A; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Georgia', serif; margin: 0; padding: 40px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
-        .card { background: #fff; padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); }
-        #admin-panel { display: none; margin-bottom: 30px; padding: 20px; border: 1px solid #333; }
+        .card { background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem; }
+        #admin-panel { display: none; background: #eee; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>B&T COLLECTIBLES</h1>
-        <button onclick="toggleAdmin()">Admin Login</button>
+        <button onclick="document.getElementById('admin-panel').style.display='block'">Admin Login</button>
     </header>
 
-    <!-- Admin Section -->
     <div id="admin-panel">
-        <h3>Add New Painting</h3>
-        <input type="text" id="title" placeholder="Title">
-        <input type="text" id="price" placeholder="Price">
+        <h3>Add New Item</h3>
+        <input type="text" id="new-title" placeholder="Title">
+        <input type="text" id="new-price" placeholder="Price">
+        <input type="text" id="new-img" placeholder="Image URL">
         <button onclick="addItem()">Upload to Archive</button>
     </div>
 
     <div id="product-grid" class="grid"></div>
 
     <script>
-        const supabase = window.supabase.createClient("https://whwofdemokzubboftsbu.supabase.co", "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX");
+        const SUPABASE_URL = "https://whwofdemokzubboftsbu.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         async function fetchProducts() {
-            const { data } = await supabase.from('products').select('*');
+            const { data, error } = await supabase.from('products').select('*');
+            if (error) { console.error(error); return; }
+            
             const grid = document.getElementById('product-grid');
             grid.innerHTML = data.map(item => `
                 <div class="card">
-                    <h3>${item.title}</h3>
-                    <p>${item.price}</p>
+                    ${item.img ? `<img src="${item.img}" alt="${item.title}">` : ''}
+                    <h3>${item.title || 'Untitled'}</h3>
+                    <p><strong>${item.price || ''}</strong></p>
                 </div>
             `).join('');
         }
 
-        function toggleAdmin() {
-            // Placeholder for Auth Logic
-            document.getElementById('admin-panel').style.display = 'block';
-        }
-
         async function addItem() {
-            const title = document.getElementById('title').value;
-            const price = document.getElementById('price').value;
-            await supabase.from('products').insert([{ title, price }]);
+            const title = document.getElementById('new-title').value;
+            const price = document.getElementById('new-price').value;
+            const img = document.getElementById('new-img').value;
+            
+            await supabase.from('products').insert([{ title, price, img }]);
             fetchProducts();
+            alert("Added!");
         }
 
         fetchProducts();
