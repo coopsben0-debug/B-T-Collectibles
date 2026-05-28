@@ -2,59 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Collectibles | Studio & Archive</title>
+    <title>B&T Collectibles | Debugging</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body { font-family: sans-serif; padding: 20px; }
-        #status { padding: 15px; border: 2px solid #333; margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        #status { padding: 15px; border: 2px solid #333; margin-bottom: 20px; background: #f9f9f9; }
     </style>
 </head>
 <body>
 
     <h1>B&T COLLECTIBLES</h1>
-    <div id="status">Loading...</div>
-    <div class="grid" id="product-grid"></div>
+    <div id="status">Attempting to connect...</div>
 
     <script>
         const SUPABASE_URL = "https://whwofdemokzubboftsbu.supabase.co";
         const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        async function init() {
+        async function debugConnection() {
             const statusDiv = document.getElementById('status');
-            const grid = document.getElementById('product-grid');
             
-            console.log("Attempting Supabase fetch...");
-            statusDiv.innerText = "Fetching data from Supabase...";
-
             try {
+                // We perform a simple fetch
                 const { data, error } = await supabase.from('products').select('*');
                 
                 if (error) {
-                    statusDiv.innerHTML = "<strong>Error:</strong> " + error.message;
+                    statusDiv.innerHTML = "<strong>Supabase Error:</strong> " + error.message;
+                    console.error("Full Error:", error);
                     return;
                 }
 
-                if (!data || data.length === 0) {
-                    statusDiv.innerText = "Connected, but the table is empty.";
+                if (!data) {
+                    statusDiv.innerText = "Connected, but no data returned.";
                     return;
                 }
 
-                statusDiv.style.display = 'none';
-                grid.innerHTML = data.map(item => `
-                    <div class="card">
-                        <h3>${item.title || 'Untitled'}</h3>
-                        <p>${item.price || ''}</p>
-                    </div>
-                `).join('');
+                statusDiv.innerText = "Success! Loaded " + data.length + " items.";
+                console.log("Data loaded successfully:", data);
                 
             } catch (err) {
-                statusDiv.innerText = "Critical Failure: " + err.message;
+                statusDiv.innerText = "Fatal Error: " + err.message;
             }
         }
 
-        init();
+        debugConnection();
     </script>
 </body>
 </html>
