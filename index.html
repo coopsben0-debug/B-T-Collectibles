@@ -2,50 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Collectibles | Debugging</title>
+    <title>B&T Collectibles | Studio & Archive</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        #status { padding: 15px; border: 2px solid #333; margin-bottom: 20px; background: #f9f9f9; }
+        body { font-family: 'Georgia', serif; background-color: #FDFBF7; padding: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
+        .card { background: #fff; padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); }
+        #admin-panel { display: none; margin-bottom: 30px; padding: 20px; border: 1px solid #333; }
     </style>
 </head>
 <body>
 
-    <h1>B&T COLLECTIBLES</h1>
-    <div id="status">Attempting to connect...</div>
+    <header>
+        <h1>B&T COLLECTIBLES</h1>
+        <button onclick="toggleAdmin()">Admin Login</button>
+    </header>
+
+    <!-- Admin Section -->
+    <div id="admin-panel">
+        <h3>Add New Painting</h3>
+        <input type="text" id="title" placeholder="Title">
+        <input type="text" id="price" placeholder="Price">
+        <button onclick="addItem()">Upload to Archive</button>
+    </div>
+
+    <div id="product-grid" class="grid"></div>
 
     <script>
-        const SUPABASE_URL = "https://whwofdemokzubboftsbu.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX";
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabase = window.supabase.createClient("https://whwofdemokzubboftsbu.supabase.co", "sb_publishable_4Lj1I-_ojQjz59y83eGLqg_iqTpVVRX");
 
-        async function debugConnection() {
-            const statusDiv = document.getElementById('status');
-            
-            try {
-                // We perform a simple fetch
-                const { data, error } = await supabase.from('products').select('*');
-                
-                if (error) {
-                    statusDiv.innerHTML = "<strong>Supabase Error:</strong> " + error.message;
-                    console.error("Full Error:", error);
-                    return;
-                }
-
-                if (!data) {
-                    statusDiv.innerText = "Connected, but no data returned.";
-                    return;
-                }
-
-                statusDiv.innerText = "Success! Loaded " + data.length + " items.";
-                console.log("Data loaded successfully:", data);
-                
-            } catch (err) {
-                statusDiv.innerText = "Fatal Error: " + err.message;
-            }
+        async function fetchProducts() {
+            const { data } = await supabase.from('products').select('*');
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = data.map(item => `
+                <div class="card">
+                    <h3>${item.title}</h3>
+                    <p>${item.price}</p>
+                </div>
+            `).join('');
         }
 
-        debugConnection();
+        function toggleAdmin() {
+            // Placeholder for Auth Logic
+            document.getElementById('admin-panel').style.display = 'block';
+        }
+
+        async function addItem() {
+            const title = document.getElementById('title').value;
+            const price = document.getElementById('price').value;
+            await supabase.from('products').insert([{ title, price }]);
+            fetchProducts();
+        }
+
+        fetchProducts();
     </script>
 </body>
 </html>
