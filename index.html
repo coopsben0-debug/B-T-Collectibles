@@ -1,10 +1,218 @@
 <!DOCTYPE html>
-<html>
-<head><title>B&T Collectibles</title> </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B&T Collectibles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Your Custom Palette */
+            --dark-green: #0A3323;
+            --moss-green: #839958;
+            --beige: #F7F4D5;
+            --rosy-brown: #D3968C;
+            --midnight-green: #105666;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--beige);
+            color: var(--dark-green);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Header Navigation --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background-color: var(--midnight-green);
+            color: var(--beige);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--beige);
+            letter-spacing: 0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .header-actions a {
+            color: var(--beige);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header-actions a:hover {
+            color: var(--rosy-brown);
+        }
+
+        /* --- Main Content Area --- */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-family: 'Lora', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--midnight-green);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* --- Category Cards (Glassmorphism Style) --- */
+        .categories {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .category-card {
+            flex: 1;
+            min-width: 260px;
+            padding: 4rem 2rem;
+            text-align: center;
+            text-decoration: none;
+            
+            /* Soft glass/frosted effect on the beige background */
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+        }
+
+        .category-card h2 {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            margin: 0;
+            color: var(--dark-green);
+            transition: color 0.4s ease;
+        }
+
+        /* Hover interactions tied to your specific palette */
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+        }
+
+        .category-card.art:hover { 
+            background-color: var(--rosy-brown); 
+            border-color: var(--rosy-brown);
+        }
+        .category-card.kits:hover { 
+            background-color: var(--moss-green); 
+            border-color: var(--moss-green);
+        }
+        .category-card.hobbies:hover { 
+            background-color: var(--midnight-green); 
+            border-color: var(--midnight-green);
+        }
+
+        .category-card:hover h2 {
+            color: var(--beige);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background-color: var(--dark-green);
+            color: var(--beige);
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--moss-green);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--rosy-brown);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+    </style>
+</head>
 <body>
-    <header><h1>B&T COLLECTIBLES</h1><p>Studio & Archive</p></header>
-    <nav><a href="index.html">Home</a><a href="art.html">Art</a><a href="handcrafts.html">Handcrafts</a><a href="hobbies.html">Hobbies</a></nav>
-    <main><div class="content-box"><h2>Welcome to Our Studio</h2><p>A family-curated collection of art and handcrafted goods. We hope you find something that brings joy to your space.</p></div></main>
-    <footer>© 2026 B&T COLLECTIBLES</footer>
+
+    <header>
+        <a href="index.html" class="logo">B&T Collectibles</a>
+        
+        <div class="header-actions">
+            <a href="#login" class="login-btn">Login</a>
+            <a href="#basket" class="basket-btn">Basket (0)</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to the Studio</h1>
+            <p>A curated collection of art, kits, and hobbies to bring creativity and calm into your home.</p>
+        </section>
+
+        <section class="categories">
+            <a href="art.html" class="category-card art">
+                <h2>Art</h2>
+            </a>
+            <a href="handcrafts.html" class="category-card kits">
+                <h2>Kits</h2>
+            </a>
+            <a href="hobbies.html" class="category-card hobbies">
+                <h2>Hobbies</h2>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>Get in touch: <a href="mailto:b-tcollectibles@outlook.com">b-tcollectibles@outlook.com</a></p>
+            <p>Follow our journey on <a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 1rem;">&copy; 2026 B&T Collectibles</p>
+        </div>
+    </footer>
+
 </body>
 </html>
