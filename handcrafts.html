@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>B&T Collectibles</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <a href="index.html" class="logo">B&T Collectibles</a>
     </header>
-    <div class="page-wrapper">
-        <aside class="sidebar">
+    <div style="display: flex; max-width: 1000px; margin: 3rem auto; gap: 3rem; padding: 0 2rem;">
+        <aside style="width: 200px;">
             <h3>Menu</h3>
             <a href="art.html">Art</a><br>
             <a href="handcrafts.html">Kits</a><br>
             <a href="hobbies.html">Hobbies</a>
         </aside>
-        <main class="content-grid">
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
+        <main style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; flex-grow: 1;">
+            <div style="aspect-ratio: 3/4; border: 1px solid #C5A059; border-radius: 4px;"></div>
+            <div style="aspect-ratio: 3/4; border: 1px solid #C5A059; border-radius: 4px;"></div>
+            <div style="aspect-ratio: 3/4; border: 1px solid #C5A059; border-radius: 4px;"></div>
         </main>
     </div>
 </body>
