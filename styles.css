@@ -3,7 +3,6 @@
     --moss-green: #839958;
     --beige: #F7F4D5;
     --rosy-brown: #D3968C;
-    --midnight-green: #105666;
     --gold-trim: #C5A059;
 }
 
@@ -12,19 +11,29 @@ body {
     font-family: 'Lato', sans-serif;
     background-color: var(--beige);
     color: var(--dark-green);
+    background-image: radial-gradient(circle at 10% 20%, rgba(211, 150, 140, 0.12) 0%, transparent 40%);
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 4rem;
-}
+/* Header */
+header { display: flex; justify-content: space-between; padding: 2rem 4rem; align-items: center; }
+.logo { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--dark-green); text-decoration: none; text-align: center; }
+.logo span { display: block; font-size: 0.8rem; letter-spacing: 3px; color: var(--moss-green); }
 
-.logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--dark-green);
-    text-decoration: none;
+/* Arched Cards */
+.categories { display: flex; gap: 2rem; justify-content: center; margin-top: 3rem; }
+.arch-card {
+    width: 220px; height: 300px;
+    border-radius: 110px 110px 10px 10px;
+    border: 1px solid var(--gold-trim);
+    background: rgba(255,255,255,0.4);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--dark-green);
+    transition: transform 0.3s;
 }
-/* Add the rest of your layout CSS here... */
+.arch-card:hover { transform: translateY(-10px); }
+
+/* Layouts */
+.page-wrapper { display: flex; max-width: 1000px; margin: 3rem auto; gap: 3rem; padding: 0 2rem; }
+.sidebar { width: 200px; }
+.content-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; flex-grow: 1; }
+.item-card { aspect-ratio: 3/4; border: 1px solid var(--gold-trim); border-radius: 4px; }
