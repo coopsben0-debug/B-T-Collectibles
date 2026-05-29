@@ -2,44 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Collectibles | Studio & Archive</title>
+    <title>B&T COLLECTIBLES | STUDIO & ARCHIVE</title>
     <style>
-        body { background-color: #FDF1F0; font-family: 'Georgia', serif; color: #2D2926; margin: 0; }
+        :root {
+            --bg-color: #F8F3F0;
+            --text-color: #2D2926;
+            --accent-color: #C1A894;
+            --nav-font: 'Georgia', serif;
+        }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--nav-font); margin: 0; padding: 0; }
         
-        /* Header Styling */
-        header { padding: 20px 40px; border-bottom: 1px solid #E5D5D3; display: flex; justify-content: space-between; align-items: center; }
-        .nav-hub { display: flex; gap: 40px; justify-content: center; padding: 20px; font-size: 0.9rem; text-transform: uppercase; }
-        .nav-right { display: flex; gap: 20px; align-items: center; }
+        /* Master Header */
+        header { padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E5D5D3; }
+        .logo { font-size: 1.2rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-right a, .nav-right button { margin-left: 20px; text-decoration: none; color: var(--text-color); background: none; border: none; font-family: inherit; cursor: pointer; }
         
-        /* Footer Styling */
-        footer { margin-top: 100px; padding: 40px; text-align: center; border-top: 1px solid #E5D5D3; }
-        .social-links { margin-top: 10px; }
-        .social-links a { margin: 0 10px; text-decoration: none; color: #5D5653; }
+        /* Navigation Hub */
+        .hub-nav { display: flex; justify-content: center; gap: 40px; padding: 30px; border-bottom: 1px solid #E5D5D3; }
+        .hub-nav a { text-decoration: none; color: var(--text-color); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+        
+        /* Hero Featured Section */
+        .featured { padding: 80px 20px; text-align: center; }
+        .featured h2 { font-size: 3rem; font-weight: normal; margin-bottom: 10px; }
+        
+        /* Footer */
+        footer { padding: 50px; text-align: center; font-size: 0.8rem; color: #777; }
     </style>
 </head>
 <body>
 
     <header>
-        <div><strong>B&T COLLECTIBLES | STUDIO & ARCHIVE</strong></div>
+        <div class="logo">B&T COLLECTIBLES | STUDIO & ARCHIVE</div>
         <div class="nav-right">
             <a href="#">ACCOUNT</a>
             <a href="#">CONTACT</a>
-            <button>CART: 0</button>
+            <button>CART (0)</button>
         </div>
     </header>
 
-    <nav class="nav-hub">
+    <nav class="hub-nav">
         <a href="index.html">HUB SHOWCASE</a>
         <a href="art.html">FINE ART ARCHIVE</a>
         <a href="handcrafts.html">STUDIO CRAFT ATELIER</a>
         <a href="hobbies.html">ARCHIVE & COLLECTION VAULT</a>
     </nav>
 
+    <main class="featured">
+        <h2>THE CURATED HIGHLIGHT</h2>
+        <p>Your premier piece will be showcased here.</p>
+    </main>
+
     <footer>
         <p>b-tcollectibles@outlook.com</p>
-        <div class="social-links">
-            <a href="#">Instagram</a> | <a href="#">Facebook</a>
-        </div>
+        <p>Instagram | Facebook</p>
     </footer>
 
 </body>
