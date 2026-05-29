@@ -1,0 +1,30 @@
+:root {
+    --dark-green: #0A3323;
+    --moss-green: #839958;
+    --beige: #F7F4D5;
+    --rosy-brown: #D3968C;
+    --midnight-green: #105666;
+    --gold-trim: #C5A059;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    background-color: var(--beige);
+    color: var(--dark-green);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--dark-green);
+    text-decoration: none;
+}
+/* Add the rest of your layout CSS here... */
