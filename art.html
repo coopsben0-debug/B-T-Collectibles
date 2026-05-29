@@ -4,39 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art | B&T Collectibles</title>
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
-    <style>
-        /* ... (Copy all the CSS variables and base styles from your updated index.html here) ... */
-        
-        .page-wrapper { display: flex; max-width: 1100px; margin: 3rem auto; gap: 4rem; padding: 0 2rem; }
-        .sidebar { width: 220px; flex-shrink: 0; }
-        .sidebar h3 { font-family: 'Playfair Display', serif; color: var(--dark-green); border-bottom: 1px solid var(--rosy-brown); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
-        .sidebar a { display: block; color: var(--midnight-green); text-decoration: none; margin: 0.8rem 0; font-weight: 300; transition: color 0.3s; }
-        .sidebar a:hover { color: var(--rosy-brown); }
-        
-        .content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2.5rem; flex-grow: 1; }
-        .item-card { aspect-ratio: 3/4; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; background: rgba(255,255,255,0.3); }
-    </style>
 </head>
 <body>
+    <header>
+        <a href="index.html" class="logo">B&T Collectibles</a>
+    </header>
     <div class="page-wrapper">
         <aside class="sidebar">
             <h3>Collections</h3>
             <a href="art.html">All Art</a>
-            <a href="#cooper">Signature - B. A. Cooper</a>
-            <a href="#ku">Signature - T. L. Ku</a>
-            <h3 style="margin-top: 2rem;">Materials</h3>
-            <a href="#pastel">Pastel</a>
-            <a href="#clay">Clay</a>
-            <a href="#stone">Stone</a>
         </aside>
-
         <main class="content-grid">
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
+            <div class="item-card">Art Piece 1</div>
+            <div class="item-card">Art Piece 2</div>
         </main>
     </div>
-
-    </body>
+</body>
 </html>
