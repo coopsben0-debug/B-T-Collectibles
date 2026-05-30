@@ -17,27 +17,46 @@
         <aside class="sidebar">
             <h3 class="sidebar-title">Art Categories</h3>
             <nav class="sidebar-nav">
-                <a href="#all-art" class="nav-box">All Art</a>
-                <a href="#cooper-section" class="nav-box">B.A. Cooper Signature</a>
-                <a href="#ku-section" class="nav-box">T.L. Ku Signature</a>
-                <a href="#wood-section" class="nav-box">Wood Work</a>
-                <a href="#stone-section" class="nav-box">Stone Work</a>
-                <a href="#pastel-section" class="nav-box">Pastel</a>
-                <a href="#miniature-section" class="nav-box">Miniature Art</a>
-                <a href="#cards-section" class="nav-box">Cards</a>
+                <button onclick="filterSelection('all')" class="nav-box">All Art</button>
+                <button onclick="filterSelection('cooper')" class="nav-box">B.A. Cooper Signature</button>
+                <button onclick="filterSelection('ku')" class="nav-box">T.L. Ku Signature</button>
+                <button onclick="filterSelection('wood')" class="nav-box">Wood Work</button>
+                <button onclick="filterSelection('stone')" class="nav-box">Stone Work</button>
+                <button onclick="filterSelection('pastel')" class="nav-box">Pastel</button>
+                <button onclick="filterSelection('miniature')" class="nav-box">Miniature Art</button>
+                <button onclick="filterSelection('cards')" class="nav-box">Cards</button>
             </nav>
         </aside>
 
         <section class="gallery-content">
-            <div id="all-art"><h2 class="gallery-title">All Artworks</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div><div class="product-card"></div></div></div>
-            <div id="cooper-section"><h2 class="gallery-title">B.A. Cooper Signature</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div></div></div>
-            <div id="ku-section"><h2 class="gallery-title">T.L. Ku Signature</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div></div></div>
-            <div id="wood-section"><h2 class="gallery-title">Wood Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="stone-section"><h2 class="gallery-title">Stone Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="pastel-section"><h2 class="gallery-title">Pastel</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="miniature-section"><h2 class="gallery-title">Miniature Art</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="cards-section"><h2 class="gallery-title">Cards</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="cooper" class="filter-section"><h2 class="gallery-title">B.A. Cooper Signature</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div></div></div>
+            <div id="ku" class="filter-section"><h2 class="gallery-title">T.L. Ku Signature</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="wood" class="filter-section"><h2 class="gallery-title">Wood Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="stone" class="filter-section"><h2 class="gallery-title">Stone Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="pastel" class="filter-section"><h2 class="gallery-title">Pastel</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="miniature" class="filter-section"><h2 class="gallery-title">Miniature Art</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="cards" class="filter-section"><h2 class="gallery-title">Cards</h2><div class="product-grid"><div class="product-card"></div></div></div>
         </section>
     </main>
+
+    <script>
+        function filterSelection(category) {
+            const sections = document.querySelectorAll('.filter-section');
+            let isFirstVisible = true;
+            sections.forEach(section => {
+                if (category === 'all' || section.id === category) {
+                    section.style.display = 'block';
+                    if (isFirstVisible) {
+                        section.style.borderTop = 'none'; section.style.paddingTop = '0'; isFirstVisible = false;
+                    } else {
+                        section.style.borderTop = '1px solid var(--gold)'; section.style.paddingTop = '2rem';
+                    }
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+        filterSelection('all');
+    </script>
 </body>
 </html>
