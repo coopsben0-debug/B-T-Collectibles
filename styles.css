@@ -1,34 +1,29 @@
-/* Sidebar Layout */
-.gallery-layout { 
-    display: grid; 
-    grid-template-columns: 260px 1fr; 
-    gap: 3rem; 
-    padding: 3rem 4rem; 
-    max-width: 1200px; 
-    margin: 0 auto; 
+:root {
+    --dark-green: #0A3323;
+    --gold: #C5A059;
+    --beige: #F7F4D5;
 }
 
-/* Sidebar Box Styling */
-.nav-box {
-    display: block;
-    background-color: var(--dark-green);
-    color: var(--beige);
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
+body { background-color: var(--beige); color: var(--dark-green); font-family: 'Lato', sans-serif; margin: 0; }
 
-.nav-box:hover {
-    background-color: var(--gold);
-    color: var(--dark-green);
-    padding-left: 1.5rem;
-}
+/* Header */
+header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; border-bottom: 1px solid var(--gold); }
+.logo { font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; }
+.logo span { font-size: 0.7rem; letter-spacing: 4px; display: block; text-transform: uppercase; }
+.nav-button { background: var(--dark-green); color: var(--beige); padding: 0.7rem 1.2rem; border-radius: 4px; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+.nav-button:hover { background: var(--gold); }
 
-.sidebar-title { 
-    font-family: 'Playfair Display', serif; 
-    color: var(--dark-green); 
-    margin-bottom: 1.5rem; 
+/* Welcome */
+.welcome-area { text-align: center; margin: 4rem 0 3rem 0; }
+.welcome-area h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+
+/* Door Cards */
+.door-container { display: flex; gap: 4rem; justify-content: center; }
+.door-card { 
+    width: 220px; height: 300px; border: 2px solid var(--gold); 
+    border-radius: 120px 120px 10px 10px; background: rgba(255, 255, 255, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--dark-green); font-family: 'Playfair Display', serif; 
+    font-size: 1.8rem; transition: 0.4s;
 }
+.door-card:hover { background: var(--dark-green); color: var(--beige); border-color: var(--dark-green); transform: translateY(-10px); }
