@@ -4,54 +4,54 @@
     --beige: #F7F4D5;
 }
 
-/* --- Keep your header exactly as it is --- */
-
-/* Updated Options Section */
-.door-container { 
-    display: flex; gap: 2.5rem; justify-content: center; margin: 3rem 0; 
+body { 
+    background-color: var(--beige); 
+    color: var(--dark-green); 
+    font-family: 'Lato', sans-serif; 
+    margin: 0; 
 }
 
-.door-card {
+/* Header - Keeping as is */
+header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 2rem 4rem; border-bottom: 1px solid var(--gold); 
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; }
+
+/* Studio Welcome Section */
+.welcome-section { text-align: center; padding: 3rem 0; }
+.welcome-section h1 { font-family: 'Playfair Display', serif; color: var(--dark-green); }
+
+/* Refined Door-Style Cards */
+.door-container { display: flex; gap: 3rem; justify-content: center; margin-bottom: 5rem; }
+.door-card { 
     width: 200px; height: 260px;
     border: 2px solid var(--gold);
     border-radius: 100px 100px 10px 10px;
-    background: #fdfdf0; /* Slightly lighter than background to pop */
+    background: #fdfdf0;
     display: flex; align-items: center; justify-content: center;
     text-decoration: none; 
-    color: var(--dark-green); /* Dark Green text for contrast */
-    transition: all 0.3s ease;
+    color: var(--dark-green);
+    transition: all 0.4s ease;
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
 }
-
 .door-card:hover { 
-    background: var(--dark-green); /* Dark green hover state */
-    color: var(--beige);
-    border-color: var(--dark-green);
+    background: var(--dark-green); 
+    color: var(--beige); 
+    border-color: var(--dark-green); 
+    transform: translateY(-10px);
 }
 
-/* Featured Section */
-.featured-section { 
-    max-width: 900px; margin: 4rem auto; text-align: left; 
-}
-
+/* Professional Featured Grid */
+.featured-section { max-width: 1000px; margin: 0 auto; padding-bottom: 4rem; }
 .filter-bar { 
     display: flex; justify-content: space-between; align-items: center; 
-    border-bottom: 1px solid var(--dark-green); /* Added dark green accent */
-    padding-bottom: 10px; margin-bottom: 2rem;
+    border-bottom: 1px solid var(--dark-green); padding-bottom: 1rem; margin-bottom: 2rem;
 }
-
-.filter-bar h3 { color: var(--dark-green); font-family: 'Playfair Display', serif; }
-
-.product-grid { 
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; 
-}
-
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
 .product-card { 
-    aspect-ratio: 3/4; 
-    border: 1px solid var(--gold); 
-    background: rgba(255, 255, 255, 0.5); 
-    transition: 0.3s;
+    aspect-ratio: 3/4; border: 1px solid var(--gold); 
+    background: rgba(255,255,255,0.4); transition: 0.3s;
 }
-
-.product-card:hover { border-color: var(--dark-green); }
+.product-card:hover { border-color: var(--dark-green); background: white; }
