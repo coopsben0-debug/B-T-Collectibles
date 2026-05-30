@@ -2,25 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Collectibles</title>
+    <title>Kits | B&T Collectibles</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <a href="index.html" class="logo">B&T Collectibles</a>
+        <div class="nav-links"><a href="index.html" class="nav-button">Home</a></div>
+        <div class="logo">B&T Collectibles<br><span>EST. 2026</span></div>
+        <div class="nav-links"><a href="#basket" class="nav-button">Basket (0)</a></div>
     </header>
-    <div style="display: flex; max-width: 1000px; margin: 3rem auto; gap: 3rem; padding: 0 2rem;">
-        <aside style="width: 200px;">
-            <h3>Menu</h3>
-            <a href="art.html">Art</a><br>
-            <a href="handcrafts.html">Kits</a><br>
-            <a href="hobbies.html">Hobbies</a>
+
+    <main class="gallery-layout">
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Kit Categories</h3>
+            <nav class="sidebar-nav">
+                <button onclick="filterSelection('all')" class="nav-box">All Kits</button>
+                <button onclick="filterSelection('painting')" class="nav-box">Painting</button>
+                <button onclick="filterSelection('embroidery')" class="nav-box">Embroidery</button>
+                <button onclick="filterSelection('knitting')" class="nav-box">Knitting</button>
+                <button onclick="filterSelection('crossstitch')" class="nav-box">Cross-Stitch</button>
+                <button onclick="filterSelection('crochet')" class="nav-box">Crochet</button>
+                <button onclick="filterSelection('texture')" class="nav-box">Texture Collecting</button>
+                <button onclick="filterSelection('felting')" class="nav-box">Felting</button>
+            </nav>
         </aside>
-        <main style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; flex-grow: 1;">
-            <div style="aspect-ratio: 3/4; border: 1px solid #C5A059; border-radius: 4px;"></div>
-            <div style="aspect-ratio: 3/4; border: 1px solid #C5A059; border-radius: 4px;"></div>
-            <div style="aspect-ratio: 3/4; border: 1px solid #C5A059; border-radius: 4px;"></div>
-        </main>
-    </div>
+
+        <section class="gallery-content">
+            <div id="painting" class="filter-section"><h2 class="gallery-title">Painting</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="embroidery" class="filter-section"><h2 class="gallery-title">Embroidery</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="knitting" class="filter-section"><h2 class="gallery-title">Knitting</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="crossstitch" class="filter-section"><h2 class="gallery-title">Cross-Stitch</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="crochet" class="filter-section"><h2 class="gallery-title">Crochet</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="texture" class="filter-section"><h2 class="gallery-title">Texture Collecting</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="felting" class="filter-section"><h2 class="gallery-title">Felting</h2><div class="product-grid"><div class="product-card"></div></div></div>
+        </section>
+    </main>
+
+    <script>
+        function filterSelection(category) {
+            const sections = document.querySelectorAll('.filter-section');
+            let isFirstVisible = true;
+            sections.forEach(section => {
+                if (category === 'all' || section.id === category) {
+                    section.style.display = 'block';
+                    if (isFirstVisible) {
+                        section.style.borderTop = 'none'; section.style.paddingTop = '0'; isFirstVisible = false;
+                    } else {
+                        section.style.borderTop = '1px solid var(--gold)'; section.style.paddingTop = '2rem';
+                    }
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+        filterSelection('all');
+    </script>
 </body>
 </html>
