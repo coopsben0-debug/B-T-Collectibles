@@ -1,42 +1,26 @@
-/* Sidebar Layout */
-.gallery-layout { 
-    display: grid; 
-    grid-template-columns: 260px 1fr; 
-    gap: 4rem; 
-    padding: 3rem 4rem; 
-    max-width: 1200px; 
-    margin: 0 auto; 
+:root {
+    --dark-green: #0A3323;
+    --gold: #C5A059;
+    --beige: #F7F4D5;
 }
+body { background-color: var(--beige); color: var(--dark-green); font-family: 'Lato', sans-serif; margin: 0; }
 
-/* Make sections scroll nicely */
-.gallery-content > div {
-    padding-top: 2rem;
-    margin-bottom: 5rem;
-    border-top: 1px solid var(--gold);
-}
+/* Header */
+header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; border-bottom: 1px solid var(--gold); }
+.logo { font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; }
+.logo span { font-size: 0.7rem; letter-spacing: 4px; display: block; }
+.nav-button { background: var(--dark-green); color: var(--beige); padding: 0.7rem 1.2rem; border-radius: 4px; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; }
 
-/* Nav Box Styling */
-.nav-box {
-    display: block;
-    background-color: var(--dark-green);
-    color: var(--beige);
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-.nav-box:hover {
-    background-color: var(--gold);
-    color: var(--dark-green);
-    padding-left: 1.5rem;
-}
+/* Layout */
+.welcome-area { text-align: center; margin: 3rem 0; }
+.door-container { display: flex; gap: 3rem; justify-content: center; margin-bottom: 5rem; }
+.door-card { width: 200px; height: 260px; border: 2px solid var(--gold); border-radius: 100px 100px 10px 10px; background: #fdfdf0; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--dark-green); font-family: 'Playfair Display', serif; font-size: 1.5rem; transition: 0.3s; }
+.door-card:hover { background: var(--dark-green); color: var(--beige); }
 
-/* Responsive Grid */
-.product-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-    gap: 2rem; 
-    margin-top: 1rem;
-}
+/* Gallery */
+.gallery-layout { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; padding: 3rem 4rem; }
+.sidebar-title { font-family: 'Playfair Display', serif; border-bottom: 2px solid var(--gold); margin-bottom: 1rem; }
+.nav-box { display: block; background: var(--dark-green); color: var(--beige); padding: 0.8rem; margin-bottom: 0.5rem; border-radius: 4px; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+.nav-box:hover { background: var(--gold); }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.product-card { aspect-ratio: 3/4; border: 1px solid var(--gold); background: rgba(255,255,255,0.4); }
