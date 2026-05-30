@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Art Gallery | B&T Collectibles</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -9,8 +12,32 @@
         <div class="logo">B&T Collectibles<br><span>EST. 2026</span></div>
         <div class="nav-links"><a href="#basket" class="nav-button">Basket (0)</a></div>
     </header>
-    <main style="padding: 3rem 4rem;">
-        <h2 style="font-family: 'Playfair Display', serif; border-bottom: 1px solid var(--gold);">Art Gallery</h2>
-        </main>
+
+    <main class="gallery-layout">
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Art Categories</h3>
+            <nav class="sidebar-nav">
+                <a href="#all-art" class="nav-box">All Art</a>
+                <a href="#cooper-section" class="nav-box">B.A. Cooper Signature</a>
+                <a href="#ku-section" class="nav-box">T.L. Ku Signature</a>
+                <a href="#wood-section" class="nav-box">Wood Work</a>
+                <a href="#stone-section" class="nav-box">Stone Work</a>
+                <a href="#pastel-section" class="nav-box">Pastel</a>
+                <a href="#miniature-section" class="nav-box">Miniature Art</a>
+                <a href="#cards-section" class="nav-box">Cards</a>
+            </nav>
+        </aside>
+
+        <section class="gallery-content">
+            <div id="all-art"><h2 class="gallery-title">All Artworks</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div><div class="product-card"></div></div></div>
+            <div id="cooper-section"><h2 class="gallery-title">B.A. Cooper Signature</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div></div></div>
+            <div id="ku-section"><h2 class="gallery-title">T.L. Ku Signature</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div></div></div>
+            <div id="wood-section"><h2 class="gallery-title">Wood Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="stone-section"><h2 class="gallery-title">Stone Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="pastel-section"><h2 class="gallery-title">Pastel</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="miniature-section"><h2 class="gallery-title">Miniature Art</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="cards-section"><h2 class="gallery-title">Cards</h2><div class="product-grid"><div class="product-card"></div></div></div>
+        </section>
+    </main>
 </body>
 </html>
