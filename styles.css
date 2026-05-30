@@ -3,36 +3,28 @@
     --moss-green: #839958;
     --beige: #F7F4D5;
     --rosy-brown: #D3968C;
-    --gold-trim: #C5A059;
+    --midnight-green: #105666;
+    --gold: #C5A059;
 }
 
-body {
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-    background-color: var(--beige);
-    color: var(--dark-green);
-    background-image: radial-gradient(circle at 10% 20%, rgba(211, 150, 140, 0.12) 0%, transparent 40%);
-}
+body { background-color: var(--beige); color: var(--dark-green); font-family: 'Lato', sans-serif; margin: 0; }
 
-/* Header */
-header { display: flex; justify-content: space-between; padding: 2rem 4rem; align-items: center; border-bottom: 1px solid rgba(197, 160, 89, 0.3); }
-.logo { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--dark-green); text-decoration: none; text-align: center; }
-.logo span { display: block; font-size: 0.8rem; letter-spacing: 3px; color: var(--moss-green); }
+/* Header & Nav */
+header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; }
+.nav-links a { color: var(--dark-green); text-decoration: none; margin: 0 1rem; }
+.logo { font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; }
 
-/* Compact Arched Cards */
-.categories { display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; }
-.arch-card {
-    width: 200px; 
-    height: 260px;
-    border-radius: 100px 100px 8px 8px;
-    border: 1px solid var(--gold-trim);
-    background: rgba(255,255,255,0.4);
+/* Category Arches */
+.categories { display: flex; gap: 2rem; justify-content: center; margin-top: 2rem; }
+.arch-card { 
+    width: 200px; height: 260px; border-radius: 100px 100px 8px 8px;
+    border: 1px solid var(--gold); background: rgba(255,255,255,0.5);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-decoration: none; color: var(--dark-green);
-    transition: transform 0.3s;
-    padding: 1rem;
 }
-.arch-card:hover { transform: translateY(-5px); }
-.arch-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-.arch-card h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin: 0; }
-.arch-subtext { font-size: 0.8rem; font-style: italic; opacity: 0.7; }
+
+/* Featured Section */
+.featured-section { padding: 4rem; }
+.filter-bar { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.product-card { aspect-ratio: 3/4; border: 1px solid var(--gold); border-radius: 4px; }
