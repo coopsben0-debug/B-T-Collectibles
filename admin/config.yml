@@ -1,18 +1,28 @@
 backend:
   name: git-gateway
   branch: main
-
-media_folder: "images"
-public_folder: "images"
-
 collections:
-  - name: "products"
-    label: "Store Products"
-    folder: "products"
+  - name: "art"
+    label: "Art"
+    folder: "content/art"
     create: true
-    slug: "{{year}}-{{month}}-{{slug}}"
     fields:
-      - {label: "Product Name", name: "title", widget: "string"}
-      - {label: "Price (e.g. £150)", name: "price", widget: "string"}
-      - {label: "Category", name: "category", widget: "select", options: ["cooper", "ku", "wood", "stone", "pastel", "miniature", "cards"]}
-      - {label: "Product Image", name: "image", widget: "image"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Image", name: "image", widget: "image"}
+  - name: "crafts"
+    label: "Crafts"
+    folder: "content/crafts"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Image", name: "image", widget: "image"}
+  - name: "hobbies"
+    label: "Hobbies"
+    folder: "content/hobbies"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Image", name: "image", widget: "image"}
