@@ -4,59 +4,29 @@
     <meta charset="UTF-8">
     <title>Art Gallery | B&T Collectibles</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="nav-links"><a href="index.html" class="nav-button">Home</a></div>
-        <div class="logo">B&T Collectibles<br><span>EST. 2026</span></div>
-        <div class="nav-links"><a href="#basket" class="nav-button">Basket (0)</a></div>
+        <a href="index.html">Home</a>
+        <div class="logo">B&T Collectibles</div>
+        <a href="#basket">Basket</a>
     </header>
-
     <main class="gallery-layout">
-        <aside class="sidebar">
+        <aside>
             <h3 class="sidebar-title">Art Categories</h3>
             <nav class="sidebar-nav">
                 <button onclick="filterSelection('all')" class="nav-box">All Art</button>
-                <button onclick="filterSelection('cooper')" class="nav-box">B.A. Cooper Signature</button>
-                <button onclick="filterSelection('ku')" class="nav-box">T.L. Ku Signature</button>
-                <button onclick="filterSelection('wood')" class="nav-box">Wood Work</button>
-                <button onclick="filterSelection('stone')" class="nav-box">Stone Work</button>
-                <button onclick="filterSelection('pastel')" class="nav-box">Pastel</button>
-                <button onclick="filterSelection('miniature')" class="nav-box">Miniature Art</button>
-                <button onclick="filterSelection('cards')" class="nav-box">Cards</button>
+                <button onclick="filterSelection('cooper')" class="nav-box">B.A. Cooper</button>
             </nav>
         </aside>
-
         <section class="gallery-content">
-            <div id="cooper" class="filter-section"><h2 class="gallery-title">B.A. Cooper Signature</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div></div></div>
-            <div id="ku" class="filter-section"><h2 class="gallery-title">T.L. Ku Signature</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="wood" class="filter-section"><h2 class="gallery-title">Wood Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="stone" class="filter-section"><h2 class="gallery-title">Stone Work</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="pastel" class="filter-section"><h2 class="gallery-title">Pastel</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="miniature" class="filter-section"><h2 class="gallery-title">Miniature Art</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="cards" class="filter-section"><h2 class="gallery-title">Cards</h2><div class="product-grid"><div class="product-card"></div></div></div>
+            <div id="cooper" class="filter-section"><div class="product-grid"><div class="product-card"></div></div></div>
         </section>
     </main>
-
     <script>
-        function filterSelection(category) {
-            const sections = document.querySelectorAll('.filter-section');
-            let isFirstVisible = true;
-            sections.forEach(section => {
-                if (category === 'all' || section.id === category) {
-                    section.style.display = 'block';
-                    if (isFirstVisible) {
-                        section.style.borderTop = 'none'; section.style.paddingTop = '0'; isFirstVisible = false;
-                    } else {
-                        section.style.borderTop = '1px solid var(--gold)'; section.style.paddingTop = '2rem';
-                    }
-                } else {
-                    section.style.display = 'none';
-                }
-            });
+        function filterSelection(c) {
+            document.querySelectorAll('.filter-section').forEach(s => s.style.display = (c === 'all' || s.id === c) ? 'block' : 'none');
         }
-        filterSelection('all');
     </script>
 </body>
 </html>
