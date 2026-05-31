@@ -4,16 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&T Collectibles | Studio</title>
-    <!-- Include the Netlify Identity widget script in the head -->
+    
+    <!-- ADD THIS: Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <!-- PASTE YOUR ORIGINAL CSS/STYLES HERE -->
+    <style>
+        /* Your existing CSS goes here */
+    </style>
 </head>
 <body>
 
-    <!-- Your existing content here -->
-    <h1>Welcome to the Studio</h1>
-    <!-- ... rest of your body content ... -->
+    <!-- PASTE YOUR ORIGINAL HEADER, NAVIGATION, AND CONTENT HERE -->
+    <header>
+        <!-- Your navigation, Logo, Basket, etc. -->
+    </header>
 
-    <!-- This script handles the password reset redirect and login behavior -->
+    <main>
+        <h1>Welcome to the Studio</h1>
+        <!-- Your featured items and other body content -->
+    </main>
+
+    <!-- ADD THIS: Authentication Script -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
