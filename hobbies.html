@@ -4,53 +4,35 @@
     <meta charset="UTF-8">
     <title>Hobbies | B&T Collectibles</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="nav-links"><a href="index.html" class="nav-button">Home</a></div>
-        <div class="logo">B&T Collectibles<br><span>EST. 2026</span></div>
-        <div class="nav-links"><a href="#basket" class="nav-button">Basket (0)</a></div>
+        <a href="index.html" class="nav-button">Home</a>
+        <div class="logo">B&T <span>Collectibles</span></div>
+        <a href="#basket" class="nav-button">Basket</a>
     </header>
 
     <main class="gallery-layout">
-        <aside class="sidebar">
+        <aside>
             <h3 class="sidebar-title">Hobby Categories</h3>
             <nav class="sidebar-nav">
                 <button onclick="filterSelection('all')" class="nav-box">All Hobbies</button>
-                <button onclick="filterSelection('tcg')" class="nav-box">TCG (Trading Cards)</button>
+                <button onclick="filterSelection('tcg')" class="nav-box">TCG</button>
                 <button onclick="filterSelection('rubik')" class="nav-box">Rubik's Cube</button>
-                <button onclick="filterSelection('penspinning')" class="nav-box">Pen Spinning</button>
-                <button onclick="filterSelection('library')" class="nav-box">Library</button>
             </nav>
         </aside>
 
         <section class="gallery-content">
-            <div id="tcg" class="filter-section"><h2 class="gallery-title">TCG</h2><div class="product-grid"><div class="product-card"></div><div class="product-card"></div></div></div>
+            <div id="tcg" class="filter-section"><h2 class="gallery-title">TCG</h2><div class="product-grid"><div class="product-card"></div></div></div>
             <div id="rubik" class="filter-section"><h2 class="gallery-title">Rubik's Cube</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="penspinning" class="filter-section"><h2 class="gallery-title">Pen Spinning</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="library" class="filter-section"><h2 class="gallery-title">Library</h2><div class="product-grid"><div class="product-card"></div></div></div>
         </section>
     </main>
 
     <script>
-        function filterSelection(category) {
+        function filterSelection(c) {
             const sections = document.querySelectorAll('.filter-section');
-            let isFirstVisible = true;
-            sections.forEach(section => {
-                if (category === 'all' || section.id === category) {
-                    section.style.display = 'block';
-                    if (isFirstVisible) {
-                        section.style.borderTop = 'none'; section.style.paddingTop = '0'; isFirstVisible = false;
-                    } else {
-                        section.style.borderTop = '1px solid var(--gold)'; section.style.paddingTop = '2rem';
-                    }
-                } else {
-                    section.style.display = 'none';
-                }
-            });
+            sections.forEach(s => s.style.display = (c === 'all' || s.id === c) ? 'block' : 'none');
         }
-        filterSelection('all');
     </script>
 </body>
 </html>
