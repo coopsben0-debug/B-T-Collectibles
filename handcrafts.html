@@ -2,29 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kits | B&T Collectibles</title>
+    <title>Kits & Crafts | B&T Collectibles</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="nav-links"><a href="index.html" class="nav-button">Home</a></div>
-        <div class="logo">B&T Collectibles<br><span>EST. 2026</span></div>
-        <div class="nav-links"><a href="#basket" class="nav-button">Basket (0)</a></div>
+        <a href="index.html" class="nav-button">Home</a>
+        <div class="logo">B&T <span>Collectibles</span></div>
+        <a href="#basket" class="nav-button">Basket</a>
     </header>
 
     <main class="gallery-layout">
-        <aside class="sidebar">
+        <aside>
             <h3 class="sidebar-title">Kit Categories</h3>
             <nav class="sidebar-nav">
                 <button onclick="filterSelection('all')" class="nav-box">All Kits</button>
                 <button onclick="filterSelection('painting')" class="nav-box">Painting</button>
                 <button onclick="filterSelection('embroidery')" class="nav-box">Embroidery</button>
                 <button onclick="filterSelection('knitting')" class="nav-box">Knitting</button>
-                <button onclick="filterSelection('crossstitch')" class="nav-box">Cross-Stitch</button>
-                <button onclick="filterSelection('crochet')" class="nav-box">Crochet</button>
-                <button onclick="filterSelection('texture')" class="nav-box">Texture Collecting</button>
-                <button onclick="filterSelection('felting')" class="nav-box">Felting</button>
             </nav>
         </aside>
 
@@ -32,31 +27,14 @@
             <div id="painting" class="filter-section"><h2 class="gallery-title">Painting</h2><div class="product-grid"><div class="product-card"></div></div></div>
             <div id="embroidery" class="filter-section"><h2 class="gallery-title">Embroidery</h2><div class="product-grid"><div class="product-card"></div></div></div>
             <div id="knitting" class="filter-section"><h2 class="gallery-title">Knitting</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="crossstitch" class="filter-section"><h2 class="gallery-title">Cross-Stitch</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="crochet" class="filter-section"><h2 class="gallery-title">Crochet</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="texture" class="filter-section"><h2 class="gallery-title">Texture Collecting</h2><div class="product-grid"><div class="product-card"></div></div></div>
-            <div id="felting" class="filter-section"><h2 class="gallery-title">Felting</h2><div class="product-grid"><div class="product-card"></div></div></div>
         </section>
     </main>
 
     <script>
-        function filterSelection(category) {
+        function filterSelection(c) {
             const sections = document.querySelectorAll('.filter-section');
-            let isFirstVisible = true;
-            sections.forEach(section => {
-                if (category === 'all' || section.id === category) {
-                    section.style.display = 'block';
-                    if (isFirstVisible) {
-                        section.style.borderTop = 'none'; section.style.paddingTop = '0'; isFirstVisible = false;
-                    } else {
-                        section.style.borderTop = '1px solid var(--gold)'; section.style.paddingTop = '2rem';
-                    }
-                } else {
-                    section.style.display = 'none';
-                }
-            });
+            sections.forEach(s => s.style.display = (c === 'all' || s.id === c) ? 'block' : 'none');
         }
-        filterSelection('all');
     </script>
 </body>
 </html>
