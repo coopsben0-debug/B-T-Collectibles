@@ -1,49 +1,45 @@
 :root {
     --dark-green: #0A3323;
-    --gold: #C5A059;
+    --moss-green: #839958;
     --beige: #F7F4D5;
+    --gold: #C5A059;
 }
 
-body { background-color: var(--beige); color: var(--dark-green); font-family: 'Lato', sans-serif; margin: 0; }
+body { 
+    background-color: var(--beige); 
+    color: var(--dark-green); 
+    font-family: 'Lato', sans-serif; 
+    margin: 0; 
+}
 
-/* --- The Header --- */
-header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; border-bottom: 1px solid var(--gold); }
+/* Header & Nav */
+header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 2rem 4rem; border-bottom: 1px solid var(--gold); 
+}
 .logo { font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; }
-.logo span { font-size: 0.7rem; letter-spacing: 4px; display: block; text-transform: uppercase; }
-.nav-button { background: var(--dark-green); color: var(--beige); padding: 0.7rem 1.2rem; border-radius: 4px; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
-.nav-button:hover { background: var(--gold); }
+.logo span { font-size: 0.7rem; letter-spacing: 4px; color: var(--moss-green); }
+.nav-links a { 
+    color: var(--dark-green); text-decoration: none; font-size: 0.9rem; 
+    font-weight: 600; text-transform: uppercase; letter-spacing: 1px; 
+}
 
-/* --- Index.html Elements --- */
-.welcome-area { text-align: center; margin: 4rem 0 3rem 0; }
-.welcome-area h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
-.door-container { display: flex; gap: 4rem; justify-content: center; margin-bottom: 5rem; }
+/* Main Content Spacing */
+main { padding: 3rem 4rem; text-align: center; }
+
+/* Door-Style Cards */
+.door-container { display: flex; gap: 2rem; justify-content: center; margin-top: 3rem; }
 .door-card { 
-    width: 220px; height: 300px; border: 2px solid var(--gold); 
-    border-radius: 120px 120px 10px 10px; background: rgba(255, 255, 255, 0.3);
+    width: 200px; height: 260px; border: 2px solid var(--gold); 
+    border-radius: 100px 100px 10px 10px; background: rgba(255,255,255,0.4);
     display: flex; align-items: center; justify-content: center;
-    text-decoration: none; color: var(--dark-green); 
-    font-family: 'Playfair Display', serif; font-size: 1.8rem; transition: 0.4s;
+    text-decoration: none; color: var(--dark-green); transition: 0.3s;
 }
-.door-card:hover { background: var(--dark-green); color: var(--beige); border-color: var(--dark-green); transform: translateY(-10px); }
+.door-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.7); }
+.door-card h2 { font-family: 'Playfair Display', serif; margin: 0; }
 
-/* --- Gallery Layout --- */
-.gallery-layout { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; padding: 3rem 4rem; max-width: 1200px; margin: 0 auto; }
-
-/* Sidebar */
-.sidebar-title { font-family: 'Playfair Display', serif; color: var(--dark-green); border-bottom: 2px solid var(--gold); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
-.sidebar-nav { display: flex; flex-direction: column; gap: 0.5rem; }
-.nav-box {
-    display: block; background-color: var(--dark-green); color: var(--beige);
-    padding: 0.8rem 1rem; border-radius: 4px; text-decoration: none;
-    font-size: 0.9rem; transition: 0.3s; cursor: pointer; border: none; text-align: left;
-}
-.nav-box:hover { background-color: var(--gold); color: var(--dark-green); padding-left: 1.5rem; }
-
-/* Filter Sections */
-.filter-section { margin-bottom: 5rem; }
-.gallery-title { font-family: 'Playfair Display', serif; margin-top: 0; margin-bottom: 1.5rem; }
-
-/* Products */
-.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.product-card { aspect-ratio: 3/4; border: 1px solid var(--gold); background: rgba(255,255,255,0.4); transition: 0.3s; border-radius: 4px; }
-.product-card:hover { border-color: var(--dark-green); background: white; transform: scale(1.02); }
+/* Featured Grid */
+.featured-section { margin-top: 5rem; text-align: left; }
+.filter-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.product-card { aspect-ratio: 3/4; border: 1px solid var(--gold); background: rgba(255,255,255,0.4); border-radius: 4px; }
