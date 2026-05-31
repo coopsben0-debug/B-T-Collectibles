@@ -2,22 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&T Collectibles | Studio</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+
     <header>
         <div class="logo">B&T <span>Collectibles</span></div>
-        <a href="#basket">Basket</a>
+        <div class="nav-links">
+            <a href="#">Basket</a>
+        </div>
     </header>
-    <main style="padding: 4rem;">
-        <h1>Welcome to the Studio</h1>
-        <div style="display:flex; gap: 2rem; margin-top: 2rem;">
-            <a href="art.html">Art</a>
-            <a href="handcrafts.html">Crafts</a>
-            <a href="hobbies.html">Hobbies</a>
+
+    <main>
+        <div class="welcome-area">
+            <h1>Welcome to the Studio</h1>
+        </div>
+
+        <div class="door-container">
+            <a href="art.html" class="door-card"><h2>Art</h2></a>
+            <a href="handcrafts.html" class="door-card"><h2>Crafts</h2></a>
+            <a href="hobbies.html" class="door-card"><h2>Hobbies</h2></a>
         </div>
     </main>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
 </body>
 </html>
