@@ -33,15 +33,35 @@
         </div>
         
         <section id="featured-products" style="padding: 4rem; text-align: center;">
-            <h2 style="font-family: 'Playfair Display', serif;">Featured Collectibles</h2>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--gold);">Featured Collectibles</h2>
             <div id="products-grid" class="product-grid">
                 </div>
         </section>
     </main>
 
     <script>
-        // Placeholder for future product fetching logic
-        console.log("Product loader ready.");
+        // Fetches your product markdown file and displays it
+        async function loadProducts() {
+            const grid = document.getElementById('products-grid');
+            try {
+                const response = await fetch('/products/2026-05-sunset-print.md');
+                const text = await response.text();
+                
+                // Simple parsing for title
+                const titleMatch = text.match(/title: "(.*)"/);
+                const title = titleMatch ? titleMatch[1] : "Sunset Print";
+                
+                grid.innerHTML = `
+                    <div class="product-card" style="border: 1px solid var(--gold); padding: 1rem; border-radius: 8px;">
+                        <h3>${title}</h3>
+                        <p>Available Now</p>
+                    </div>
+                `;
+            } catch (e) {
+                grid.innerHTML = "<p>No products found yet.</p>";
+            }
+        }
+        loadProducts();
     </script>
 </body>
 </html>
