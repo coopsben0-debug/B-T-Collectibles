@@ -1,6 +1,7 @@
 ---
 title: Sunset upon the caved ocean
-price: 7
+price: 7.99
+description: cave = awesome
 image: /images/uploads/p4.JPG
-category: cooper
+category: B.A. Cooper Signature
 ---
