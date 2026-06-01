@@ -1,37 +1,68 @@
-<script>
-async function autoLoadProducts() {
-    // 1. We assume you save your product files as .json in your products/art folder
-    // Replace 'data.json' with your actual index file or use a folder-scan API
-    try {
-        const response = await fetch('/products/art/data.json'); 
-        const products = await response.json();
-        const galleryRoot = document.getElementById('gallery-root');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery | B&T Collectibles</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        /* [Keep your existing CSS here] */
+        :root { --bg-color: #fbf9f3; --primary-color: #0d3c26; --accent-gold: #b8975a; --text-dark: #2d3732; --card-bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 0; }
+        .gallery-layout { display: grid; grid-template-columns: 260px 1fr; gap: 2.5rem; max-width: 1400px; margin: 2rem auto; padding: 0 2rem; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .product-card { background: var(--card-bg); padding: 1rem; border-radius: 12px; border: 1px solid #eee; }
+        .product-image-container { width: 100%; height: 240px; background-color: #f4f2eb; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
 
-        products.forEach(p => {
-            const grid = document.getElementById(`grid-${p.category}`);
-            if (grid) {
+    <header>
+        <a href="index.html">Home</a>
+        <div class="logo">B&T Collectibles</div>
+        <a href="#basket">Basket</a>
+    </header>
+
+    <main class="gallery-layout">
+        <aside>
+            <h3 class="sidebar-title">Art Categories</h3>
+            <nav class="sidebar-nav" id="sidebar">
+                <button onclick="filter('all', this)" class="nav-box active">All Art</button>
+                <button onclick="filter('cooper', this)" class="nav-box">B.A. Cooper Signature</button>
+            </nav>
+        </aside>
+
+        <section class="gallery-content" id="gallery-root"></section>
+    </main>
+
+    <script>
+        // REPLACE THIS ARRAY with a fetch() call to your CMS index if you want it 100% automated
+        const products = [
+            { title: "Sunset Cave", price: "120.00", category: "cooper", image: "/images/uploads/sunset-cave.png" }
+        ];
+
+        function render() {
+            const root = document.getElementById('gallery-root');
+            const cat = 'cooper';
+            root.innerHTML = `
+                <div id="${cat}" class="filter-section">
+                    <h2 class="section-heading">B.A. Cooper Signature Collection</h2>
+                    <div class="product-grid" id="grid-${cat}"></div>
+                </div>`;
+            
+            const grid = document.getElementById(`grid-${cat}`);
+            products.forEach(p => {
                 grid.innerHTML += `
                     <div class="product-card">
                         <div class="product-image-container">
-                            <img src="${p.image}" alt="${p.title}" style="width:100%; height:100%; object-fit:cover;">
+                            <img src="${p.image}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'">
                         </div>
                         <h4>${p.title}</h4>
                         <p class="price">£${p.price}</p>
                     </div>`;
-            }
-        });
-    } catch (err) {
-        console.log("Waiting for data files to build...");
-    }
-}
-
-// Initialize on load
-window.onload = autoLoadProducts;
-
-// Filtering logic
-function filter(c, btn) {
-    document.querySelectorAll('.filter-section').forEach(s => s.style.display = (c === 'all' || s.id === c) ? 'block' : 'none');
-    document.querySelectorAll('.nav-box').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-}
-</script>
+            });
+        }
+        render();
+    </script>
+</body>
+</html>
