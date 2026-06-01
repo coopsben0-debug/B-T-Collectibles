@@ -2,66 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&T Collectibles | Studio</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f5f5dc; 
+            color: #0d3c26; 
+            margin: 0; 
+            text-align: center; 
+        }
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 2rem 5rem; 
+            align-items: center; 
+        }
+        nav a { margin: 0 15px; color: #0d3c26; text-decoration: none; font-weight: 600; }
+        .hero { margin-top: 100px; }
+        .art-portal {
+            width: 250px; 
+            height: 350px; 
+            border: 2px solid #b89c5a; 
+            border-radius: 150px 150px 0 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 0 auto;
+            text-decoration: none;
+            color: #0d3c26;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .art-portal:hover { background: #e8e8c8; }
+    </style>
 </head>
 <body>
 
     <header>
-        <div class="nav-left">
+        <div style="font-weight: bold; letter-spacing: 2px;">B&T COLLECTIBLES</div>
+        <nav>
             <a href="login.html">Login</a>
             <a href="contact.html">Contact</a>
-        </div>
-        
-        <div class="logo">B&T <span>Collectibles</span></div>
-        
-        <div class="nav-right">
             <a href="basket.html">Basket</a>
-        </div>
+        </nav>
     </header>
 
-    <main>
-        <div class="welcome-area" style="text-align: center; margin-top: 2rem;">
-            <h1>Welcome to the Studio</h1>
-        </div>
-
-        <div class="door-container">
-            <a href="art.html" class="door-card"><h2>Art</h2></a>
-            <a href="handcrafts.html" class="door-card"><h2>Crafts</h2></a>
-            <a href="hobbies.html" class="door-card"><h2>Hobbies</h2></a>
-        </div>
-        
-        <section id="featured-products" style="padding: 4rem; text-align: center;">
-            <h2 style="font-family: 'Playfair Display', serif; color: var(--gold);">Featured Collectibles</h2>
-            <div id="products-grid" class="product-grid">
-                </div>
-        </section>
+    <main class="hero">
+        <h1>Welcome to the Studio</h1>
+        <a href="art.html" class="art-portal">
+            Art
+        </a>
     </main>
 
-    <script>
-        // Fetches your product markdown file and displays it
-        async function loadProducts() {
-            const grid = document.getElementById('products-grid');
-            try {
-                const response = await fetch('/products/2026-05-sunset-print.md');
-                const text = await response.text();
-                
-                // Simple parsing for title
-                const titleMatch = text.match(/title: "(.*)"/);
-                const title = titleMatch ? titleMatch[1] : "Sunset Print";
-                
-                grid.innerHTML = `
-                    <div class="product-card" style="border: 1px solid var(--gold); padding: 1rem; border-radius: 8px;">
-                        <h3>${title}</h3>
-                        <p>Available Now</p>
-                    </div>
-                `;
-            } catch (e) {
-                grid.innerHTML = "<p>No products found yet.</p>";
-            }
-        }
-        loadProducts();
-    </script>
 </body>
 </html>
