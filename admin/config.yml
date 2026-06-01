@@ -3,32 +3,25 @@ backend:
   repo: coopsben0-debug/B-T-Collectibles
   branch: main
 
-# Folders where your uploaded item photos live
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
   - name: "art"
     label: "Art"
-    folder: "content/art"
+    folder: "products/art"
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Price", name: "price", widget: "number"}
       - {label: "Image", name: "image", widget: "image"}
-  - name: "crafts"
-    label: "Crafts"
-    folder: "content/crafts"
-    create: true
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Price", name: "price", widget: "number"}
-      - {label: "Image", name: "image", widget: "image"}
-  - name: "hobbies"
-    label: "Hobbies"
-    folder: "content/hobbies"
-    create: true
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Price", name: "price", widget: "number"}
-      - {label: "Image", name: "image", widget: "image"}
+      # This dropdown maps directly to the layout sections on your web page
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - {label: "B.A. Cooper Signature", value: "cooper"}
+          - {label: "T.L. Ku Signature", value: "tlku"}
+          - {label: "Wood Work", value: "woodwork"}
+          - {label: "Miniature", value: "miniature"}
+          - {label: "Stone", value: "stone"}
