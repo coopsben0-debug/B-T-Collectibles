@@ -4,115 +4,92 @@
     <meta charset="UTF-8">
     <title>Art Gallery | B&T Collectibles</title>
     <style>
-        /* Calm & Relaxed Palette */
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: #f5f5dc; 
-            color: #2f4f4f; 
-            margin: 0; 
-            padding: 2rem; 
-        }
-        header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            max-width: 1000px; 
-            margin: 0 auto 2rem auto; 
-            color: #0d3c26;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f5f5dc; color: #2f4f4f; margin: 0; display: flex; min-height: 100vh; }
         
-        /* Sections */
-        .category-section { max-width: 1000px; margin: 0 auto 3rem auto; }
-        h2 { border-bottom: 2px solid #dcdcdc; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+        /* Sidebar Navigation */
+        aside { width: 250px; background: #fff; padding: 2rem; border-right: 1px solid #dcdcdc; }
+        aside h2 { font-size: 1.2rem; color: #0d3c26; margin-bottom: 1.5rem; }
+        aside ul { list-style: none; padding: 0; }
+        aside li { margin-bottom: 1rem; cursor: pointer; color: #2f4f4f; font-weight: 500; }
+        aside li:hover { color: #0d3c26; text-decoration: underline; }
 
-        /* Grid */
-        .product-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-            gap: 2rem; 
-        }
-        .product-card { 
-            background: #fff; 
-            padding: 1.5rem; 
-            border-radius: 20px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            text-align: center;
-            border: 1px solid #dcdcdc;
-        }
+        /* Main Content */
+        main { flex: 1; padding: 2rem; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; }
+        .product-card { background: #fff; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; border: 1px solid #dcdcdc; }
         .product-image-container { width: 100%; height: 200px; margin-bottom: 1rem; overflow: hidden; border-radius: 10px; }
         .product-image-container img { width: 100%; height: 100%; object-fit: cover; }
-        
-        button { 
-            background: #0d3c26; color: white; padding: 0.75rem 1.5rem; border: none; 
-            border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem;
-        }
+        button { background: #0d3c26; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>B&T Collectibles</h1>
-        <a href="basket.html" style="color: #0d3c26;">View Basket (<span id="basket-count">0</span>)</a>
-    </header>
+    <aside>
+        <h2>Collections</h2>
+        <ul id="sidebar-nav">
+            <li onclick="filterCategory('All')">All Items</li>
+            <!-- Categories injected here -->
+        </ul>
+    </aside>
 
-    <main id="gallery-root">
-        <!-- Sections will be injected here -->
+    <main>
+        <header>
+            <h1>B&T Collectibles</h1>
+            <a href="basket.html">View Basket (<span id="basket-count">0</span>)</a>
+        </header>
+        <div id="gallery-root" class="product-grid"></div>
     </main>
 
     <script>
-        // List your files here
-        const artFiles = ['sunset-cave.md']; 
+        let allProducts = [];
 
         async function initGallery() {
-            const root = document.getElementById('gallery-root');
-            let galleryData = {};
+            const manifestResponse = await fetch('/products/art/manifest.json');
+            const artFiles = await manifestResponse.json();
 
             for (const file of artFiles) {
-                const response = await fetch(`/content/art/${file}`);
+                const response = await fetch(`/products/art/${file}`);
                 const text = await response.text();
                 
-                const title = text.match(/title:\s*["']?([^"'\n]+)/i)?.[1] || "Untitled";
-                const price = text.match(/price:\s*["']?([^"'\n]+)/i)?.[1] || "0.00";
-                const image = text.match(/image:\s*["']?([^"'\n]+)/i)?.[1] || "";
-                const category = text.match(/category:\s*["']?([^"'\n]+)/i)?.[1] || "General";
-
-                if (!galleryData[category]) galleryData[category] = [];
-                galleryData[category].push({ title, price, image });
-            }
-
-            // Build Sections
-            for (const [cat, items] of Object.entries(galleryData)) {
-                let sectionHTML = `<section class="category-section"><h2>${cat}</h2><div class="product-grid">`;
-                items.forEach(item => {
-                    sectionHTML += `
-                        <div class="product-card">
-                            <div class="product-image-container">
-                                <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'">
-                            </div>
-                            <h3>${item.title}</h3>
-                            <p>£${item.price}</p>
-                            <button onclick="addToBasket('${item.title}', '${item.price}')">Add to Basket</button>
-                        </div>`;
+                allProducts.push({
+                    title: text.match(/title:\s*["']?([^"'\n]+)/i)?.[1] || "Untitled",
+                    price: text.match(/price:\s*["']?([\d.]+)/i)?.[1] || "0.00",
+                    image: text.match(/image:\s*["']?([^"'\n]+)/i)?.[1] || "",
+                    category: text.match(/category:\s*["']?([^"'\n]+)/i)?.[1] || "General",
+                    description: text.match(/description:\s*["']?([^"'\n]+)/i)?.[1] || ""
                 });
-                sectionHTML += `</div></section>`;
-                root.innerHTML += sectionHTML;
             }
+            renderProducts(allProducts);
+            renderSidebar();
         }
 
-        function addToBasket(title, price) {
-            let basket = JSON.parse(localStorage.getItem('basket') || '[]');
-            basket.push({ title, price });
-            localStorage.setItem('basket', JSON.stringify(basket));
-            alert(title + ' added to basket!');
-            updateBasketCount();
+        function renderProducts(products) {
+            const root = document.getElementById('gallery-root');
+            root.innerHTML = products.map(item => `
+                <div class="product-card">
+                    <div class="product-image-container"><img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'"></div>
+                    <h3>${item.title}</h3>
+                    <p style="font-size: 0.9rem; color: #555;">${item.description}</p>
+                    <p><strong>£${parseFloat(item.price).toFixed(2)}</strong></p>
+                    <button onclick="addToBasket('${item.title}', '${item.price}')">Add to Basket</button>
+                </div>`).join('');
         }
 
-        function updateBasketCount() {
-            const basket = JSON.parse(localStorage.getItem('basket') || '[]');
-            document.getElementById('basket-count').innerText = basket.length;
+        function renderSidebar() {
+            const categories = [...new Set(allProducts.map(p => p.category))];
+            const nav = document.getElementById('sidebar-nav');
+            categories.forEach(cat => {
+                nav.innerHTML += `<li onclick="filterCategory('${cat}')">${cat}</li>`;
+            });
         }
 
-        window.onload = () => { initGallery(); updateBasketCount(); };
+        function filterCategory(cat) {
+            if (cat === 'All') return renderProducts(allProducts);
+            renderProducts(allProducts.filter(p => p.category === cat));
+        }
+
+        // ... addToBasket and updateBasketCount functions ...
     </script>
 </body>
 </html>
