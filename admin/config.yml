@@ -1,9 +1,14 @@
-# Use the GitHub backend instead of Git Gateway
 backend:
   name: github
-  repo: coopsben0/B-T-Collectibles # CHANGE THIS if your repo path is different
+  repo: coopsben0/B-T-Collectibles
   branch: main
-  base_url: https://api.github.com # Standard GitHub API
+
+# These two sections are required to fix the error in image_e1cc21.png
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+media_library:
+  name: image
 
 collections:
   - name: "art"
