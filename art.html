@@ -4,187 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Gallery | B&T Collectibles</title>
-    <!-- Keeps your global styles attached -->
     <link rel="stylesheet" href="styles.css"> 
-    
-    <!-- Custom styling block to make this layout stunning, calm, and professional -->
     <style>
-        :root {
-            --bg-color: #fbf9f3;
-            --primary-color: #0d3c26;
-            --accent-gold: #b8975a;
-            --text-dark: #2d3732;
-            --card-bg: #ffffff;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Fixed Navigation Header Layout */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 3rem;
-            background-color: var(--bg-color);
-            border-bottom: 1px solid rgba(13, 60, 38, 0.1);
-        }
-
-        header a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-        }
-
-        header a:hover {
-            color: var(--accent-gold);
-        }
-
-        header .logo {
-            font-family: 'Georgia', serif;
-            font-size: 1.75rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        /* Main Workspace Layout */
-        .gallery-layout {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        /* Sidebar Navigation Design */
-        aside {
-            background-color: transparent;
-        }
-
-        .sidebar-title {
-            font-family: 'Georgia', serif;
-            color: var(--primary-color);
-            font-size: 1.35rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-gold);
-            padding-bottom: 0.5rem;
-        }
-
-        .sidebar-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .nav-box {
-            background: none;
-            border: 1px solid rgba(13, 60, 38, 0.15);
-            color: var(--text-dark);
-            padding: 0.85rem 1.2rem;
-            text-align: left;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .nav-box:hover {
-            background-color: rgba(13, 60, 38, 0.05);
-            border-color: var(--primary-color);
-            transform: translateX(3px);
-        }
-
-        .nav-box.active {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            border-color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        /* Content Area & Clean Grid Systems */
-        .gallery-content {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        .filter-section {
-            margin-bottom: 2rem;
-        }
-
-        .section-heading {
-            font-family: 'Georgia', serif;
-            color: var(--primary-color);
-            font-size: 1.6rem;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Sample Premium Product Card Look */
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(13, 60, 38, 0.08);
-        }
-
-        .product-image-container {
-            width: 100%;
-            height: 240px;
-            background-color: #f4f2eb;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #a09e96;
-            font-size: 0.9rem;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .product-card h4 {
-            font-family: 'Georgia', serif;
-            color: var(--primary-color);
-            margin: 0.5rem 0;
-            font-size: 1.15rem;
-        }
-
-        .product-card .price {
-            color: var(--accent-gold);
-            font-weight: bold;
-            margin: 0;
-            font-size: 1.05rem;
-        }
+        :root { --bg-color: #fbf9f3; --primary-color: #0d3c26; --accent-gold: #b8975a; --text-dark: #2d3732; --card-bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 0; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; border-bottom: 1px solid rgba(13, 60, 38, 0.1); }
+        .logo { font-family: 'Georgia', serif; font-size: 1.75rem; font-weight: bold; color: var(--primary-color); text-transform: uppercase; }
+        .gallery-layout { display: grid; grid-template-columns: 260px 1fr; gap: 2.5rem; max-width: 1400px; margin: 2rem auto; padding: 0 2rem; }
+        .nav-box { display: block; width: 100%; background: none; border: 1px solid rgba(13, 60, 38, 0.15); padding: 0.85rem 1.2rem; margin-bottom: 0.5rem; cursor: pointer; text-align: left; }
+        .nav-box.active { background-color: var(--primary-color); color: white; }
+        .filter-section { margin-bottom: 3rem; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .product-card { background: var(--card-bg); padding: 1rem; border-radius: 12px; border: 1px solid #eee; }
+        .product-image-container { width: 100%; height: 240px; background-color: #f4f2eb; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; }
     </style>
 </head>
 <body>
 
-    <!-- Balanced, spaced-out header layout -->
     <header>
         <a href="index.html">Home</a>
         <div class="logo">B&T Collectibles</div>
@@ -192,108 +28,58 @@
     </header>
 
     <main class="gallery-layout">
-        <!-- Organized Sidebar Navigation Filters -->
         <aside>
             <h3 class="sidebar-title">Art Categories</h3>
-            <nav class="sidebar-nav">
-                <button onclick="filterSelection('all', this)" class="nav-box active">All Art</button>
-                <button onclick="filterSelection('cooper', this)" class="nav-box">B.A. Cooper Signature</button>
-                <button onclick="filterSelection('tlku', this)" class="nav-box">T.L. Ku Signature</button>
-                <button onclick="filterSelection('woodwork', this)" class="nav-box">Wood Work</button>
-                <button onclick="filterSelection('miniature', this)" class="nav-box">Miniature</button>
-                <button onclick="filterSelection('stone', this)" class="nav-box">Stone</button>
+            <nav class="sidebar-nav" id="sidebar">
+                <button onclick="filter('all', this)" class="nav-box active">All Art</button>
+                <button onclick="filter('cooper', this)" class="nav-box">B.A. Cooper Signature</button>
+                <button onclick="filter('tlku', this)" class="nav-box">T.L. Ku Signature</button>
+                <button onclick="filter('woodwork', this)" class="nav-box">Wood Work</button>
+                <button onclick="filter('miniature', this)" class="nav-box">Miniature</button>
+                <button onclick="filter('stone', this)" class="nav-box">Stone</button>
             </nav>
         </aside>
 
-        <!-- Product Galleries grouped by section IDs -->
-        <section class="gallery-content">
-            
-            <!-- 1. B.A. Cooper Section -->
-            <div id="cooper" class="filter-section">
-                <h2 class="section-heading">B.A. Cooper Signature Collection</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image-container">Sunset Cave Preview Image</div>
-                        <h4>Sunset Cave</h4>
-                        <p class="price">£120.00</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. T.L. Ku Section -->
-            <div id="tlku" class="filter-section">
-                <h2 class="section-heading">T.L. Ku Signature Collection</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image-container">Sample Painting Image</div>
-                        <h4>Classic Landscape</h4>
-                        <p class="price">£175.00</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Wood Work Section -->
-            <div id="woodwork" class="filter-section">
-                <h2 class="section-heading">Handcrafted Wood Work</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image-container">Sample Carving Image</div>
-                        <h4>Mahogany Sculpted Bowl</h4>
-                        <p class="price">£65.00</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. Miniature Section -->
-            <div id="miniature" class="filter-section">
-                <h2 class="section-heading">Fine Miniatures</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image-container">Sample Miniature Image</div>
-                        <h4>Detailed Pocket Diorama</h4>
-                        <p class="price">£45.00</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5. Stone Section -->
-            <div id="stone" class="filter-section">
-                <h2 class="section-heading">Polished Stone Art</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image-container">Sample Stone Image</div>
-                        <h4>Carved Alabaster Ornament</h4>
-                        <p class="price">£85.00</p>
-                    </div>
-                </div>
-            </div>
-
-        </section>
+        <section class="gallery-content" id="gallery-root">
+            </section>
     </main>
 
-    <!-- Upgraded interactive filtering engine -->
     <script>
-        function filterSelection(categoryId, buttonElement) {
-            // Show or hide matching category blocks smoothly
-            document.querySelectorAll('.filter-section').forEach(section => {
-                if (categoryId === 'all' || section.id === categoryId) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
+        // Mock data structure (In a real production app, this fetches your .md files)
+        const products = [
+            { title: "Sunset Cave", price: "120.00", category: "cooper", image: "/images/uploads/sunset-cave.png" }
+        ];
 
-            // Toggle active visual highlight state on buttons
-            if (buttonElement) {
-                document.querySelectorAll('.nav-box').forEach(btn => btn.classList.remove('active'));
-                buttonElement.classList.add('active');
-            }
+        function renderProducts() {
+            const root = document.getElementById('gallery-root');
+            const cats = ['cooper', 'tlku', 'woodwork', 'miniature', 'stone'];
+            
+            cats.forEach(cat => {
+                const section = document.createElement('div');
+                section.id = cat;
+                section.className = 'filter-section';
+                section.innerHTML = `<h2 class="section-heading">${cat.toUpperCase()}</h2><div class="product-grid" id="grid-${cat}"></div>`;
+                root.appendChild(section);
+
+                const grid = section.querySelector(`#grid-${cat}`);
+                products.filter(p => p.category === cat).forEach(p => {
+                    grid.innerHTML += `
+                        <div class="product-card">
+                            <div class="product-image-container"><img src="${p.image}" style="width:100%; height:100%; object-fit:cover;"></div>
+                            <h4>${p.title}</h4>
+                            <p class="price">£${p.price}</p>
+                        </div>`;
+                });
+            });
         }
 
-        // Guarantees all objects display completely on fresh window loads
-        window.onload = function() {
-            filterSelection('all', document.querySelector('.nav-box'));
-        };
+        function filter(c, btn) {
+            document.querySelectorAll('.filter-section').forEach(s => s.style.display = (c === 'all' || s.id === c) ? 'block' : 'none');
+            document.querySelectorAll('.nav-box').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        renderProducts();
     </script>
 </body>
 </html>
