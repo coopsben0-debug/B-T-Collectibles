@@ -3,7 +3,7 @@ backend:
   repo: coopsben0-debug/B-T-Collectibles
   branch: main
 
-# Saves images directly into your GitHub repo folder structure
+# Folders where your uploaded item photos live
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
