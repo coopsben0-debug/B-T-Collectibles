@@ -4,59 +4,47 @@
     <meta charset="UTF-8">
     <title>Art Gallery | B&T Collectibles</title>
     <style>
+        /* Calm & Relaxed Palette */
         body { 
-            font-family: sans-serif; 
-            background-color: #fcfcf9; 
-            color: #333; 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f5f5dc; 
+            color: #2f4f4f; 
             margin: 0; 
             padding: 2rem; 
         }
-        
         header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             max-width: 1000px; 
             margin: 0 auto 2rem auto; 
+            color: #0d3c26;
         }
+        
+        /* Sections */
+        .category-section { max-width: 1000px; margin: 0 auto 3rem auto; }
+        h2 { border-bottom: 2px solid #dcdcdc; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
 
+        /* Grid */
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
             gap: 2rem; 
-            max-width: 1000px; 
-            margin: 0 auto; 
         }
-
         .product-card { 
             background: #fff; 
-            padding: 2rem; 
+            padding: 1.5rem; 
             border-radius: 20px; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
             text-align: center;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #dcdcdc;
         }
-
-        .product-image-container { 
-            width: 100%; 
-            margin-bottom: 1.5rem; 
-        }
-
-        .product-image-container img { 
-            width: 100%; 
-            border-radius: 10px; 
-            display: block;
-        }
-
+        .product-image-container { width: 100%; height: 200px; margin-bottom: 1rem; overflow: hidden; border-radius: 10px; }
+        .product-image-container img { width: 100%; height: 100%; object-fit: cover; }
+        
         button { 
-            background: #0d3c26; 
-            color: white; 
-            padding: 0.75rem 1.5rem; 
-            border: none; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            font-weight: 600;
-            margin-top: 1rem;
+            background: #0d3c26; color: white; padding: 0.75rem 1.5rem; border: none; 
+            border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem;
         }
     </style>
 </head>
@@ -64,42 +52,50 @@
 
     <header>
         <h1>B&T Collectibles</h1>
-        <a href="basket.html">View Basket (<span id="basket-count">0</span>)</a>
+        <a href="basket.html" style="color: #0d3c26;">View Basket (<span id="basket-count">0</span>)</a>
     </header>
 
     <main id="gallery-root">
-        <div class="product-grid" id="grid">
-            <!-- Products loaded by script -->
-        </div>
+        <!-- Sections will be injected here -->
     </main>
 
     <script>
-        // List your files here. 
+        // List your files here
         const artFiles = ['sunset-cave.md']; 
 
         async function initGallery() {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = ''; 
+            const root = document.getElementById('gallery-root');
+            let galleryData = {};
 
             for (const file of artFiles) {
-                try {
-                    const response = await fetch(`/content/art/${file}`);
-                    const text = await response.text();
-                    
-                    const title = text.match(/title:\s*["']?([^"'\n]+)/i)?.[1] || "Untitled";
-                    const image = text.match(/image:\s*["']?([^"'\n]+)/i)?.[1] || "";
-                    const price = text.match(/price:\s*["']?([^"'\n]+)/i)?.[1] || "0.00";
+                const response = await fetch(`/content/art/${file}`);
+                const text = await response.text();
+                
+                const title = text.match(/title:\s*["']?([^"'\n]+)/i)?.[1] || "Untitled";
+                const price = text.match(/price:\s*["']?([^"'\n]+)/i)?.[1] || "0.00";
+                const image = text.match(/image:\s*["']?([^"'\n]+)/i)?.[1] || "";
+                const category = text.match(/category:\s*["']?([^"'\n]+)/i)?.[1] || "General";
 
-                    grid.innerHTML += `
+                if (!galleryData[category]) galleryData[category] = [];
+                galleryData[category].push({ title, price, image });
+            }
+
+            // Build Sections
+            for (const [cat, items] of Object.entries(galleryData)) {
+                let sectionHTML = `<section class="category-section"><h2>${cat}</h2><div class="product-grid">`;
+                items.forEach(item => {
+                    sectionHTML += `
                         <div class="product-card">
                             <div class="product-image-container">
-                                <img src="${image}" alt="${title}" onerror="this.style.display='none'">
+                                <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'">
                             </div>
-                            <h3>${title}</h3>
-                            <p>£${price}</p>
-                            <button onclick="addToBasket('${title}', '${price}')">Add to Basket</button>
+                            <h3>${item.title}</h3>
+                            <p>£${item.price}</p>
+                            <button onclick="addToBasket('${item.title}', '${item.price}')">Add to Basket</button>
                         </div>`;
-                } catch (e) { console.error("Error loading", file); }
+                });
+                sectionHTML += `</div></section>`;
+                root.innerHTML += sectionHTML;
             }
         }
 
