@@ -33,7 +33,7 @@
             <h1>B&T Collectibles</h1>
             <a href="basket.html">View Basket (<span id="basket-count">0</span>)</a>
         </header>
-        <div id="gallery-root" class="product-grid">Loading products...</div>
+        <div id="gallery-root" class="product-grid">Loading collection...</div>
     </main>
 
     <script>
@@ -41,15 +41,18 @@
 
         async function initGallery() {
             try {
-                // Ensure the path to manifest.json is correct for your repo
-                const manifestResponse = await fetch('/products/art/manifest.json');
-                if (!manifestResponse.ok) throw new Error("Could not find manifest.json");
+                // 1. Fetch file list from GitHub API
+                const apiURL = 'https://api.github.com/repos/coopsben0-debug/B-T-Collectibles/contents/products/art';
+                const response = await fetch(apiURL);
+                const files = await response.json();
                 
-                const artFiles = await manifestResponse.json();
+                // 2. Filter for .md files
+                const mdFiles = files.filter(f => f.name.endsWith('.md'));
 
-                for (const file of artFiles) {
-                    const response = await fetch(`/products/art/${file}`);
-                    const text = await response.text();
+                // 3. Process each file
+                for (const file of mdFiles) {
+                    const res = await fetch(file.download_url);
+                    const text = await res.text();
                     
                     allProducts.push({
                         title: text.match(/title:\s*["']?([^"'\n]+)/i)?.[1] || "Untitled",
@@ -62,8 +65,8 @@
                 renderProducts(allProducts);
                 renderSidebar();
             } catch (e) {
-                console.error(e);
-                document.getElementById('gallery-root').innerHTML = "Error loading products. Check console for details.";
+                console.error("Auto-fetch error:", e);
+                document.getElementById('gallery-root').innerHTML = "Unable to load products.";
             }
         }
 
