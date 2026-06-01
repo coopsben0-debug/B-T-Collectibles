@@ -1,6 +1,10 @@
+# Use the GitHub backend instead of Git Gateway
 backend:
-  name: git-gateway
+  name: github
+  repo: coopsben0/B-T-Collectibles # CHANGE THIS if your repo path is different
   branch: main
+  base_url: https://api.github.com # Standard GitHub API
+
 collections:
   - name: "art"
     label: "Art"
