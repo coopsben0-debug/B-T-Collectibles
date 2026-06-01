@@ -13,15 +13,15 @@ collections:
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Price", name: "price", widget: "number", value_type: "float", step: 0.01}
+      - {label: "Description", name: "description", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-      # This dropdown maps directly to the layout sections on your web page
       - label: "Category"
         name: "category"
         widget: "select"
         options:
-          - {label: "B.A. Cooper Signature", value: "cooper"}
-          - {label: "T.L. Ku Signature", value: "tlku"}
-          - {label: "Wood Work", value: "woodwork"}
-          - {label: "Miniature", value: "miniature"}
-          - {label: "Stone", value: "stone"}
+          - {label: "B.A. Cooper Signature", value: "B.A. Cooper Signature"}
+          - {label: "T.L. Ku Signature", value: "T.L. Ku Signature"}
+          - {label: "Wood Work", value: "Wood Work"}
+          - {label: "Miniature", value: "Miniature"}
+          - {label: "Stone", value: "Stone"}
