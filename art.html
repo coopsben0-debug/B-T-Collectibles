@@ -5,20 +5,16 @@
     <title>Art Gallery | B&T Collectibles</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f5f5dc; color: #2f4f4f; margin: 0; display: flex; min-height: 100vh; }
-        
-        /* Sidebar Navigation */
         aside { width: 250px; background: #fff; padding: 2rem; border-right: 1px solid #dcdcdc; }
         aside h2 { font-size: 1.2rem; color: #0d3c26; margin-bottom: 1.5rem; }
         aside ul { list-style: none; padding: 0; }
         aside li { margin-bottom: 1rem; cursor: pointer; color: #2f4f4f; font-weight: 500; }
         aside li:hover { color: #0d3c26; text-decoration: underline; }
-
-        /* Main Content */
         main { flex: 1; padding: 2rem; }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; }
         .product-card { background: #fff; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; border: 1px solid #dcdcdc; }
-        .product-image-container { width: 100%; height: 200px; margin-bottom: 1rem; overflow: hidden; border-radius: 10px; }
+        .product-image-container { width: 100%; height: 200px; margin-bottom: 1rem; overflow: hidden; border-radius: 10px; background: #f0f0f0; }
         .product-image-container img { width: 100%; height: 100%; object-fit: cover; }
         button { background: #0d3c26; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem; }
     </style>
@@ -29,7 +25,6 @@
         <h2>Collections</h2>
         <ul id="sidebar-nav">
             <li onclick="filterCategory('All')">All Items</li>
-            <!-- Categories injected here -->
         </ul>
     </aside>
 
@@ -38,42 +33,50 @@
             <h1>B&T Collectibles</h1>
             <a href="basket.html">View Basket (<span id="basket-count">0</span>)</a>
         </header>
-        <div id="gallery-root" class="product-grid"></div>
+        <div id="gallery-root" class="product-grid">Loading products...</div>
     </main>
 
     <script>
         let allProducts = [];
 
         async function initGallery() {
-            const manifestResponse = await fetch('/products/art/manifest.json');
-            const artFiles = await manifestResponse.json();
-
-            for (const file of artFiles) {
-                const response = await fetch(`/products/art/${file}`);
-                const text = await response.text();
+            try {
+                // Ensure the path to manifest.json is correct for your repo
+                const manifestResponse = await fetch('/products/art/manifest.json');
+                if (!manifestResponse.ok) throw new Error("Could not find manifest.json");
                 
-                allProducts.push({
-                    title: text.match(/title:\s*["']?([^"'\n]+)/i)?.[1] || "Untitled",
-                    price: text.match(/price:\s*["']?([\d.]+)/i)?.[1] || "0.00",
-                    image: text.match(/image:\s*["']?([^"'\n]+)/i)?.[1] || "",
-                    category: text.match(/category:\s*["']?([^"'\n]+)/i)?.[1] || "General",
-                    description: text.match(/description:\s*["']?([^"'\n]+)/i)?.[1] || ""
-                });
+                const artFiles = await manifestResponse.json();
+
+                for (const file of artFiles) {
+                    const response = await fetch(`/products/art/${file}`);
+                    const text = await response.text();
+                    
+                    allProducts.push({
+                        title: text.match(/title:\s*["']?([^"'\n]+)/i)?.[1] || "Untitled",
+                        price: text.match(/price:\s*["']?([\d.]+)/i)?.[1] || "0.00",
+                        image: text.match(/image:\s*["']?([^"'\n]+)/i)?.[1] || "",
+                        category: text.match(/category:\s*["']?([^"'\n]+)/i)?.[1] || "General",
+                        description: text.match(/description:\s*["']?([^"'\n]+)/i)?.[1] || ""
+                    });
+                }
+                renderProducts(allProducts);
+                renderSidebar();
+            } catch (e) {
+                console.error(e);
+                document.getElementById('gallery-root').innerHTML = "Error loading products. Check console for details.";
             }
-            renderProducts(allProducts);
-            renderSidebar();
         }
 
         function renderProducts(products) {
             const root = document.getElementById('gallery-root');
-            root.innerHTML = products.map(item => `
+            root.innerHTML = products.length > 0 ? products.map(item => `
                 <div class="product-card">
                     <div class="product-image-container"><img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'"></div>
                     <h3>${item.title}</h3>
                     <p style="font-size: 0.9rem; color: #555;">${item.description}</p>
                     <p><strong>£${parseFloat(item.price).toFixed(2)}</strong></p>
                     <button onclick="addToBasket('${item.title}', '${item.price}')">Add to Basket</button>
-                </div>`).join('');
+                </div>`).join('') : '<p>No products found.</p>';
         }
 
         function renderSidebar() {
@@ -89,7 +92,19 @@
             renderProducts(allProducts.filter(p => p.category === cat));
         }
 
-        // ... addToBasket and updateBasketCount functions ...
+        function addToBasket(title, price) {
+            let basket = JSON.parse(localStorage.getItem('basket') || '[]');
+            basket.push({ title, price });
+            localStorage.setItem('basket', JSON.stringify(basket));
+            alert(title + ' added to basket!');
+            updateBasketCount();
+        }
+
+        function updateBasketCount() {
+            document.getElementById('basket-count').innerText = JSON.parse(localStorage.getItem('basket') || '[]').length;
+        }
+
+        window.onload = () => { initGallery(); updateBasketCount(); };
     </script>
 </body>
 </html>
