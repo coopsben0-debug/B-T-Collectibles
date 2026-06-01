@@ -3,11 +3,9 @@ backend:
   repo: coopsben0-debug/B-T-Collectibles
   branch: main
 
-# Required by Decap CMS to function
+# Saves images directly into your GitHub repo folder structure
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
-media_library:
-  name: image
 
 collections:
   - name: "art"
