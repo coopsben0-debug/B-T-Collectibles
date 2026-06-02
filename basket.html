@@ -54,9 +54,21 @@
         }
 
         function checkout() {
-            // For now, this just alerts. When you link Gelato, 
-            // we will change this to redirect to your Gelato payment link.
-            alert("Redirecting to secure checkout...");
+            const basket = JSON.parse(localStorage.getItem('basket') || '[]');
+            
+            if (basket.length === 0) {
+                alert("Your basket is empty.");
+                return;
+            }
+
+            // Logic to direct to the correct Stripe link
+            const item = basket[0]; // Simplification: assuming one item for now
+            
+            if (item.title.toLowerCase().includes('sunset cave')) {
+                window.location.href = "https://buy.stripe.com/bJe5kC37IdKofdk0sq7ok00";
+            } else {
+                alert("Checkout link for this item is not yet configured. Please add the link for: " + item.title);
+            }
         }
 
         window.onload = loadBasket;
