@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <header>
         <nav class="header-left"><a href="index.html">Home</a></nav>
         <div class="logo">B&T COLLECTIBLES</div>
@@ -29,31 +28,33 @@
             
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
-            
             <button type="submit" id="submit-btn">Complete Order</button>
         </form>
     </main>
 
     <script>
-        // 1. Initialize Supabase
         const supabase = supabase.createClient(
             'https://whwofdemokzubboptsbu.supabase.co', 
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indod29mZGVtb2t6dWJib3B0c2J1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MTA4NTksImV4cCI6MjA5NTQ4Njg1OX0.78nrkvUO8coSJUWVMYX1UhN-AXBsyWNMhW4OqQTPX_Q'
         );
 
-        // 2. Display Basket
+        // Load items from local storage
         const basket = JSON.parse(localStorage.getItem('basket') || '[]');
         const container = document.getElementById('basket-items');
         let total = 0;
 
-        basket.forEach((item, index) => {
-            total += parseFloat(item.price);
-            container.innerHTML += `
-                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                    <span>${item.title}</span>
-                    <span>£${item.price} <button type="button" onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;">x</button></span>
-                </div>`;
-        });
+        if (basket.length > 0) {
+            basket.forEach((item, index) => {
+                total += parseFloat(item.price || 0);
+                container.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                        <span>${item.title}</span>
+                        <span>£${parseFloat(item.price).toFixed(2)} <button type="button" onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;">x</button></span>
+                    </div>`;
+            });
+        } else {
+            container.innerHTML = "<p>Your basket is empty.</p>";
+        }
         document.getElementById('total-price').innerText = total.toFixed(2);
 
         function removeItem(index) {
@@ -62,7 +63,6 @@
             location.reload();
         }
 
-        // 3. Handle Submit
         document.getElementById('checkout-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
@@ -70,18 +70,16 @@
             
             const formData = new FormData(e.target);
             
-            const { error } = await supabase
-                .from('orders')
-                .insert([{ 
-                    customer_name: formData.get('name'),
-                    customer_email: formData.get('email'),
-                    payment_method: formData.get('payment_method'),
-                    order_details: JSON.stringify(basket),
-                    status: 'pending'
-                }]);
+            const { error } = await supabase.from('orders').insert([{ 
+                customer_name: formData.get('name'),
+                customer_email: formData.get('email'),
+                payment_method: formData.get('payment_method'),
+                order_details: JSON.stringify(basket),
+                status: 'pending'
+            }]);
 
             if (error) {
-                alert("Error: " + error.message);
+                alert("Database Error: " + error.message);
                 btn.innerText = "Complete Order";
             } else {
                 alert("Order placed successfully!");
