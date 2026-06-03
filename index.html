@@ -2,19 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Collectibles</title>
+    <title>B&T Collectibles | Professional Art</title>
     <style>
-        body { background-color: #fdfaf6; font-family: sans-serif; color: #004d40; padding: 40px; }
-        nav a { margin-right: 15px; color: #004d40; }
+        /* Shared professional aesthetic */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #fdfaf6; 
+            color: #333; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        header { 
+            width: 100%; 
+            padding: 40px 0; 
+            text-align: center; 
+            background-color: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+        nav a { 
+            margin: 0 15px; 
+            text-decoration: none; 
+            color: #004d40; 
+            font-weight: 600; 
+        }
+        main { 
+            max-width: 800px; 
+            text-align: center; 
+            padding: 60px 20px; 
+        }
+        h1 { color: #004d40; font-size: 2.5em; }
+        .cta-btn { 
+            display: inline-block; 
+            margin-top: 30px; 
+            padding: 15px 30px; 
+            background: #004d40; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="art.html">Art Gallery</a>
-    </nav>
-    <h1>B&T Collectibles</h1>
-    <p>Professional but calm art for your home.</p>
-    <a href="art.html">View Our Art Gallery</a>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="art.html">Art Gallery</a>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>B&T Collectibles</h1>
+        <p>Curated, professional, and calm art for your living space.</p>
+        <a href="art.html" class="cta-btn">View Our Collection</a>
+    </main>
 </body>
 </html>
