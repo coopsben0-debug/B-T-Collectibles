@@ -1,66 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Basket | B&T Collectibles</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+<script>
+    // 1. Initialize Supabase with your provided credentials
+    const supabase = supabase.createClient(
+        'https://whwofdemokzubboptsbu.supabase.co', 
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indod29mZGVtb2t6dWJib3B0c2J1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MTA4NTksImV4cCI6MjA5NTQ4Njg1OX0.78nrkvUO8coSJUWVMYX1UhN-AXBsyWNMhW4OqQTPX_Q'
+    );
 
-    <header>
-        <nav class="header-left"><a href="index.html">Home</a></nav>
-        <div class="logo">B&T COLLECTIBLES</div>
-        <nav class="header-right"><a href="contact.html">Contact</a></nav>
-    </header>
+    // 2. Handle Form Submission
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        btn.innerText = "Processing...";
+        
+        const formData = new FormData(e.target);
+        
+        // Ensure these keys match your 'orders' table column names
+        const { error } = await supabase
+            .from('orders')
+            .insert([
+                { 
+                    customer_name: formData.get('name'),
+                    customer_email: formData.get('email'),
+                    payment_method: formData.get('payment_method')
+                }
+            ]);
 
-    <main>
-        <form id="checkout-form" class="checkout-card">
-            <h3>Complete Your Order</h3>
-            
-            <div style="margin: 1.5rem 0;">
-                <label><input type="radio" name="payment_method" value="online" checked> Online (Card)</label>
-                <label><input type="radio" name="payment_method" value="in-person"> Pay In-Person</label>
-            </div>
-            
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            
-            <button type="submit" id="submit-btn">Complete Order</button>
-        </form>
-    </main>
-
-    <script>
-        // 1. Initialize Supabase
-        const supabase = supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
-
-        // 2. Handle Form Submission
-        document.getElementById('checkout-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "Processing...";
-            
-            const formData = new FormData(e.target);
-            
-            const { error } = await supabase
-                .from('orders')
-                .insert([
-                    { 
-                        customer_name: formData.get('name'),
-                        customer_email: formData.get('email'),
-                        payment_method: formData.get('payment_method')
-                    }
-                ]);
-
-            if (error) {
-                alert("Error: " + error.message);
-                btn.innerText = "Complete Order";
-            } else {
-                alert("Order placed successfully!");
-                localStorage.removeItem('basket');
-                window.location.href = "index.html";
-            }
-        });
-    </script>
-</body>
-</html>
+        if (error) {
+            alert("Database Error: " + error.message);
+            btn.innerText = "Complete Order";
+        } else {
+            alert("Order placed successfully!");
+            localStorage.removeItem('basket');
+            window.location.href = "index.html";
+        }
+    });
+</script>
