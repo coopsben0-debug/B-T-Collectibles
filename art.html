@@ -3,30 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Art Gallery | B&T Collectibles</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        .product-card { border: 1px solid #ddd; padding: 20px; margin: 10px; display: inline-block; width: 250px; text-align: center; }
-        .buy-btn { display: inline-block; padding: 10px 20px; background: #004d40; color: white; text-decoration: none; border-radius: 5px; }
+        body { font-family: sans-serif; background-color: #fdfaf6; padding: 20px; }
+        .gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .product-card { background: white; border: 1px solid #ddd; padding: 20px; width: 250px; text-align: center; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; }
+        .buy-btn { display: inline-block; padding: 10px 20px; background: #004d40; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; }
+        .buy-btn:hover { background: #00332a; }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="art.html">Art Gallery</a>
-        </nav>
+    <header style="text-align: center; margin-bottom: 30px;">
         <h1>Our Art</h1>
     </header>
     
-    <main>
+    <main class="gallery">
         <!-- Sunset Cave Painting -->
         <div class="product-card">
+            <img src="sunset-cave.jpg" alt="Sunset Cave">
             <h3>Sunset Cave</h3>
             <p>£7.99</p>
             <a href="https://buy.stripe.com/bJe5kC37IdKofdk0sq7ok00" target="_blank" class="buy-btn">Buy Now</a>
         </div>
 
-        <!-- Add future products here using the same format with their unique Stripe links -->
+        <!-- Another Art -->
+        <div class="product-card">
+            <img src="another-art.jpg" alt="Art Piece">
+            <h3>Art Piece Name</h3>
+            <p>£10.00</p>
+            <a href="#" target="_blank" class="buy-btn">Buy Now</a>
+        </div>
     </main>
 </body>
 </html>
