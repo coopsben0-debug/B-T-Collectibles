@@ -3,56 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>B&T Collectibles | Studio</title>
-    <style>
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: #f5f5dc; 
-            color: #0d3c26; 
-            margin: 0; 
-            text-align: center; 
-        }
-        header { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 2rem 5rem; 
-            align-items: center; 
-        }
-        nav a { margin: 0 15px; color: #0d3c26; text-decoration: none; font-weight: 600; }
-        .hero { margin-top: 100px; }
-        .art-portal {
-            width: 250px; 
-            height: 350px; 
-            border: 2px solid #b89c5a; 
-            border-radius: 150px 150px 0 0; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            margin: 0 auto;
-            text-decoration: none;
-            color: #0d3c26;
-            font-size: 1.5rem;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .art-portal:hover { background: #e8e8c8; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Adding a soft font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <div style="font-weight: bold; letter-spacing: 2px;">B&T COLLECTIBLES</div>
-        <nav>
-            <a href="login.html">Login</a>
+        <nav class="nav-left">
+            <a href="art.html">Art</a>
+        </nav>
+        
+        <div class="logo">
+            B&T COLLECTIBLES
+            <span>Studio Journal</span>
+        </div>
+
+        <nav class="nav-right">
             <a href="contact.html">Contact</a>
             <a href="basket.html">Basket</a>
         </nav>
     </header>
 
-    <main class="hero">
-        <h1>Welcome to the Studio</h1>
-        <a href="art.html" class="art-portal">
-            Art
-        </a>
+    <main>
+        <h1 style="text-align: center; margin-top: 3rem; font-family: 'Playfair Display', serif;">Welcome to the Studio</h1>
+        
+        <div class="door-container">
+            <a href="art.html" class="door-card">Art</a>
+            <a href="handcrafts.html" class="door-card">Handcrafts</a>
+        </div>
     </main>
 
 </body>
