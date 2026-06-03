@@ -11,60 +11,62 @@ body {
     font-family: 'Lato', sans-serif; 
     margin: 0; 
     padding: 0; 
-    line-height: 1.6;
+    min-height: 100vh;
 }
 
-/* Header Revamp */
+/* Header: Spacious and Editorial */
 header { 
     display: grid; 
     grid-template-columns: 1fr auto 1fr; 
     align-items: center; 
-    padding: 2rem 4rem; 
-    border-bottom: 2px solid var(--gold);
-    background: rgba(247, 244, 213, 0.8);
+    padding: 3rem 5rem; 
 }
-
-.nav-left { justify-self: start; display: flex; gap: 1.5rem; }
-.nav-right { justify-self: end; display: flex; gap: 1.5rem; }
-header a { color: var(--dark-green); text-decoration: none; font-weight: 700; transition: color 0.3s; }
-header a:hover { color: var(--moss-green); }
 
 .logo { 
-    justify-self: center; 
     font-family: 'Playfair Display', serif; 
-    font-size: 1.8rem; 
+    font-size: 2.5rem; 
     text-align: center; 
+    line-height: 1.1;
     color: var(--dark-green);
 }
-.logo span { font-size: 0.7rem; letter-spacing: 4px; color: var(--moss-green); display: block; text-transform: uppercase; }
+.logo span { 
+    font-size: 0.8rem; 
+    letter-spacing: 6px; 
+    color: var(--moss-green); 
+    display: block; 
+    text-transform: uppercase; 
+    margin-top: 10px;
+}
 
-/* The "Homely" Doors */
-.door-container { 
-    display: flex; 
-    gap: 4rem; 
-    justify-content: center; 
+.header-left, .header-right { font-weight: bold; }
+header a { color: var(--dark-green); text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s; }
+header a:hover { border-bottom: 1px solid var(--dark-green); }
+
+/* Main Content: Homely & Centered */
+.hero-content { 
+    text-align: center; 
     margin-top: 4rem; 
+    padding: 0 2rem; 
 }
 
-.door-card { 
-    width: 200px; 
-    height: 260px; 
-    border-radius: 100px 100px 0 0; 
-    border: 2px solid var(--gold); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+.hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1rem; }
+.intro-text { font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.8; font-style: italic; }
+
+/* The Art Room Link */
+.art-room-link { 
+    display: inline-block; 
+    padding: 1.5rem 3rem; 
+    border: 2px solid var(--dark-green); 
+    color: var(--dark-green); 
     text-decoration: none; 
-    color: var(--dark-green);
-    background-color: #fffaf0; /* Warmer than pure white */
-    font-weight: 700;
+    font-weight: bold; 
+    font-size: 1.1rem;
     transition: all 0.4s ease;
-    box-shadow: 0 10px 20px rgba(10, 51, 35, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.door-card:hover { 
-    background-color: var(--moss-green); 
+.art-room-link:hover { 
+    background-color: var(--dark-green); 
     color: var(--beige); 
-    border-color: var(--moss-green);
-    transform: translateY(-15px); 
 }
