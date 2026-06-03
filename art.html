@@ -1,25 +1,32 @@
-<!-- Example for Sunset Cave -->
-<div class="product-card">
-    <img src="sunset-cave.jpg" alt="Sunset Cave">
-    <h3>Sunset Cave</h3>
-    <p>£7.99</p>
-    <!-- Use your Stripe Payment Link here -->
-    <a href="https://buy.stripe.com/bJe5kC37IdKofdk0sq7ok00" 
-       target="_blank" 
-       style="display:inline-block; padding:10px 20px; background:#004d40; color:white; text-decoration:none; border-radius:5px;">
-       Buy Now
-    </a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Gallery | B&T Collectibles</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-card { border: 1px solid #ddd; padding: 20px; margin: 10px; display: inline-block; width: 250px; text-align: center; }
+        .buy-btn { display: inline-block; padding: 10px 20px; background: #004d40; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="art.html">Art Gallery</a>
+        </nav>
+        <h1>Our Art</h1>
+    </header>
+    
+    <main>
+        <!-- Sunset Cave Painting -->
+        <div class="product-card">
+            <h3>Sunset Cave</h3>
+            <p>£7.99</p>
+            <a href="https://buy.stripe.com/bJe5kC37IdKofdk0sq7ok00" target="_blank" class="buy-btn">Buy Now</a>
+        </div>
 
-<!-- Example for your next product -->
-<div class="product-card">
-    <img src="another-art.jpg" alt="Another Art">
-    <h3>Art Piece Name</h3>
-    <p>£10.00</p>
-    <!-- Paste the new Stripe link here for this product -->
-    <a href="PASTE_YOUR_NEW_STRIPE_LINK_HERE" 
-       target="_blank" 
-       style="display:inline-block; padding:10px 20px; background:#004d40; color:white; text-decoration:none; border-radius:5px;">
-       Buy Now
-    </a>
-</div>
+        <!-- Add future products here using the same format with their unique Stripe links -->
+    </main>
+</body>
+</html>
