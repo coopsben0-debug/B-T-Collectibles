@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Basket | B&T Collectibles</title>
-    <!-- Import Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,9 +15,13 @@
     </header>
 
     <main>
-        <form id="checkout-form" class="checkout-card">
-            <h3>Complete Your Order</h3>
+        <form id="checkout-form" class="checkout-card" method="POST">
+            <h3>Your Basket</h3>
+            <div id="basket-items" style="text-align: left; margin: 1rem 0;"></div>
+            <p><strong>Total: £<span id="total-price">0.00</span></strong></p>
+            <hr>
             
+            <h3>Complete Your Order</h3>
             <div style="margin: 1.5rem 0;">
                 <label><input type="radio" name="payment_method" value="online" checked> Online (Card)</label>
                 <label><input type="radio" name="payment_method" value="in-person"> Pay In-Person</label>
@@ -32,13 +35,34 @@
     </main>
 
     <script>
-        // 1. Initialize Supabase with your provided credentials
+        // 1. Initialize Supabase
         const supabase = supabase.createClient(
             'https://whwofdemokzubboptsbu.supabase.co', 
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indod29mZGVtb2t6dWJib3B0c2J1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MTA4NTksImV4cCI6MjA5NTQ4Njg1OX0.78nrkvUO8coSJUWVMYX1UhN-AXBsyWNMhW4OqQTPX_Q'
         );
 
-        // 2. Handle Form Submission
+        // 2. Display Basket
+        const basket = JSON.parse(localStorage.getItem('basket') || '[]');
+        const container = document.getElementById('basket-items');
+        let total = 0;
+
+        basket.forEach((item, index) => {
+            total += parseFloat(item.price);
+            container.innerHTML += `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                    <span>${item.title}</span>
+                    <span>£${item.price} <button type="button" onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;">x</button></span>
+                </div>`;
+        });
+        document.getElementById('total-price').innerText = total.toFixed(2);
+
+        function removeItem(index) {
+            basket.splice(index, 1);
+            localStorage.setItem('basket', JSON.stringify(basket));
+            location.reload();
+        }
+
+        // 3. Handle Submit
         document.getElementById('checkout-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
@@ -46,25 +70,18 @@
             
             const formData = new FormData(e.target);
             
-            // Get basket items and convert to string for the 'order_details' column
-            const basketItems = localStorage.getItem('basket') || '[]';
-            
-            // Insert data into your public.orders table
             const { error } = await supabase
                 .from('orders')
-                .insert([
-                    { 
-                        customer_name: formData.get('name'),
-                        // Ensure you ran the ALTER TABLE command to add these columns!
-                        customer_email: formData.get('email'),
-                        payment_method: formData.get('payment_method'),
-                        order_details: basketItems,
-                        status: 'pending' // Default status
-                    }
-                ]);
+                .insert([{ 
+                    customer_name: formData.get('name'),
+                    customer_email: formData.get('email'),
+                    payment_method: formData.get('payment_method'),
+                    order_details: JSON.stringify(basket),
+                    status: 'pending'
+                }]);
 
             if (error) {
-                alert("Database Error: " + error.message);
+                alert("Error: " + error.message);
                 btn.innerText = "Complete Order";
             } else {
                 alert("Order placed successfully!");
