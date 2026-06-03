@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header Layout */
+/* Header: Editorial Layout */
 header { 
     display: grid; 
     grid-template-columns: 1fr auto 1fr; 
@@ -25,7 +25,7 @@ header {
 .header-left { justify-self: start; }
 .header-right { justify-self: end; }
 
-/* Typography & Logo */
+/* Logo Styling */
 .logo { 
     font-family: 'Playfair Display', serif; 
     font-size: 2.5rem; 
@@ -42,7 +42,7 @@ header {
     margin-top: 10px;
 }
 
-/* Navigation Links */
+/* Nav Links */
 header a { 
     color: var(--dark-green); 
     text-decoration: none; 
@@ -58,30 +58,39 @@ header a {
 
 header a:hover { color: var(--moss-green); }
 
-/* Main Content */
-.hero-content { 
-    text-align: center; 
-    margin-top: 4rem; 
-    padding: 0 2rem; 
+/* Card-Based Layout for Forms/Content */
+.checkout-card {
+    background: #ffffff;
+    padding: 3rem;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    max-width: 500px;
+    margin: 4rem auto;
+    text-align: center;
 }
 
-.hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1rem; }
-.intro-text { font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.8; font-style: italic; }
+input {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
 
-.art-room-link { 
-    display: inline-block; 
-    padding: 1.5rem 3rem; 
-    border: 2px solid var(--dark-green); 
-    color: var(--dark-green); 
-    text-decoration: none; 
-    font-weight: bold; 
-    font-size: 1.1rem;
-    transition: all 0.4s ease;
+button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--dark-green);
+    color: var(--beige);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    transition: 0.3s;
 }
 
-.art-room-link:hover { 
-    background-color: var(--dark-green); 
-    color: var(--beige); 
-}
+button:hover { background: var(--moss-green); }
