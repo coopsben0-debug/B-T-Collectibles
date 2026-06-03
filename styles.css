@@ -5,58 +5,66 @@
     --gold: #C5A059;
 }
 
-body { background-color: var(--beige); color: var(--dark-green); font-family: 'Lato', sans-serif; margin: 0; padding: 0; }
+body { 
+    background-color: var(--beige); 
+    color: var(--dark-green); 
+    font-family: 'Lato', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    line-height: 1.6;
+}
 
-/* Centered Header Layout */
+/* Header Revamp */
 header { 
     display: grid; 
     grid-template-columns: 1fr auto 1fr; 
     align-items: center; 
     padding: 2rem 4rem; 
-    border-bottom: 1px solid var(--gold); 
+    border-bottom: 2px solid var(--gold);
+    background: rgba(247, 244, 213, 0.8);
 }
 
 .nav-left { justify-self: start; display: flex; gap: 1.5rem; }
-.nav-right { justify-self: end; }
-header a { color: var(--dark-green); text-decoration: none; font-weight: bold; }
+.nav-right { justify-self: end; display: flex; gap: 1.5rem; }
+header a { color: var(--dark-green); text-decoration: none; font-weight: 700; transition: color 0.3s; }
+header a:hover { color: var(--moss-green); }
 
-.logo { justify-self: center; font-family: 'Playfair Display', serif; font-size: 1.8rem; text-align: center; }
+.logo { 
+    justify-self: center; 
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.8rem; 
+    text-align: center; 
+    color: var(--dark-green);
+}
 .logo span { font-size: 0.7rem; letter-spacing: 4px; color: var(--moss-green); display: block; text-transform: uppercase; }
 
-/* Arched Door Styling */
+/* The "Homely" Doors */
 .door-container { 
     display: flex; 
-    gap: 3rem; 
+    gap: 4rem; 
     justify-content: center; 
     margin-top: 4rem; 
 }
 
 .door-card { 
-    width: 220px; 
-    height: 280px; 
-    border-radius: 120px 120px 0 0; 
-    border: 3px solid var(--gold); 
+    width: 200px; 
+    height: 260px; 
+    border-radius: 100px 100px 0 0; 
+    border: 2px solid var(--gold); 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     text-decoration: none; 
     color: var(--dark-green);
-    background-color: white;
-    transition: 0.3s;
+    background-color: #fffaf0; /* Warmer than pure white */
+    font-weight: 700;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(10, 51, 35, 0.1);
 }
 
 .door-card:hover { 
     background-color: var(--moss-green); 
-    color: white; 
-    transform: translateY(-10px); 
-}
-
-/* Gallery & Grid */
-.product-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-    gap: 2rem; 
-    padding-top: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
+    color: var(--beige); 
+    border-color: var(--moss-green);
+    transform: translateY(-15px); 
 }
