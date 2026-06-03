@@ -16,21 +16,18 @@
     </main>
 
     <script>
-        try {
-            // Retrieve basket
-            const basket = JSON.parse(localStorage.getItem('basket') || '[]');
-            const container = document.getElementById('basket-items');
-            
-            if (basket.length === 0) {
-                container.innerHTML = "<p>Your basket is empty.</p>";
-            } else {
-                // Ensure we access .title and .price correctly
-                container.innerHTML = "<ul>" + basket.map(item => `
-                    <li>${item.title || "Untitled Item"} - £${item.price || "0.00"}</li>
-                `).join('') + "</ul>";
-            }
-        } catch (err) {
-            document.body.innerHTML = "<h1>Error</h1><p>" + err.message + "</p>";
+        const basket = JSON.parse(localStorage.getItem('basket') || '[]');
+        const container = document.getElementById('basket-items');
+        
+        if (basket.length === 0) {
+            container.innerHTML = "<p>Your basket is empty.</p>";
+        } else {
+            container.innerHTML = "<ul>" + basket.map(item => {
+                // This line looks for 'title' OR 'name', if both are missing it says 'Item'
+                const displayName = item.title || item.name || "Art Item";
+                const displayPrice = item.price || "0.00";
+                return `<li>${displayName} - £${displayPrice}</li>`;
+            }).join('') + "</ul>";
         }
     </script>
 </body>
