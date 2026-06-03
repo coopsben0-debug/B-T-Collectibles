@@ -1,92 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Basket | B&T Collectibles</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <nav class="header-left"><a href="index.html">Home</a></nav>
-        <div class="logo">B&T COLLECTIBLES</div>
-        <nav class="header-right"><a href="contact.html">Contact</a></nav>
-    </header>
+<script>
+    // Load and log to console to see if data exists
+    const storedData = localStorage.getItem('basket');
+    console.log("Data found in localStorage:", storedData);
+    
+    const basket = JSON.parse(storedData || '[]');
+    const container = document.getElementById('basket-items');
+    let total = 0;
 
-    <main>
-        <form id="checkout-form" class="checkout-card" method="POST">
-            <h3>Your Basket</h3>
-            <div id="basket-items" style="text-align: left; margin: 1rem 0;"></div>
-            <p><strong>Total: £<span id="total-price">0.00</span></strong></p>
-            <hr>
-            
-            <h3>Complete Your Order</h3>
-            <div style="margin: 1.5rem 0;">
-                <label><input type="radio" name="payment_method" value="online" checked> Online (Card)</label>
-                <label><input type="radio" name="payment_method" value="in-person"> Pay In-Person</label>
-            </div>
-            
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <button type="submit" id="submit-btn">Complete Order</button>
-        </form>
-    </main>
-
-    <script>
-        const supabase = supabase.createClient(
-            'https://whwofdemokzubboptsbu.supabase.co', 
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indod29mZGVtb2t6dWJib3B0c2J1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MTA4NTksImV4cCI6MjA5NTQ4Njg1OX0.78nrkvUO8coSJUWVMYX1UhN-AXBsyWNMhW4OqQTPX_Q'
-        );
-
-        // Load items from local storage
-        const basket = JSON.parse(localStorage.getItem('basket') || '[]');
-        const container = document.getElementById('basket-items');
-        let total = 0;
-
-        if (basket.length > 0) {
-            basket.forEach((item, index) => {
-                total += parseFloat(item.price || 0);
-                container.innerHTML += `
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                        <span>${item.title}</span>
-                        <span>£${parseFloat(item.price).toFixed(2)} <button type="button" onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;">x</button></span>
-                    </div>`;
-            });
-        } else {
-            container.innerHTML = "<p>Your basket is empty.</p>";
-        }
-        document.getElementById('total-price').innerText = total.toFixed(2);
-
-        function removeItem(index) {
-            basket.splice(index, 1);
-            localStorage.setItem('basket', JSON.stringify(basket));
-            location.reload();
-        }
-
-        document.getElementById('checkout-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "Processing...";
-            
-            const formData = new FormData(e.target);
-            
-            const { error } = await supabase.from('orders').insert([{ 
-                customer_name: formData.get('name'),
-                customer_email: formData.get('email'),
-                payment_method: formData.get('payment_method'),
-                order_details: JSON.stringify(basket),
-                status: 'pending'
-            }]);
-
-            if (error) {
-                alert("Database Error: " + error.message);
-                btn.innerText = "Complete Order";
-            } else {
-                alert("Order placed successfully!");
-                localStorage.removeItem('basket');
-                window.location.href = "index.html";
-            }
+    if (basket.length > 0) {
+        basket.forEach((item, index) => {
+            total += parseFloat(item.price || 0);
+            container.innerHTML += `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                    <span>${item.title}</span>
+                    <span>£${parseFloat(item.price).toFixed(2)} 
+                    <button type="button" onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;">x</button></span>
+                </div>`;
         });
-    </script>
-</body>
-</html>
+    } else {
+        container.innerHTML = "<p>Your basket is empty. Add items from the Gallery.</p>";
+    }
+    document.getElementById('total-price').innerText = total.toFixed(2);
+    
+    // ... rest of your supabase script ...
+</script>
