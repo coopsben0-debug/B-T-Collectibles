@@ -2,25 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Collectibles | Home</title>
+    <title>Home | B&T Collectibles</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #fdfaf6; color: #333; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background: #ffffff; padding: 20px; text-align: center; border-bottom: 1px solid #e0e0e0; }
-        .nav-links a { margin: 0 15px; text-decoration: none; color: #004d40; font-weight: 600; }
-        main { flex: 1; padding: 40px; text-align: center; }
-        h1 { color: #004d40; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #fdfaf6; color: #333; margin: 0; padding: 0; }
+        
+        /* Top Navigation Area */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #ffffff; border-bottom: 1px solid #e0e0e0; }
+        .contact-info a { text-decoration: none; color: #004d40; font-weight: 600; }
+        
+        /* Grand Title Area */
+        .hero { text-align: center; padding: 100px 20px; }
+        .brand-name { font-size: 4em; color: #004d40; margin: 0; letter-spacing: 2px; text-transform: uppercase; }
+        .welcome-text { font-size: 1.5em; color: #555; margin-top: 20px; font-weight: 300; }
+        
+        /* Action Button */
+        .gallery-btn { display: inline-block; margin-top: 40px; padding: 20px 50px; background: #004d40; color: white; text-decoration: none; border-radius: 8px; font-size: 1.2em; font-weight: bold; transition: background 0.3s; }
+        .gallery-btn:hover { background: #00332a; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="art.html">Art Gallery</a>
+
+    <div class="top-bar">
+        <div class="contact-info">
+            <a href="mailto:contact@btcollectibles.com">Contact Us</a>
         </div>
-    </header>
-    <main>
-        <h1>B&T Collectibles</h1>
-        <p>Curated, professional, and calm art for your living space.</p>
+        <div>
+            <a href="index.html" style="text-decoration: none; color: #004d40;">Home</a> | 
+            <a href="art.html" style="text-decoration: none; color: #004d40;">Art Gallery</a>
+        </div>
+    </div>
+
+    <main class="hero">
+        <h1 class="brand-name">B&T Collectibles</h1>
+        <p class="welcome-text">Welcome to the Home of Art</p>
+        <a href="art.html" class="gallery-btn">View Our Collection</a>
     </main>
+
 </body>
 </html>
