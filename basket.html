@@ -1,26 +1,33 @@
-<script>
-    // Load and log to console to see if data exists
-    const storedData = localStorage.getItem('basket');
-    console.log("Data found in localStorage:", storedData);
-    
-    const basket = JSON.parse(storedData || '[]');
-    const container = document.getElementById('basket-items');
-    let total = 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basket | B&T Collectibles</title>
+</head>
+<body>
+    <header>
+        <h1>B&T Collectibles Basket</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
 
-    if (basket.length > 0) {
-        basket.forEach((item, index) => {
-            total += parseFloat(item.price || 0);
-            container.innerHTML += `
-                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                    <span>${item.title}</span>
-                    <span>£${parseFloat(item.price).toFixed(2)} 
-                    <button type="button" onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;">x</button></span>
-                </div>`;
-        });
-    } else {
-        container.innerHTML = "<p>Your basket is empty. Add items from the Gallery.</p>";
-    }
-    document.getElementById('total-price').innerText = total.toFixed(2);
-    
-    // ... rest of your supabase script ...
-</script>
+    <main id="main-content">
+        <h3>Your Items</h3>
+        <div id="basket-items">Loading basket...</div>
+    </main>
+
+    <script>
+        try {
+            const basket = JSON.parse(localStorage.getItem('basket') || '[]');
+            const container = document.getElementById('basket-items');
+            
+            if (basket.length === 0) {
+                container.innerHTML = "<p>Your basket is empty.</p>";
+            } else {
+                container.innerHTML = "<ul>" + basket.map(item => `<li>${item.title} - £${item.price}</li>`).join('') + "</ul>";
+            }
+        } catch (err) {
+            document.body.innerHTML = "<h1>Error loading page</h1><p>" + err.message + "</p>";
+        }
+    </script>
+</body>
+</html>
