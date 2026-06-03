@@ -17,16 +17,20 @@
 
     <script>
         try {
+            // Retrieve basket
             const basket = JSON.parse(localStorage.getItem('basket') || '[]');
             const container = document.getElementById('basket-items');
             
             if (basket.length === 0) {
                 container.innerHTML = "<p>Your basket is empty.</p>";
             } else {
-                container.innerHTML = "<ul>" + basket.map(item => `<li>${item.title} - £${item.price}</li>`).join('') + "</ul>";
+                // Ensure we access .title and .price correctly
+                container.innerHTML = "<ul>" + basket.map(item => `
+                    <li>${item.title || "Untitled Item"} - £${item.price || "0.00"}</li>
+                `).join('') + "</ul>";
             }
         } catch (err) {
-            document.body.innerHTML = "<h1>Error loading page</h1><p>" + err.message + "</p>";
+            document.body.innerHTML = "<h1>Error</h1><p>" + err.message + "</p>";
         }
     </script>
 </body>
