@@ -3,8 +3,15 @@ backend:
   repo: coopsben0-debug/B-T-Collectibles
   branch: main
 
+# Configuration for media handling
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
+media_library:
+  name: github
+  config:
+    multiple: false # Keep false for simplicity with single product images
+    # Add allowed extensions here to ensure many types are supported
+    allowed_extensions: ["jpg", "jpeg", "png", "webp", "gif", "svg"]
 
 collections:
   - name: "art"
