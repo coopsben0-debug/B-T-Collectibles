@@ -3,67 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Home | B&T Atelier</title>
-    <!-- Importing a grand calligraphic font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            /* Applying Beige background from colour scheme.jpg */
-            background-color: #F7F4D5; 
-            color: #0A3323; 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-        }
-        
-        .top-bar { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 20px 40px; 
-            border-bottom: 1px solid #839958; /* Moss green accent */
-        }
+        body { background-color: #F7F4D5; color: #0A3323; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        .top-bar { display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #839958; }
         .top-bar a { text-decoration: none; color: #0A3323; font-weight: 600; }
-        
         .hero { text-align: center; padding: 100px 20px; }
-        
-        /* Grand calligraphy-style title */
-        .brand-name { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic; 
-            font-size: 5em; 
-            color: #0A3323; 
-            margin: 0; 
-        }
-        
+        .brand-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 5em; color: #0A3323; margin: 0; }
         .welcome-text { font-size: 1.5em; color: #0A3323; margin-top: 10px; opacity: 0.9; }
-        
-        .gallery-btn { 
-            display: inline-block; 
-            margin-top: 40px; 
-            padding: 15px 40px; 
-            background: #0A3323; 
-            color: #F7F4D5; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            font-weight: bold; 
-            transition: 0.3s; 
-        }
+        .gallery-btn { display: inline-block; margin-top: 40px; padding: 15px 40px; background: #0A3323; color: #F7F4D5; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; }
         .gallery-btn:hover { background: #839958; color: #0A3323; }
     </style>
 </head>
 <body>
-
     <div class="top-bar">
         <a href="mailto:contact@btcollectibles.com">Contact Us</a>
         <div>
             <a href="index.html">Home</a> | <a href="art.html">Art Gallery</a>
         </div>
     </div>
-
     <main class="hero">
         <h1 class="brand-name">B&T Collectibles</h1>
         <p class="welcome-text">Welcome to the Home of Art</p>
         <a href="art.html" class="gallery-btn">View Our Collection</a>
     </main>
-
 </body>
 </html>
