@@ -5,16 +5,17 @@ backend:
   base_url: https://api.github.com
 
 media_folder: "images/uploads"
-public_folder: "/images/uploads"
+public_folder: "images/uploads" # Removed leading slash for better path consistency
 
 collections:
-  # Your existing Art collection
+  # Art Collection
   - name: "art"
     label: "Art & Products"
     folder: "products/art"
     create: true
     slug: "{{slug}}"
     format: "yaml"
+    extension: "yaml" # Explicitly forces .yaml extension for readability
     fields:
       - {label: "Product Name", name: "title", widget: "string"}
       - {label: "Main Product Image", name: "image", widget: "image"}
@@ -22,13 +23,14 @@ collections:
       - {label: "Etsy Print Link", name: "print_link", widget: "string", required: false}
       - {label: "Etsy Original Link", name: "original_link", widget: "string", required: false}
 
-  # The New Library section for your book
+  # Library Collection
   - name: "library"
     label: "Library"
     folder: "content/library"
     create: true
     slug: "{{slug}}"
     format: "yaml"
+    extension: "yaml" # Explicitly forces .yaml extension for readability
     fields:
       - {label: "Book Title", name: "title", widget: "string"}
       - {label: "Cover Image", name: "image", widget: "image"}
