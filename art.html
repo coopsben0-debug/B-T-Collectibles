@@ -2,24 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>B&T Atelier | Premium Collection</title>
+    <title>B&T Atelier | Art Gallery</title>
     <style>
         :root { --beige: #F7F4D5; --dark-green: #0A3323; --sage: #839958; }
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--beige); margin: 0; display: flex; min-height: 100vh; }
-        
         aside { width: 240px; background: white; padding: 40px; border-right: 1px solid var(--sage); }
-        aside h2 { color: var(--dark-green); font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; }
-        aside button { display: block; width: 100%; padding: 10px; margin: 10px 0; border: none; background: none; text-align: left; cursor: pointer; color: var(--dark-green); border-radius: 4px; }
-        aside button:hover { background: var(--beige); }
-
+        .logo { width: 150px; margin-bottom: 20px; }
         main { flex: 1; padding: 50px; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
-        .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.06); transition: transform 0.3s; }
-        .product-card:hover { transform: translateY(-5px); }
+        .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
         .product-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; }
-        .product-card h3 { color: var(--dark-green); margin: 15px 0 5px; }
-        .btns { display: flex; gap: 10px; margin-top: 15px; }
-        .btn { flex: 1; padding: 12px; text-align: center; text-decoration: none; font-size: 0.8em; font-weight: bold; border-radius: 6px; }
+        .btn { display: block; padding: 12px; text-align: center; text-decoration: none; font-size: 0.8em; font-weight: bold; border-radius: 6px; margin-top: 10px; }
         .print { background: var(--sage); color: white; }
         .orig { background: var(--dark-green); color: white; }
     </style>
@@ -27,35 +20,51 @@
 <body>
 
 <aside>
-    <h2>Collection</h2>
-    <button onclick="filterSelection('all')">Show All</button>
-    <button onclick="filterSelection('B.A. Cooper Signature')">B.A. Cooper Signature</button>
-    <button onclick="filterSelection('T.L. Ku Signature')">T.L. Ku Signature</button>
-    <button onclick="filterSelection('Wood Work')">Wood Work</button>
-    <button onclick="filterSelection('Miniature')">Miniature</button>
-    <button onclick="filterSelection('Stone')">Stone</button>
+    <img src="/images/uploads/logo.jpg" class="logo" alt="B&T Atelier Logo">
+    <h2>Categories</h2>
+    <a href="#">B.A. Cooper Signature</a>
 </aside>
 
 <main>
-    <div class="gallery" id="gallery">
-        <div class="product-card" data-category="B.A. Cooper Signature">
-            <img src="/images/uploads/Ocean sunset_upscayl_5x_upscayl-standard-4x.png" alt="Product">
-            <h3>Sun Sleeps in Japan</h3>
-            <div class="btns">
-                <a href="#" class="btn print">Buy Print</a>
-                <a href="#" class="btn orig">Buy Original</a>
-            </div>
+    <h1>Our Collection</h1>
+    <div class="gallery">
+
+        <div class="product-card">
+            <img src="/images/uploads/shamus.jpeg" alt="Shamus Heaney">
+            <h3>Shamus Heaney - Poet Series #1</h3>
+            <a href="https://www.etsy.com/uk/listing/4519774908/shamus-heaney-poet-series-1-b-a-cooper" target="_blank" class="btn print">Buy Print</a>
+            <a href="https://www.etsy.com/uk/listing/4519777571/shamus-heaney-1-b-a-cooper-original" target="_blank" class="btn orig">Buy Original</a>
         </div>
+
+        <div class="product-card">
+            <img src="/images/uploads/birds.png" alt="Birds come alive">
+            <h3>The birds come alive in the sun</h3>
+            <a href="https://www.etsy.com/uk/listing/4519494729/the-birds-come-alive-in-the-sun" target="_blank" class="btn print">Buy Print</a>
+            <a href="https://www.etsy.com/uk/listing/4519494420/the-birds-come-alive-in-the-sun-original" target="_blank" class="btn orig">Buy Original</a>
+        </div>
+
+        <div class="product-card">
+            <img src="/images/uploads/sound.png" alt="Sound of nature">
+            <h3>The sound of nature produces growth</h3>
+            <a href="https://www.etsy.com/uk/listing/4519492391/the-sounds-of-nature-produce-growth" target="_blank" class="btn print">Buy Print</a>
+            <a href="https://www.etsy.com/uk/listing/4519492310/the-sound-of-nature-produces-growth" target="_blank" class="btn orig">Buy Original</a>
+        </div>
+
+        <div class="product-card">
+            <img src="/images/uploads/japan.png" alt="Sun sleeps in Japan">
+            <h3>The sun sleeps in Japan aswell</h3>
+            <a href="https://www.etsy.com/uk/listing/4518128609/the-sun-sleeps-in-japan-aswell" target="_blank" class="btn print">Buy Print</a>
+            <a href="https://www.etsy.com/uk/listing/4518489258/the-sun-sleeps-in-japan-aswell-original" target="_blank" class="btn orig">Buy Original</a>
+        </div>
+
+        <div class="product-card">
+            <img src="/images/uploads/caves.png" alt="Caves and sea">
+            <h3>The sun unites the caves and the sea</h3>
+            <a href="https://www.etsy.com/uk/listing/4518576730/the-sun-unites-the-caves-and-the-sea" target="_blank" class="btn print">Buy Print</a>
+            <a href="https://www.etsy.com/uk/listing/4518579531/the-sun-unites-the-caves-and-the-sea" target="_blank" class="btn orig">Buy Original</a>
+        </div>
+
     </div>
 </main>
-
-<script>
-    function filterSelection(c) {
-        let cards = document.getElementsByClassName("product-card");
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].style.display = (c == "all" || cards[i].getAttribute("data-category") == c) ? "block" : "none";
-        }
-    }
-</script>
 </body>
 </html>
