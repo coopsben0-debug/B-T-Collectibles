@@ -7,30 +7,21 @@
     <style>
         :root { --beige: #F7F4D5; --dark-green: #0A3323; --sage: #839958; }
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--beige); margin: 0; display: flex; min-height: 100vh; }
-        
-        /* Sidebar */
         aside { width: 240px; background: white; padding: 40px; border-right: 1px solid var(--sage); }
         .logo { width: 100%; max-width: 150px; margin-bottom: 30px; }
-        aside h2 { color: var(--dark-green); font-size: 1.1em; text-transform: uppercase; margin-bottom: 20px; }
         aside a { display: block; color: var(--dark-green); text-decoration: none; margin-bottom: 12px; font-weight: 500; cursor: pointer; }
-        aside a:hover { color: var(--sage); }
-
-        /* Gallery Grid */
         main { flex: 1; padding: 50px; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
         .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .product-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .product-card h3 { color: var(--dark-green); margin: 0 0 15px; font-size: 1.1em; }
-        
         .btn { display: block; padding: 12px; text-align: center; text-decoration: none; font-size: 0.85em; font-weight: bold; border-radius: 6px; margin-top: 8px; }
         .print { background: var(--sage); color: white; }
-        .orig { background: var(--dark-green); color: white; }
     </style>
 </head>
 <body>
 
 <aside>
-    <img src="images/uploads/logo.jpg" class="logo" alt="B&T Atelier Logo">
+    <img src="images/uploads/logo.jpg" class="logo" alt="Logo">
     <h2>Categories</h2>
     <a onclick="filterSelection('all')">Show All</a>
     <a onclick="filterSelection('B.A. Cooper Signature')">B.A. Cooper Signature</a>
@@ -41,36 +32,51 @@
     <h1>Our Collection</h1>
     <div class="gallery" id="gallery">
         <div class="product-card" data-category="B.A. Cooper Signature">
-            <img src="images/uploads/shamus.jpeg" alt="Shamus Heaney">
+            <img src="images/uploads/shamus.jpeg" alt="Shamus">
             <h3>Shamus Heaney - Poet Series #1</h3>
-            <a href="#" class="btn print">Buy Print</a>
+            <a href="#" class="btn print">View</a>
         </div>
         <div class="product-card" data-category="B.A. Cooper Signature">
             <img src="images/uploads/birds.png" alt="Birds">
-            <h3>The birds come alive in the sun</h3>
-            <a href="#" class="btn print">Buy Print</a>
+            <h3>The birds come alive</h3>
+            <a href="#" class="btn print">View</a>
         </div>
         <div class="product-card" data-category="B.A. Cooper Signature">
             <img src="images/uploads/sound.png" alt="Sound">
-            <h3>The sound of nature produces growth</h3>
-            <a href="#" class="btn print">Buy Print</a>
+            <h3>The sound of nature</h3>
+            <a href="#" class="btn print">View</a>
         </div>
         <div class="product-card" data-category="B.A. Cooper Signature">
             <img src="images/uploads/japan.png" alt="Japan">
-            <h3>The sun sleeps in Japan aswell</h3>
-            <a href="#" class="btn print">Buy Print</a>
+            <h3>The sun sleeps in Japan</h3>
+            <a href="#" class="btn print">View</a>
         </div>
         <div class="product-card" data-category="B.A. Cooper Signature">
             <img src="images/uploads/caves.png" alt="Caves">
-            <h3>The sun unites the caves and the sea</h3>
-            <a href="#" class="btn print">Buy Print</a>
+            <h3>The sun unites caves</h3>
+            <a href="#" class="btn print">View</a>
         </div>
         <div class="product-card" data-category="Library">
-            <img src="images/uploads/book-cover.png" alt="Book">
+            <img src="images/uploads/poetry.png" alt="Poetry">
             <h3>Poetry Handbook</h3>
-            <a href="#" class="btn orig">View Book</a>
+            <a href="#" class="btn print">View</a>
         </div>
+        <div class="product-card" data-category="Library">
+            <img src="images/uploads/hidden.png" alt="Hidden">
+            <h3>Hidden Paths</h3>
+            <a href="#" class="btn print">View</a>
         </div>
+        <div class="product-card" data-category="Library">
+            <img src="images/uploads/whisper.png" alt="Whisper">
+            <h3>Nature's Whisper</h3>
+            <a href="#" class="btn print">View</a>
+        </div>
+        <div class="product-card" data-category="Library">
+            <img src="images/uploads/antiquity.png" alt="Antiquity">
+            <h3>Modern Antiquity</h3>
+            <a href="#" class="btn print">View</a>
+        </div>
+    </div>
 </main>
 
 <script>
