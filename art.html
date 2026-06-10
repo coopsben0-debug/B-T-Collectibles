@@ -2,25 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&T Atelier | Art Gallery</title>
+    <title>B&T Atelier | Premium Collection</title>
     <style>
         :root { --beige: #F7F4D5; --dark-green: #0A3323; --sage: #839958; }
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--beige); margin: 0; display: flex; min-height: 100vh; }
         
         aside { width: 240px; background: white; padding: 40px; border-right: 1px solid var(--sage); }
-        .logo { width: 100%; margin-bottom: 30px; }
         aside h2 { color: var(--dark-green); font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; }
-        aside a { display: block; color: var(--dark-green); text-decoration: none; margin-bottom: 10px; font-weight: bold; }
-
+        
         main { flex: 1; padding: 50px; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
-        .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.06); transition: 0.3s; }
-        .product-card:hover { transform: translateY(-5px); }
+        .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
         .product-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; }
-        .product-card h3 { color: var(--dark-green); margin: 15px 0; font-size: 1.1em; }
+        .product-card h3 { color: var(--dark-green); margin: 15px 0 5px; }
         
-        .btn { display: block; padding: 12px; text-align: center; text-decoration: none; font-size: 0.8em; font-weight: bold; border-radius: 6px; margin-top: 8px; }
+        .btn { display: block; padding: 12px; text-align: center; text-decoration: none; font-size: 0.8em; font-weight: bold; border-radius: 6px; margin-top: 10px; }
         .print { background: var(--sage); color: white; }
         .orig { background: var(--dark-green); color: white; }
     </style>
@@ -28,51 +24,25 @@
 <body>
 
 <aside>
-    <img src="/images/uploads/logo.jpg" class="logo" alt="Logo">
-    <h2>Categories</h2>
-    <a href="#">B.A. Cooper Signature</a>
+    <h2>Collection</h2>
+    <div id="categories"></div>
 </aside>
 
 <main>
     <h1>Our Collection</h1>
-    <div class="gallery">
-
-        <div class="product-card">
-            <img src="/images/uploads/shamus.jpeg" alt="Shamus Heaney">
-            <h3>Shamus Heaney - Poet Series #1</h3>
-            <a href="https://www.etsy.com/uk/listing/4519774908/shamus-heaney-poet-series-1-b-a-cooper" target="_blank" class="btn print">Buy Print</a>
-            <a href="https://www.etsy.com/uk/listing/4519777571/shamus-heaney-1-b-a-cooper-original" target="_blank" class="btn orig">Buy Original</a>
+    <div class="gallery" id="gallery">
         </div>
-
-        <div class="product-card">
-            <img src="/images/uploads/birds.png" alt="Birds come alive">
-            <h3>The birds come alive in the sun</h3>
-            <a href="https://www.etsy.com/uk/listing/4519494729/the-birds-come-alive-in-the-sun" target="_blank" class="btn print">Buy Print</a>
-            <a href="https://www.etsy.com/uk/listing/4519494420/the-birds-come-alive-in-the-sun-original" target="_blank" class="btn orig">Buy Original</a>
-        </div>
-
-        <div class="product-card">
-            <img src="/images/uploads/sound.png" alt="Sound of nature">
-            <h3>The sound of nature produces growth</h3>
-            <a href="https://www.etsy.com/uk/listing/4519492391/the-sounds-of-nature-produce-growth" target="_blank" class="btn print">Buy Print</a>
-            <a href="https://www.etsy.com/uk/listing/4519492310/the-sound-of-nature-produces-growth" target="_blank" class="btn orig">Buy Original</a>
-        </div>
-
-        <div class="product-card">
-            <img src="/images/uploads/japan.png" alt="Sun sleeps in Japan">
-            <h3>The sun sleeps in Japan aswell</h3>
-            <a href="https://www.etsy.com/uk/listing/4518128609/the-sun-sleeps-in-japan-aswell" target="_blank" class="btn print">Buy Print</a>
-            <a href="https://www.etsy.com/uk/listing/4518489258/the-sun-sleeps-in-japan-aswell-original" target="_blank" class="btn orig">Buy Original</a>
-        </div>
-
-        <div class="product-card">
-            <img src="/images/uploads/caves.png" alt="Caves and sea">
-            <h3>The sun unites the caves and the sea</h3>
-            <a href="https://www.etsy.com/uk/listing/4518576730/the-sun-unites-the-caves-and-the-sea" target="_blank" class="btn print">Buy Print</a>
-            <a href="https://www.etsy.com/uk/listing/4518579531/the-sun-unites-the-caves-and-the-sea" target="_blank" class="btn orig">Buy Original</a>
-        </div>
-
-    </div>
 </main>
+
+<script>
+    // This script fetches your CMS-generated data
+    async function loadGallery() {
+        const gallery = document.getElementById('gallery');
+        // This is a placeholder logic. Since your site is hosted on GitHub Pages/Workers, 
+        // you would typically point this to your JSON feed or a collection output.
+        // For now, ensure your Jekyll _config.yml has 'collections: art: output: true'
+    }
+    loadGallery();
+</script>
 </body>
 </html>
