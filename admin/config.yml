@@ -2,26 +2,36 @@ backend:
   name: github
   repo: coopsben0-debug/B-T-Collectibles
   branch: main
+  base_url: https://api.github.com
 
-# Configuration for media handling
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
-media_library:
-  name: github
-  config:
-    multiple: false # Keep false for simplicity with single product images
-    # Add allowed extensions here to ensure many types are supported
-    allowed_extensions: ["jpg", "jpeg", "png", "webp", "gif", "svg"]
 
 collections:
+  # Your existing Art collection
   - name: "art"
     label: "Art & Products"
     folder: "products/art"
     create: true
     slug: "{{slug}}"
+    format: "yaml"
     fields:
       - {label: "Product Name", name: "title", widget: "string"}
       - {label: "Main Product Image", name: "image", widget: "image"}
       - {label: "Category", name: "category", widget: "select", options: ["B.A. Cooper Signature", "T.L. Ku Signature", "Wood Work", "Miniature", "Stone"]}
       - {label: "Etsy Print Link", name: "print_link", widget: "string", required: false}
       - {label: "Etsy Original Link", name: "original_link", widget: "string", required: false}
+
+  # The New Library section for your book
+  - name: "library"
+    label: "Library"
+    folder: "content/library"
+    create: true
+    slug: "{{slug}}"
+    format: "yaml"
+    fields:
+      - {label: "Book Title", name: "title", widget: "string"}
+      - {label: "Cover Image", name: "image", widget: "image"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Link to Book", name: "book_link", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
