@@ -56,6 +56,7 @@
             <h3>The sun unites caves</h3>
             <a href="#" class="btn print">View</a>
         </div>
+
         <div class="product-card" data-category="Library">
             <img src="images/uploads/poetry.png" alt="Poetry">
             <h3>Poetry Handbook</h3>
@@ -83,7 +84,7 @@
     function filterSelection(c) {
         var x = document.getElementsByClassName("product-card");
         for (let i = 0; i < x.length; i++) {
-            if (c == "all" || x[i].getAttribute("data-category") == c) {
+            if (c == 'all' || x[i].getAttribute("data-category") == c) {
                 x[i].style.display = "block";
             } else {
                 x[i].style.display = "none";
