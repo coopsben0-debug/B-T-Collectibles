@@ -9,19 +9,28 @@
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--beige); margin: 0; display: flex; min-height: 100vh; }
         aside { width: 240px; background: white; padding: 40px; border-right: 1px solid var(--sage); }
         .logo { width: 100%; max-width: 150px; margin-bottom: 30px; }
+        aside h2 { color: var(--dark-green); font-size: 1.1em; text-transform: uppercase; margin-bottom: 20px; }
         aside a { display: block; color: var(--dark-green); text-decoration: none; margin-bottom: 12px; font-weight: 500; cursor: pointer; }
+        aside a:hover { color: var(--sage); }
         main { flex: 1; padding: 50px; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
-        .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        /* Updated Card and Button Layout */
+        .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
         .product-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .btn { display: block; padding: 12px; text-align: center; text-decoration: none; font-size: 0.85em; font-weight: bold; border-radius: 6px; margin-top: 8px; }
+        .product-card h3 { color: var(--dark-green); margin: 0 0 15px; font-size: 1.1em; }
+        .button-group { display: flex; gap: 10px; margin-top: auto; }
+        .btn { flex: 1; display: block; padding: 10px; text-align: center; text-decoration: none; font-size: 0.85em; font-weight: bold; border-radius: 6px; }
         .print { background: var(--sage); color: white; }
+        .print:hover { background: #6b7f45; }
+        .orig { background: white; color: var(--dark-green); border: 2px solid var(--dark-green); }
+        .orig:hover { background: var(--dark-green); color: white; }
     </style>
 </head>
 <body>
 
 <aside>
-    <img src="images/uploads/logo.jpg" class="logo" alt="Logo">
+    <img src="images/uploads/logo.jpg" class="logo" alt="B&T Atelier Logo">
     <h2>Categories</h2>
     <a onclick="filterSelection('all')">Show All</a>
     <a onclick="filterSelection('B.A. Cooper Signature')">B.A. Cooper Signature</a>
@@ -31,52 +40,70 @@
 <main>
     <h1>Our Collection</h1>
     <div class="gallery" id="gallery">
+        
         <div class="product-card" data-category="B.A. Cooper Signature">
-            <img src="images/uploads/shamus.jpeg" alt="Shamus">
+            <img src="images/uploads/shamus.jpeg" alt="Shamus Heaney">
             <h3>Shamus Heaney - Poet Series #1</h3>
-            <a href="#" class="btn print">View</a>
+            <div class="button-group">
+                <a href="https://www.etsy.com/uk/listing/4519774908/shamus-heaney-poet-series-1-b-a-cooper?click_key=93d44d774be610f61d6cbd8b1d8575e311a6b88f%3A4519774908&click_sum=cb66f185&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_2" class="btn print" target="_blank">Buy Print</a>
+                <a href="https://www.etsy.com/uk/listing/4519777571/shamus-heaney-1-b-a-cooper-original?click_key=6802c03eebe1de4437bdec64ba7fbc81789f1bfd%3A4519777571&click_sum=6fbcb5bd&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_1" class="btn orig" target="_blank">Original</a>
+            </div>
         </div>
+        
         <div class="product-card" data-category="B.A. Cooper Signature">
-            <img src="images/uploads/birds.png" alt="Birds">
-            <h3>The birds come alive</h3>
-            <a href="#" class="btn print">View</a>
+            <img src="images/uploads/Ocean sunset_upscayl_5x_upscayl-standard-4x.png" alt="Ocean Sunset">
+            <h3>The birds come alive in the sun</h3>
+            <div class="button-group">
+                <a href="https://www.etsy.com/uk/listing/4519494729/the-birds-come-alive-in-the-sun?click_key=157b2d24a8f071fc817d958b34f25ef444fe8b75%3A4519494729&click_sum=de2dd97f&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_4" class="btn print" target="_blank">Buy Print</a>
+                <a href="https://www.etsy.com/uk/listing/4519494420/the-birds-come-alive-in-the-sun-original?click_key=5132951ac54510ad73e42f34216783af13a9f810%3A4519494420&click_sum=3fc2719f&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_3&frs=1" class="btn orig" target="_blank">Original</a>
+            </div>
         </div>
+        
         <div class="product-card" data-category="B.A. Cooper Signature">
-            <img src="images/uploads/sound.png" alt="Sound">
-            <h3>The sound of nature</h3>
-            <a href="#" class="btn print">View</a>
+            <img src="images/uploads/flower and water fall_upscayl_5x_upscayl-standard-4x.png" alt="Nature Waterfall">
+            <h3>The sound of nature produces growth</h3>
+            <div class="button-group">
+                <a href="https://www.etsy.com/uk/listing/4519492391/the-sounds-of-nature-produce-growth?click_key=d33718eabe7634084fc646301919b64cb6b41616%3A4519492391&click_sum=aa076b0d&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_6" class="btn print" target="_blank">Buy Print</a>
+                <a href="https://www.etsy.com/uk/listing/4519492310/the-sound-of-nature-produces-growth?click_key=c8217c92801b1c178d19047931c7f8178695edfd%3A4519492310&click_sum=09fda5ff&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_5&frs=1" class="btn orig" target="_blank">Original</a>
+            </div>
         </div>
+        
         <div class="product-card" data-category="B.A. Cooper Signature">
-            <img src="images/uploads/japan.png" alt="Japan">
-            <h3>The sun sleeps in Japan</h3>
-            <a href="#" class="btn print">View</a>
+            <img src="images/uploads/high defi figi mountain.png" alt="Japan Mountain">
+            <h3>The sun sleeps in Japan aswell</h3>
+            <div class="button-group">
+                <a href="https://www.etsy.com/uk/listing/4518128609/the-sun-sleeps-in-japan-aswell?click_key=3e41cf26b4e57ac40e7007ace460a26fb4788974%3A4518128609&click_sum=160ccb8b&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_10" class="btn print" target="_blank">Buy Print</a>
+                <a href="https://www.etsy.com/uk/listing/4518489258/the-sun-sleeps-in-japan-aswell-original?click_key=660136530e138467afbe4a590af42240f0231fa4%3A4518489258&click_sum=6ea68505&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_9&frs=1" class="btn orig" target="_blank">Original</a>
+            </div>
         </div>
+        
         <div class="product-card" data-category="B.A. Cooper Signature">
-            <img src="images/uploads/caves.png" alt="Caves">
-            <h3>The sun unites caves</h3>
-            <a href="#" class="btn print">View</a>
+            <img src="images/uploads/Cave sunset print_upscayl_5x_upscayl-standard-4x.png" alt="Cave Sunset">
+            <h3>The sun unites the caves and the sea</h3>
+            <div class="button-group">
+                <a href="https://www.etsy.com/uk/listing/4518576730/the-sun-unites-the-caves-and-the-sea?click_key=2b6a06e3972c30b765c62b3617e37251558ebea2%3A4518576730&click_sum=a83bdf99&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_8" class="btn print" target="_blank">Buy Print</a>
+                <a href="https://www.etsy.com/uk/listing/4518579531/the-sun-unites-the-caves-and-the-sea?click_key=af3ec9863e12e480fb349b6ca85c720062f9a2a5%3A4518579531&click_sum=41cff274&sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_7" class="btn orig" target="_blank">Original</a>
+            </div>
         </div>
 
         <div class="product-card" data-category="Library">
-            <img src="images/uploads/poetry.png" alt="Poetry">
-            <h3>Poetry Handbook</h3>
-            <a href="#" class="btn print">View</a>
+            <img src="images/uploads/book3.jpg" alt="The Poetry Handbook">
+            <h3>The Poetry Handbook</h3>
+            <a href="https://www.amazon.com/Poetry-Handbook-B-Cooper/dp/B0DGQ4BG5R?ref_=ast_author_dp&th=1&psc=1" class="btn print" target="_blank">View on Amazon</a>
         </div>
+        
         <div class="product-card" data-category="Library">
-            <img src="images/uploads/hidden.png" alt="Hidden">
-            <h3>Hidden Paths</h3>
-            <a href="#" class="btn print">View</a>
+            <img src="images/uploads/book 2.jpg" alt="Time is the Absence of You">
+            <h3>Time is the Absence of You</h3>
+            <a href="https://www.amazon.com/Time-Absence-You-B-Cooper-ebook/dp/B0CSXKCN7P?ref_=ast_author_dp&th=1&psc=1" class="btn print" target="_blank">View on Amazon</a>
         </div>
+
         <div class="product-card" data-category="Library">
-            <img src="images/uploads/whisper.png" alt="Whisper">
-            <h3>Nature's Whisper</h3>
-            <a href="#" class="btn print">View</a>
+            <img src="images/uploads/book 1.jpg" alt="The Enshrouded Desires of an Overwhelmed Heart">
+            <h3>The Enshrouded Desires of an Overwhelmed Heart</h3>
+            <a href="https://www.amazon.com/Enshrouded-Desires-Overwhelmed-Heart-ebook/dp/B09YM61YP7?ref_=ast_author_dp&th=1&psc=1" class="btn print" target="_blank">View on Amazon</a>
         </div>
-        <div class="product-card" data-category="Library">
-            <img src="images/uploads/antiquity.png" alt="Antiquity">
-            <h3>Modern Antiquity</h3>
-            <a href="#" class="btn print">View</a>
-        </div>
+        
     </div>
 </main>
 
@@ -85,7 +112,7 @@
         var x = document.getElementsByClassName("product-card");
         for (let i = 0; i < x.length; i++) {
             if (c == 'all' || x[i].getAttribute("data-category") == c) {
-                x[i].style.display = "block";
+                x[i].style.display = "flex";
             } else {
                 x[i].style.display = "none";
             }
