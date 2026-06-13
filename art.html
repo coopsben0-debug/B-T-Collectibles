@@ -7,18 +7,28 @@
     <style>
         :root { --beige: #F7F4D5; --dark-green: #0A3323; --sage: #839958; }
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--beige); margin: 0; display: flex; min-height: 100vh; }
-        aside { width: 240px; background: white; padding: 40px; border-right: 1px solid var(--sage); }
+        
+        /* Updated Aside for top/bottom positioning */
+        aside { width: 240px; background: white; padding: 40px; border-right: 1px solid var(--sage); display: flex; flex-direction: column; }
+        
         .logo { width: 100%; max-width: 150px; margin-bottom: 30px; }
         aside h2 { color: var(--dark-green); font-size: 1.1em; text-transform: uppercase; margin-bottom: 20px; }
         aside a { display: block; color: var(--dark-green); text-decoration: none; margin-bottom: 12px; font-weight: 500; cursor: pointer; }
         aside a:hover { color: var(--sage); }
+        
+        /* New Navigation Links Styling */
+        .back-link { color: var(--sage); font-size: 0.9em; margin-bottom: 30px; }
+        .back-link:hover { color: var(--dark-green); }
+        .spacer { flex-grow: 1; } /* This pushes the contact link to the bottom */
+        .contact-link { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-weight: bold; }
+        
         main { flex: 1; padding: 50px; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
         
-        /* Updated Card and Button Layout */
         .product-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
         .product-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
         .product-card h3 { color: var(--dark-green); margin: 0 0 15px; font-size: 1.1em; }
+        
         .button-group { display: flex; gap: 10px; margin-top: auto; }
         .btn { flex: 1; display: block; padding: 10px; text-align: center; text-decoration: none; font-size: 0.85em; font-weight: bold; border-radius: 6px; }
         .print { background: var(--sage); color: white; }
@@ -30,11 +40,17 @@
 <body>
 
 <aside>
+    <a href="index.html" class="back-link">← Back to Main</a>
+
     <img src="images/uploads/logo.jpg" class="logo" alt="B&T Atelier Logo">
     <h2>Categories</h2>
     <a onclick="filterSelection('all')">Show All</a>
     <a onclick="filterSelection('B.A. Cooper Signature')">B.A. Cooper Signature</a>
     <a onclick="filterSelection('Library')">Library</a>
+
+    <div class="spacer"></div>
+
+    <a href="contact.html" class="contact-link">Contact / Custom Order</a>
 </aside>
 
 <main>
